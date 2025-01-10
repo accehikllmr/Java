@@ -4,7 +4,7 @@ package beginner;
  * assigned to a variable, nor mix them
  */
 
-public class DataTypes {
+public class PrimitiveDataTypes {
 
 	public static void main(String[] args)
 	{
