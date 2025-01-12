@@ -3,6 +3,10 @@ package challenges;
 
 //the ones already in the starter files. 
 
+/* EXAMINE DEFAULT UNIT TESTS TO SEE IF THEY COVER ALL EDGE CASES
+ * IF NOT, ADD MORE UNIT TESTS
+ */
+
 ////////////////////////////////////////////////////////////
 //Full Name : Michel Clark
 //Yorku Email : mciehl@my.yorku.ca
@@ -69,7 +73,8 @@ public class Lab1Utilities {
      *     <strong> Precondition: </strong> month and day are non-negative values
      * </p>
 	 */	
-	public static String weather(int month, int day) {
+	public static String weather(int month, int day) 
+	{
 		/* Your implementation of this method starts here.
 	        * Recall that :
 	        * 1. No System.out.println statements should appear here.
@@ -89,7 +94,7 @@ public class Lab1Utilities {
 		}
 		
 		// defining each season according to given dates, presuming that months must have correct number of days
-		boolean isWinter = (month == 12 && day >= 15) || month == 1 || (month == 2 && day <= 29) || (month == 3 && day <= 25);
+		boolean isWinter = (month == 12 && day >= 15) || month == 1 || (month == 2 && day <= 28) || (month == 3 && day <= 25);
 		boolean isSpring = (month == 4 && day <= 30) || month == 5;
 		boolean isSummer = (month == 6 && day <= 30) || month == 7 || month == 8 || (month == 9 && day <= 15);
 		boolean isFall = (month == 9 && day <= 30) || month == 10 || (month == 11 && day <= 30);
@@ -148,7 +153,8 @@ public class Lab1Utilities {
 	 * @return string value, see above examples
 	 */
    
-	public static String temperatureConverter(double fahrenheit) {
+	public static String temperatureConverter(double fahrenheit) 
+	{
 		/* Your implementation of this method starts here. 
 		 * Recall that :
 		 * 1. No System.out.println statements should appear here.
@@ -156,8 +162,14 @@ public class Lab1Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
-
-		return "";
+		
+		double celciusTemp;
+		
+		// all values in calculation must have the same type, otherwise yields incorrect result
+		celciusTemp = (5.0 / 9.0) * (fahrenheit - 32.0);
+		
+		// verify whether or not format method for String objects can be used in this assignment
+		return String.format("Fahrenheit (%.1f) is equivalent to (%.2f) in Celsius", fahrenheit, celciusTemp);
 	}
 
 	
