@@ -25,7 +25,6 @@ public class Lab1Utilities {
 		// ALREADY IMPLEMENTED; DO NOT MODIFY
 	}
 	
-	
 	/**
 	 *  
 	 * Write a static method named weather that takes two integers as parameters representing a month and day.
