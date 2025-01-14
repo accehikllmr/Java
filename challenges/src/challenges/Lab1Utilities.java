@@ -5,6 +5,7 @@ package challenges;
 
 /* EXAMINE DEFAULT UNIT TESTS TO SEE IF THEY COVER ALL EDGE CASES
  * IF NOT, ADD MORE UNIT TESTS
+ * ALSO, DO WE HAVE TO ACCOUNT FOR INVALID INPUT VALUES
  */
 
 ////////////////////////////////////////////////////////////
@@ -73,6 +74,7 @@ public class Lab1Utilities {
      *     <strong> Precondition: </strong> month and day are non-negative values
      * </p>
 	 */	
+	
 	public static String weather(int month, int day) 
 	{
 		/* Your implementation of this method starts here.
@@ -83,7 +85,7 @@ public class Lab1Utilities {
 	        *    Instead, refer to the input parameters of this method.
 	        */
 		
-		// validating input values, to avoid misinterpretation of season (e.g. december 32)
+		// validating input values, to avoid mis-interpretation of season (e.g. December 32)
 		boolean validDay = day >= 1 && day <= 31;
 		boolean validMonth = month >= 1 && month <= 12;
 		
@@ -197,7 +199,9 @@ public class Lab1Utilities {
 	 * @param days input days value as int value
 	 * @return String value as shown in the examples above (Check test cases)
 	 */
-	public static String ageInYearsDetailed(int days) {
+	
+	public static String ageInYearsDetailed(int days) 
+	{
 		/* Your implementation of this method starts here. 
 		 * Recall that :
 		 * 1. No System.out.println statements should appear here.
@@ -206,10 +210,24 @@ public class Lab1Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-     return "";
+		// variables to store results for returned value
+		int ageYears;
+		int ageMonths;
+		int ageDays;
+	
+		// constants, for converting days into years and months
+		int DAYS_IN_YEAR = 365;
+		int DAYS_IN_MONTH = 30;
+		
+		// numerator and denominator are both integers, so result is integer (i.e. equivalent to // in Python), how many times 365 goes into total days
+		ageYears = days / DAYS_IN_YEAR;
+		// take the remainder of 365 into total days (what does not make a whole year) and see how many times 30 goes into it
+		ageMonths = (days % DAYS_IN_YEAR) / DAYS_IN_MONTH;
+		// take remainder of days that don't make a whole year, and a whole month, gives days in the month
+		ageDays = (days % DAYS_IN_YEAR) % DAYS_IN_MONTH;
+		
+		return String.format("Age in days (%d), age in years is (%d), months (%d), with remaining days (%d)", days, ageYears, ageMonths, ageDays);
     }
-	
-	
 	
 	/**
 	 * Implement the method that converts centimetres to an integral number of feet
@@ -255,8 +273,25 @@ public class Lab1Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-		return "";
+		// variables to store results for returned value
+		double feet;
+		double inches;
+		// variable to calculate above values
+		double totalInches;
+		
+		// constants for conversion between cm and in
+		double INCHES_IN_FEET = 12.0;
+		double CM_IN_INCHES = 2.54;
 
+		// converting total cm to total in
+		totalInches = cm / CM_IN_INCHES;
+		// how many times 1 foot goes into total inches
+		feet = Math.floor(totalInches / INCHES_IN_FEET);
+		// inches remaining from above calculation
+		inches = totalInches % INCHES_IN_FEET;
+		
+		// .0 for feet, since double type but want no digits after decimal point
+		return String.format("%.2fcm is %.0fft and %.2fin", cm, feet, inches);
 	}
 
 	/**
