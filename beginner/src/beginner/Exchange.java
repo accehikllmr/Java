@@ -9,14 +9,14 @@ public class Exchange {
 		// taking user input for values to be exchanged
 		Scanner console = new Scanner(System.in);
 		System.out.println("Please provide two distinct values: ");
-		// nextDouble asks for double, it is also possible to use nextDouble
-		double a = console.nextDouble();
-		double b = console.nextDouble();
-		double c;
+		// nextInt asks for double, it is also possible to use nextDouble
+		int a = console.nextInt();
+		int b = console.nextInt();
+		int c;
 			
 		// how to get type cast working (???)
-		c = (int)a; // storing value assigned to a, in c
-		a = (int)b; // assigning value of b to a (first exchange)
+		c = a; // storing value assigned to a, in c
+		a = b; // assigning value of b to a (first exchange)
 		a = c; // assigning stored value of a, in c, to be
 		
 		// creating string object to facilitate printing

@@ -36,7 +36,6 @@ public class JunitTest_Lab1Utilities {
 	public void test_00_00_() {
 		int m = 1, d =1;
 		String result = Lab1Utilities.weather(m, d);
-		
 		String expect = "The current weather season is Winter";
 		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
                 m, d, result, expect);

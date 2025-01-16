@@ -1,11 +1,10 @@
 package challenges;
 //You are NOT allowed to add any "import" statement other than 
-
 //the ones already in the starter files. 
 
 /* EXAMINE DEFAULT UNIT TESTS TO SEE IF THEY COVER ALL EDGE CASES
  * IF NOT, ADD MORE UNIT TESTS
- * ALSO, DO WE HAVE TO ACCOUNT FOR INVALID INPUT VALUES
+ * ALSO, DO WE HAVE TO ACCOUNT FOR INVALID INPUT VALUES (e.g. starting balance is negative)
  */
 
 ////////////////////////////////////////////////////////////
@@ -334,10 +333,19 @@ public class Lab1Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		
+		// assigning balance to new variable, original must remain unchanged for return statement
+		double new_balance = balance;
+		
+		// looping over five years, so must include 5 in value of i
+		for (int i = 1; i <= 5; i++) 
+		{
+			// shorthand formula for compound interest
+			new_balance *= (1 + interest / 100);
+		}
 
-		return "";
+		return String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f", balance, interest, new_balance);
 	}
-	
 	
 	
 	/**
@@ -381,7 +389,20 @@ public class Lab1Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
-		return -999;
+		
+		// conversion constants from imperial to metric units
+		double KG_PER_POUND = 0.453592;
+		double M_PER_FOOT = 0.3048;
+		double M_PER_INCH = 0.0254;
+		
+		// converting from imperial to metric units
+		double metric_weight = pounds * KG_PER_POUND;
+		double metric_height = (feet * M_PER_FOOT) + (inches * M_PER_INCH);
+		
+		// formula for calculating BMI, using pow method from Math (library?)
+		double bmi = metric_weight / (Math.pow(metric_height, 2));
+		
+		return bmi;
 	}
 
 	
