@@ -461,21 +461,18 @@ public class Lab1Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-	
-		return "";
-
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
+		/* number is not perfect square if flooring its root is not the same as its original root
+		 * e.g. sqrt(16) = 4.0, floor of 4.0 == 4.0, whereas sqrt(15) = 3.8729. floor of 3.8729 == 3.0000 != 3.8729
+		 */
+		boolean perfectSquare = Math.sqrt(n) == Math.floor(Math.sqrt(n));
+		
+		// branching if number passed to function is a perfect square
+		if (perfectSquare) {
+			return String.format("Integer %d is Perfect Square", n);
+		}
+		
+		return String.format("Integer %d is NOT Perfect Square", n);
+			
+	}	
 }
