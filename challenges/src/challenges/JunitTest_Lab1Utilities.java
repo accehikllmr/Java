@@ -42,6 +42,7 @@ public class JunitTest_Lab1Utilities {
 		
 		assertEquals(str, expect, result);
 	}
+	
 	@Test
 	public void test_00_01_() {
 		int m = 2, d =27;
@@ -176,6 +177,7 @@ public class JunitTest_Lab1Utilities {
 		assertEquals(str, expect, result);	
 		
 	}
+	
 	@Test
 	public void test_00_14_() {
 		int m = 7, d =10;
@@ -185,6 +187,146 @@ public class JunitTest_Lab1Utilities {
                 m, d, result, expect);
 		assertEquals(str, expect, result);	
 		
+	}
+	
+	@Test // invalid date prior to winter
+	public void test_00_15_() {
+		int m = 12, d = 14;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "Unknown";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test // lower bound of winter
+	public void test_00_16_() {
+		int m = 12, d = 15;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Winter";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+
+	@Test // upper bound of december
+	public void test_00_161_() {
+		int m = 12, d = 31;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Winter";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test // upper bound of january
+	public void test_00_162_() {
+		int m = 1, d = 31;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Winter";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test // upper bound of february
+	public void test_00_163_() {
+		int m = 2, d = 28;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Winter";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test // upper bound of winter
+	public void test_00_17_() {
+		int m = 3, d = 25;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Winter";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test // invalid date after winter
+	public void test_00_18_() {
+		int m = 3, d = 26;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "Unknown";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test 
+	public void test_00_19_() {
+		int m = 4, d = 1;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Spring";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test
+	public void test_00_20_() {
+		int m = 5, d = 31;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Spring";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test
+	public void test_00_21_() {
+		int m = 6, d = 1;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Summer";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test
+	public void test_00_22_() {
+		int m = 9, d = 15;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Summer";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test
+	public void test_00_23_() {
+		int m = 9, d = 16;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Fall";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test
+	public void test_00_24_() {
+		int m = 11, d = 30;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "The current weather season is Fall";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
+	}
+	
+	@Test
+	public void test_00_25_() {
+		int m = 12, d = 1;
+		String result = Lab1Utilities.weather(m,d);
+		String expect = "Unknown";
+		String str = String.format("\nTest weather fail for (%d) and (%d) Returned ( %s ), but correct is ( %s )\n",
+                m, d, result, expect);
+		assertEquals(str, expect, result);
 	}
 	
 	@Test
