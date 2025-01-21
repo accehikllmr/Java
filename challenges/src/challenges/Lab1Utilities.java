@@ -83,11 +83,11 @@ public class Lab1Utilities {
 	        *    Instead, refer to the input parameters of this method.
 	        */
 		
-		// validating input values, to avoid mis-interpretation of season (e.g. December 32)
+		// defining valid values for months and days, to avoid mis-interpretation of season (e.g. December 32)
 		boolean validDay = day >= 1 && day <= 31;
 		boolean validMonth = month >= 1 && month <= 12;
 		
-		// halts program if either input value is invalid
+		// validating arguments passed to month and day parameters, halts program if invalid
 		if (!validDay || !validMonth)
 		{
 			return "Unknown";
@@ -163,6 +163,12 @@ public class Lab1Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
+		// validating argument passed to class parameter: above absolute zero
+		if (fahrenheit < -459.67) 
+		{
+			return String.format("Invalid temperature: Below absolute zero");
+		}
+		
 		double celciusTemp;
 		
 		// all values in calculation must have the same type, otherwise yields incorrect result
@@ -207,6 +213,12 @@ public class Lab1Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		
+		// validating argument passed to class parameter: not negative
+		if (days < 0)
+		{
+			return "Invalid age in days: Below zero";
+		}
 		
 		// variables to store results for returned value
 		int ageYears;
@@ -270,6 +282,12 @@ public class Lab1Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		
+		// validating argument passed to class parameter: not negative
+		if (cm < 0)
+		{
+			return "Invalid length: Less than zero";
+		}
 		
 		// variables to store results for returned value
 		double feet;
