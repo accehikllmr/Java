@@ -13,7 +13,7 @@ public class other_tests {
 	@Rule
 	public Timeout globalTimeout = Timeout.seconds(1);
 	
-// CURRENT WEATHER SEASON
+// CURRENT WEATHER SEASON (using loops and known values)
 	
 	@Test // testing all unknown dates in December
 	public void test_dec_unknown_() {
@@ -256,7 +256,7 @@ public class other_tests {
 		}
 	}
 
-// FAHRENHEIT TO CELSIUS
+// FAHRENHEIT TO CELSIUS (using conversion table)
 	
 	@Test // testing below zero temperature
 	public void below_absolute_zero_() {
@@ -418,7 +418,7 @@ public class other_tests {
 		assertEquals(failed, expect, result);
 	}
 	
-// AGE IN YEARS
+// AGE IN YEARS (using mental calculation)
 	
 	@Test // testing for impossible age, less than zero
 	public void negative_days_() {
@@ -510,7 +510,7 @@ public class other_tests {
 		assertEquals(failed, expect, result);
 	}
 	
-	@Test // testing for more than year old (again, issue with months since rounded to 30 days)
+	@Test // testing for less than 10 years old (again, issue with months since rounded to 30 days)
 	public void less_than_ten_years_() {
 		int d = 3649;
 		String result = Lab1Utilities.ageInYearsDetailed(d);
@@ -540,8 +540,369 @@ public class other_tests {
 		assertEquals(failed, expect, result);
 	}
 	
-// METRIC TO IMPERIAL (use conversion chart for values)
+// METRIC TO IMPERIAL (using conversion table)
 	
+	@Test // testing for negative dimensions
+	public void neg_dimensions_() {
+		double d = -0.1;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "Invalid length: Less than zero";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
 	
+	@Test // testing for 0 dimensions
+	public void zero_dimensions_() {
+		double d = 0.0;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "0.00cm is 0ft and 0.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 1 inch
+	public void one_inch_() {
+		double d = 2.54;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "2.54cm is 0ft and 1.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 10 inches
+	public void ten_inches_() {
+		double d = 25.40;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "25.40cm is 0ft and 10.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 20 inches
+	public void twenty_inches_() {
+		double d = 50.80;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "50.80cm is 1ft and 8.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 30 inches
+	public void thirty_inches_() {
+		double d = 76.20;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "76.20cm is 2ft and 6.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 40 inches
+	public void forty_inches_() {
+		double d = 101.60;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "101.60cm is 3ft and 4.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 50 inches
+	public void fifty_inches_() {
+		double d = 127.00;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "127.00cm is 4ft and 2.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 60 inches
+	public void sixty_inches_() {
+		double d = 152.40;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "152.40cm is 5ft and 0.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 70 inches
+	public void seventy_inches_() {
+		double d = 177.80;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "177.80cm is 5ft and 10.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 80 inches
+	public void eighty_inches_() {
+		double d = 203.20;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "203.20cm is 6ft and 8.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 90 inches
+	public void ninety_inches_() {
+		double d = 228.60;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "228.60cm is 7ft and 6.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // testing for 100 inches
+	public void hundred_inches_() {
+		double d = 254.00;
+		String result = Lab1Utilities.distanceConverter(d);
+		String expect = "254.00cm is 8ft and 4.00in";
+		String failed = String.format("\\nTest distanceConverter fail for (%.2f)  Returned ( %s ), "
+				+ "but correct is ( %s )\n", d, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+// COMPOUND INTEREST (using no loops and existing cases)
+	
+	@Test // both negative values
+	public void negative_values_() {
+		double b = -1.0;
+		double i = -1.0;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		String expect = "Invalid balance: Less than zero AND Invalid interest rate: Not between 0 and 100";
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // both negative values
+	public void negative_balance_too_large_rate_() {
+		double b = -1.0;
+		double i = 100.1;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		String expect = "Invalid balance: Less than zero AND Invalid interest rate: Not between 0 and 100";
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // negative balance
+	public void negative_balance_() {
+		double b = -1.0;
+		double i = 1.0;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		String expect = "Invalid balance: Less than zero";
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // negative interest
+	public void negative_interest_() {
+		double b = 1.0;
+		double i = -1.0;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		String expect = "Invalid interest rate: Not between 0 and 100";
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // too large interest
+	public void too_large_interest_() {
+		double b = 1.0;
+		double i = 100.1;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		String expect = "Invalid interest rate: Not between 0 and 100";
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void six_racks_() {
+		double b = 6000.00;
+		double i = 4.25;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		// storing balance in new variable, to compute final balance and conserve original
+		double n = b;
+		// converting rate to decimal
+		double r = i / 100;
+		// instead of looping, using formula five times (not identical to original formula either)
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void three_racks_() {
+		double b = 3000.00;
+		double i = 3.5;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+
+	@Test // random test case
+	public void four_racks_() {
+		double b = 4000.00;
+		double i = 2.25;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void one_rack_() {
+		double b = 1000.00;
+		double i = 1.25;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void one_racks_() {
+		double b = 1050.00;
+		double i = 1.25;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void two_racks_() {
+		double b = 2150.00;
+		double i = 3.05;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void two_bands_() {
+		double b = 150.00;
+		double i = 3.45;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void one_racks_2_() {
+		double b = 1455.00;
+		double i = 4.5;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+	@Test // random test case
+	public void four_racks_2_() {
+		double b = 4055.00;
+		double i = 1.5;
+		String result = Lab1Utilities.fiveYearBalance(b, i);
+		double n = b;
+		double r = i / 100;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		n = n + n * r;
+		String expect = String.format("The balance was %.2f with interest %.2f, after five years balance is %.2f",
+				b, i, n);
+		String failed = String.format("\nTest fiveYearBalance fail for Balance=%.2f and Interest=%.2f Returned ( %s ), "
+				+ "but correct is ( %s )\n", b, i, result, expect);
+		assertEquals(failed, expect, result);
+	}
+	
+// BMI
 	
 }

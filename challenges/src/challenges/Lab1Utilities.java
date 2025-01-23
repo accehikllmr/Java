@@ -352,6 +352,24 @@ public class Lab1Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
+		// storing evaluations in variables, clarifies branching
+		boolean invalidBalance = balance < 0;
+		boolean invalidInterest = interest < 0 || interest > 100;
+		
+		// validating argument passed to class parameter
+		if (invalidBalance && invalidInterest) 
+		{
+			return "Invalid balance: Less than zero AND Invalid interest rate: Not between 0 and 100";
+		}
+		else if (invalidInterest)
+		{
+			return "Invalid interest rate: Not between 0 and 100";
+		}
+		else if (invalidBalance)
+		{
+			return "Invalid balance: Less than zero";
+		}
+		
 		// assigning balance to new variable, original must remain unchanged for return statement
 		double new_balance = balance;
 		
