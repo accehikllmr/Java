@@ -356,7 +356,7 @@ public class Lab1Utilities {
 		boolean invalidBalance = balance < 0;
 		boolean invalidInterest = interest < 0 || interest > 100;
 		
-		// validating argument passed to class parameter
+		// validating arguments passed to class parameters
 		if (invalidBalance && invalidInterest) 
 		{
 			return "Invalid balance: Less than zero AND Invalid interest rate: Not between 0 and 100";
@@ -425,6 +425,17 @@ public class Lab1Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
+		
+		// boolean variables to clarify error checking
+		boolean invalidPounds = pounds <= 0;
+		boolean invalidFeet = feet <= 0;
+		boolean invalidInches = inches <= 0;
+		
+		// validating arguments passed to class parameters, no error message since return is class double
+		if (invalidPounds || invalidFeet || invalidInches) 
+		{
+			return -404.0;
+		}
 		
 		// conversion constants from imperial to metric units
 		double KG_PER_POUND = 0.453592;
@@ -501,6 +512,15 @@ public class Lab1Utilities {
 		/* number is not perfect square if flooring its root is not the same as its original root
 		 * e.g. sqrt(16) = 4.0, floor of 4.0 == 4.0, whereas sqrt(15) = 3.8729. floor of 3.8729 == 3.0000 != 3.8729
 		 */
+		
+		// validating argument passed to class parameter
+		boolean isNegative = n < 0;
+		
+		if (isNegative)
+		{
+			return "Invalid number: Not positive";
+		}
+		
 		boolean perfectSquare = Math.sqrt(n) == Math.floor(Math.sqrt(n));
 		
 		// branching if number passed to function is a perfect square

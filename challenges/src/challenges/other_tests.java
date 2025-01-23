@@ -905,4 +905,312 @@ public class other_tests {
 	
 // BMI
 	
+	@Test // testing for all invalid values
+	public void invalid_p_f_i_() {
+		int p = 0;
+		int f = 0;
+		int i = 0;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);		
+	}
+	
+	@Test // testing for two invalid values
+	public void invalid_p_f_() {
+		int p = 0;
+		int f = 0;
+		int i = 1;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);		
+	}
+	
+	@Test // testing for two invalid values
+	public void invalid_p_i_() {
+		int p = 0;
+		int f = 1;
+		int i = 0;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);		
+	}
+	
+	@Test // testing for two invalid values
+	public void invalid_f_i_() {
+		int p = 1;
+		int f = 0;
+		int i = 0;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);		
+	}
+	
+	@Test // testing for one invalid value
+	public void invalid_p_() {
+		int p = 0;
+		int f = 1;
+		int i = 1;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // testing for one invalid value
+	public void invalid_f_() {
+		int p = 1;
+		int f = 0;
+		int i = 1;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // testing for one invalid value
+	public void invalid_i_() {
+		int p = 1;
+		int f = 1;
+		int i = 0;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = -404.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // random test case
+	public void p_75_() {
+		int p = 75;
+		int f = 15;
+		int i = 45;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = 1.0;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // random test case
+	public void p_80_() {
+		int p = 80;
+		int f = 13;
+		int i = 45;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = 1.4;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // random test case
+	public void p_135_() {
+		int p = 135;
+		int f = 7;
+		int i = 45;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = 5.7;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // random test case
+	public void p_105_() {
+		int p = 105;
+		int f = 8;
+		int i = 25;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = 5.04;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // random test case
+	public void p_100_() {
+		int p = 100;
+		int f = 9;
+		int i = 35;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = 3.44;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+	@Test // random test case
+	public void p_90_() {
+		int p = 90;
+		int f = 9;
+		int i = 25;
+		double result = Lab1Utilities.computeBMI(p, f, i);
+		double expect = 3.58;
+		String failed = String.format("\nTest computeBMI fail for pounds=%d, feet=%d,inches=%d  Returned ( %.4f ), "
+				+ "but correct is ( %.4f )\n", p, f, i, result, expect);
+		final double THRESHOLD = .05;
+		assertTrue(failed, Math.abs(expect - result) < THRESHOLD);
+	}
+	
+// PERFECT SQUARES
+	
+	@Test // negative input
+	public void negative_() {
+		final int n = -1;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = "Invalid number: Not positive";
+		String failed = String.format("\nTest isPerfectSquare fail for n=%n  Returned ( %s ),"
+				+ " but correct is ( %s )", result, expect);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _16_() {
+		final int n = 16;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _25_() {
+		final int n = 25;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _64_() {
+		final int n = 64;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _0_() {
+		final int n = 0;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _100_() {
+		final int n = 100;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _99_() {
+		final int n = 99;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _7_() {
+		final int n = 7;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _11_() {
+		final int n = 11;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _15_() {
+		final int n = 15;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _21_() {
+		final int n = 21;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _49_() {
+		final int n = 49;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _81_() {
+		final int n = 81;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _121_() {
+		final int n = 121;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _77_() {
+		final int n = 77;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _32_() {
+		final int n = 32;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
+	
+	@Test // random test case
+	public void _13_() {
+		final int n = 13;
+		String result = Lab1Utilities.isPerfectSquare(n);
+		String expect = String.format("Integer %d is NOT Perfect Square", n);
+		assertEquals(expect, result);
+	}
 }
