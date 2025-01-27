@@ -1,4 +1,4 @@
-package challenges;
+package lab1;
 //You are NOT allowed to add any "import" statement other than 
 //the ones already in the starter files. 
 
