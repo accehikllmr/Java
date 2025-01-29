@@ -20,6 +20,7 @@ public class HelloWorld {
 	// this is the main() method of the class (or program), can be generated automatically when creating class
 	public static void main(String[] args)
 	{
+		
 		// body of the main() method
 		System.out.println("Hello, World");
 	}

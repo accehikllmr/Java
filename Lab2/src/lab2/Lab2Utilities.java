@@ -286,12 +286,45 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-			
-		return "";
+		// instantiating integer objects to calculate length of each string passed to function
+		int len_s1 = s1.length();
+		int len_s2 = s2.length();
+		int len_s3 = s3.length();
+
+		// any string of length zero is invalid, function returns a value
+		if (len_s1 == 0 || len_s2 == 0 || len_s3 == 0) {
+			return "Invalid";
+		}
+
+		// instantiating String objects to extract substrings from strings passed to function
+		String substring_s1, substring_s2, substring_s3;
+		
+		// instantiating integer objects to calculate important indices for substrings
+		int half_index_s1;
+		int start_index_s2;
+		
+		// index at half of string is half if even length, and floor if odd (both values adjusted by minus one)
+		half_index_s1 = (int)((len_s1 % 2 == 0) ? (len_s1 / 2) - 1 : Math.floor(len_s1 / 2));
+		// substring is slice of original string from beginning to half
+		substring_s1 = s1.substring(0, half_index_s1 + 1);
+		
+		// index is either the before last position or the last position (adjusted by minus one)
+		start_index_s2 = (int)((len_s2 > 1) ? len_s2 - 2 : len_s2 - 1);
+		
+		// substring of substring is slice of original string beginning from before last or last index
+		substring_s2 = s2.substring(start_index_s2);
+		// substring is above three times
+		substring_s2 += substring_s2 + substring_s2;
+		
+		// substring of substring is slice of original string first or first two character(s)
+		substring_s3 = (len_s3 > 1) ? s3.substring(0, 2) : s3.substring(0, 1);
+		// substring is above five times
+		substring_s3 += substring_s3 + substring_s3 + substring_s3 + substring_s3;
+		
+		// concatenating substrings
+		return substring_s1 + substring_s2 + substring_s3;
 		
 	}
-
-	
 
 	/** 
 	 * <p> Write a stringCompressor  method that 
