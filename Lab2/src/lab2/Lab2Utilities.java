@@ -173,6 +173,7 @@ public class Lab2Utilities {
 	 * @return returns the length of maximum consecutive 0's in a given  binary input
 	 *         string.
 	 */
+	
 	public static int lengthofMaxConsecutiveZeros(String str) {
 		/* Your implementation of this method starts here. 
 		 * Recall that :
@@ -274,7 +275,6 @@ public class Lab2Utilities {
 	 * @return  string value, see above examples
 	 */
 	
-	
 	public static String mixStrings(String s1, String s2, String s3) {
 		
 		
@@ -362,12 +362,44 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
        
-        return "";
+    	// initializing integer object to store string length, reducing total characters
+    	int len_str = inputStr.length();
+    	
+    	// default return value when empty string passed to method argument
+    	if (len_str == 0) {
+    		return "";
+    	}
+    	    	
+    	// instantiate counter for number of letters at 1, since minimum for successive symbols is 1
+    	int char_count = 1;
+    	// instantiating string object in which result will be stored
+    	String return_string = "";
+    	
+    	// loop through string indices, stopping before going beyond range of string
+    	for (int index = 0; index < len_str; ++index) {
+    		// if not yet arrived at last character in string object, to avoid index out of range error
+    		if (index != len_str - 1) {
+    			// identical successive characters, increase the count
+    			if (inputStr.charAt(index) == inputStr.charAt(index + 1)) {
+    				++char_count;
+    			// non-identical successive characters, concatenate character and its count to existing string
+    			} else {
+    				// converting integer object to string object, not done implicitly for some reason...
+    				return_string += inputStr.charAt(index) + Integer.toString(char_count);
+    				// reset value to 1, since succession has ended
+    				char_count = 1;    			
+    			}
+    		// arrived at last character in string object
+    		} else {
+    			// concatenate character and its count to existing string
+    			return_string += inputStr.charAt(index) + Integer.toString(char_count);
+    		}
+    	}
+    	
+    	return return_string;
+
     }
 
-	
-
-	
 	/**
 	 * Write a static method that receives a short value that can be stored in 16 bits and
 	 * then convert this input value to 16 bits binary representation. The method
