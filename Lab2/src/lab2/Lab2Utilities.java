@@ -450,8 +450,35 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 
+		// PRECONDITION STATES THAT ARGUMENT PASSED TO VALUE PARAMETER IS NON-NEGATIVE
 		
-		return "";
+		// storing as string, since will build using one character at a time
+		String binary = "";
+		// storing original value, since value in value variable will be modified in loop
+		short stored_value = value;
+		
+		System.out.println("out");
+		
+		/* iterating through all powers of 2 for 16 binary positions (0 to 15)
+		 * CAREFUL : condition must evaluate to false to stop loop
+		 * hence n < 0 does not work, it is immediately false
+		 */
+		for (int n = 15; n >= 0; --n) {
+			// calculating 2^n, to compare with value
+			double binary_position = Math.pow(2, n);
+			// add 1 to string when 2^n is within value
+			if (value >= binary_position) {
+				binary += '1';
+				// deduct from value, since 2^n in value and finding sum of 2^n for values of n
+				// CONVERSION TO SHORT EXPLICIT? SHOULD IT BE ADDED EXPLICITLY?
+				value -= binary_position;
+			} else {
+				// no deduction, since 2^n not in value
+				binary += '0';
+			}
+		}
+		
+		return String.format("The decimal value (%d) has binary representation [%s]", stored_value, binary);
 
 	}
 
@@ -502,10 +529,8 @@ public class Lab2Utilities {
 	 */	
 	public static String binaryXor(short value1 , short value2) {
 		
-		
         return "";
-  
-		
+        
 	}
 	
 	
