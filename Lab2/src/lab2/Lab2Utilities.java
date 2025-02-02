@@ -456,9 +456,7 @@ public class Lab2Utilities {
 		String binary = "";
 		// storing original value, since value in value variable will be modified in loop
 		short stored_value = value;
-		
-		System.out.println("out");
-		
+				
 		/* iterating through all powers of 2 for 16 binary positions (0 to 15)
 		 * CAREFUL : condition must evaluate to false to stop loop
 		 * hence n < 0 does not work, it is immediately false
@@ -529,10 +527,35 @@ public class Lab2Utilities {
 	 */	
 	public static String binaryXor(short value1 , short value2) {
 		
-        return "";
+		// ARGUMENT PASSED TO VALUE PARAMETERS ARE NON-NEGATIVE
+		
+		/* converting short type values into their binary representations, using existing class
+		 * but return is a string, so need to extract substring with only binary
+		 * later line, since otherwise referencing itself
+		 */
+		String value1_string = binaryRepresentation(value1);
+		String value2_string = binaryRepresentation(value2);
+		
+		// extracting binary string, from index after first left bracket all the way to index prior to right bracket
+		String value1_binary = value1_string.substring(value1_string.indexOf('[') + 1, value1_string.indexOf(']'));
+		String value2_binary = value2_string.substring(value2_string.indexOf('[') + 1, value2_string.indexOf(']'));
+		
+		// instantiating string object to store XOR operation on binary strings
+		String xor_string = "";
+		
+		// looping through indices of strings, to compare each corresponding pair of bits
+		for (int index = 0; index < 16; ++index) {
+			// exclusive or, so adding a one to operation string only when bit are different
+			if (value1_binary.charAt(index) != value2_binary.charAt(index)) {
+				xor_string += '1';
+			} else {
+				xor_string += '0';
+			}
+		}
+		
+        return String.format("XOR of two values is [%s]", xor_string);
         
 	}
-	
 	
 	/**
 	 * 
