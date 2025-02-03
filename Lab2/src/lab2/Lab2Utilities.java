@@ -613,8 +613,38 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-		return "";
-
+		// ARGUMENTS PASSED TO PARAMETERS ARE NON-NEGATIVE INTEGERS AND IN ASCENDING ORDER
+		
+		// validating input, since descending value arguments appear in test cases
+		if (upperLimit <= lowerLimit) {
+			return String.format("Error: lower limit (%d) is not less than or equal to upper limit (%d)",
+					lowerLimit, upperLimit);
+		}
+		
+		// to store count of numbers which are multiples of each value
+		int multiples_3 = 0;
+		int multiples_5 = 0;
+		int multiples_7 = 0;
+		
+		// looping through all values between given limits
+		for (int i = lowerLimit; i <= upperLimit; ++i) {
+			/* consider implementing using switch statements, each condition is checked since 
+			 * number can be have more than one of the multiples below
+			 */ 
+			if (i % 3 == 0) {
+				multiples_3++;
+			} 
+			if (i % 5 == 0) {
+				multiples_5++;
+			} 
+			if (i % 7 == 0) {
+				multiples_7++;
+			}
+		}
+		
+		return String.format("Between (%d) and (%d) there are (%d) multiple of 3, (%d) multiple of 5 "
+				+ "and (%d) multiple of 7", lowerLimit, upperLimit, multiples_3, multiples_5, multiples_7);
+	
 	}
 	
 	/**
@@ -653,11 +683,22 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-		return "";
+		// ARGUMENT PASSED TO METHOD PARAMETER IS NON-NEGATIVE
+		
+		// storing number as string object, to iterate over it
+		String n_string = Integer.toString(n);
+		
+		// storing length of number, since even and odd lengths change algorithm
+		int n_length = n_string.length();
+		
+		// looping through string, but only until halfway, otherwise redundant and middle character irrelevant
+		for (int i = 0; i < n_length / 2; ++i) {
+			// non-matching characters in string halts method, remove 1 from length to avoid index error
+			if (n_string.charAt(i) != n_string.charAt(n_length - 1 - i)) {
+				return String.format("Integer (%d) is NOT Palindrome", n);
+			}
+		}
+		
+		return String.format("Integer (%d) is Palindrome", n);
 	}
-
-	
-
-	
-
 }
