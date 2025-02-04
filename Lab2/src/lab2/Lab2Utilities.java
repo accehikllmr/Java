@@ -60,9 +60,7 @@ public class Lab2Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
-		
-		// INPUT STRING IS NOT NULL AND HAS LENGTH EQUAL TO AT LEAST 1
-		
+				
 		// initializing variable to track number of digits in string
 		int num_digits = 0;
 		
@@ -126,7 +124,13 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-		// N IS POSITIVE AND X IS LESS THAN Y (LOWER BOUND VS. UPPER BOUND)
+		// validating argument passed to method parameters
+		if (n < 1) {
+			return "Argument passed to parameter n must be a positive value.";
+		} else if (x > y) {
+			return "Argument passed to x parameter must be less than or equal to argument"
+					+ "passed to y parameter";
+		}
 		
 		// instantiating Random class object (needed to use methods from class)
 		Random random = new Random();
