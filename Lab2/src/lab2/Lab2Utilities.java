@@ -61,12 +61,16 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 				
+		// no argument validation required, since empty string returns correct value
+		
 		// initializing variable to track number of digits in string
 		int num_digits = 0;
 		
 		// looping through indices of string, but not including full string length (out of range)
 		for (int i = 0; i < str.length(); i++) {
-			// checking if character at given index position of string is a digit, using method
+			/* checking if character at given index position of string is a digit, using method
+			 * could not get it to work using ranges in ASCII table (opportunity to refactor)
+			 */
 			if (Character.isDigit(str.charAt(i))) {
 				// if so, increment number of digits by one
 				num_digits++;
@@ -126,10 +130,11 @@ public class Lab2Utilities {
 		
 		// validating argument passed to method parameters
 		if (n < 1) {
-			return "Argument passed to parameter n must be a positive value.";
-		} else if (x > y) {
-			return "Argument passed to x parameter must be less than or equal to argument"
-					+ "passed to y parameter";
+			return String.format("Error: n (%d) is not a positive value.", n);
+		} 
+		// independent of previous condition, hence create new branch
+		if (x > y) {
+			return String.format("Error: x (%d) must be less than or equal to y (%d)", x, y);
 		}
 		
 		// instantiating Random class object (needed to use methods from class)
@@ -143,8 +148,16 @@ public class Lab2Utilities {
 
 		// looping n times, to create as many random numbers
 		for (int i = 0; i < n; i++) {
-			// generating random number between 0 and difference between bounds, add x to end up within bound
-			rand_num = random.nextInt(y - x) + x;
+			// protecting against case where x and y are equal, range of zero breaks nextInt method
+			if (x != y) {
+				/* generating random number between 0 and difference between bounds, add x to end up within bound
+				 * added +1 to y in order to reach upper bound of values (otherwise, not inclusive) 
+				 */
+				rand_num = random.nextInt(y + 1 - x) + x;
+			} else {
+				// x and y being equal, no longer random, simply value of x
+				rand_num = x;
+			}
 			// converting generated number to a String object
 			Integer.toString(rand_num);
 			// build String object, adding symbols and number for each iteration
@@ -186,8 +199,8 @@ public class Lab2Utilities {
 		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
 		 *    Instead, refer to the input parameters of this method.   
 		 */
-	
-		// INPUT STRING IS NOT NULL AND HAS LENGTH EQUAL TO AT LEAST 1
+		
+		// no argument validation required, since empty string returns correct value
 		
 		// instantiating Integer object to store current streak of zeroes
 		int zero_streak = 0;
@@ -212,8 +225,10 @@ public class Lab2Utilities {
 			} else {
 				// increment for last character
 				zero_streak++;
-				// update maximum streak
-				max_zero_streak = zero_streak;
+				// only update maximum streak if it is larger, otherwise takes last string of zeroes
+				if (zero_streak > max_zero_streak) {
+					max_zero_streak = zero_streak;					
+				}
 			}
 		}
 
@@ -295,7 +310,7 @@ public class Lab2Utilities {
 		int len_s2 = s2.length();
 		int len_s3 = s3.length();
 
-		// any string of length zero is invalid, function returns a value
+		// any string of length zero is invalid, function returns a value (could use "" instead, but need length later)
 		if (len_s1 == 0 || len_s2 == 0 || len_s3 == 0) {
 			return "Invalid";
 		}
@@ -317,12 +332,12 @@ public class Lab2Utilities {
 		
 		// substring of substring is slice of original string beginning from before last or last index
 		substring_s2 = s2.substring(start_index_s2);
-		// substring is above three times
+		// substring above three times
 		substring_s2 += substring_s2 + substring_s2;
 		
 		// substring of substring is slice of original string first or first two character(s)
 		substring_s3 = (len_s3 > 1) ? s3.substring(0, 2) : s3.substring(0, 1);
-		// substring is above five times
+		// substring above five times
 		substring_s3 += substring_s3 + substring_s3 + substring_s3 + substring_s3;
 		
 		// concatenating substrings
@@ -369,15 +384,24 @@ public class Lab2Utilities {
     	// initializing integer object to store string length, reducing total characters
     	int len_str = inputStr.length();
     	
+    	// instantiating string object in which result will be stored
+    	String return_string = "";
+    	
     	// default return value when empty string passed to method argument
     	if (len_str == 0) {
-    		return "";
+    		return return_string;
+    	}
+    	
+    	// validating argument passed to method parameters
+    	for (int i = 0; i < len_str; i++) {
+    		// checking that if string contains any digit characters
+    		if (Character.isDigit(inputStr.charAt(i))) {
+    			return String.format("Error: inputStr (%s) cannot contain digits", inputStr);
+    		}
     	}
     	    	
     	// instantiate counter for number of letters at 1, since minimum for successive symbols is 1
     	int char_count = 1;
-    	// instantiating string object in which result will be stored
-    	String return_string = "";
     	
     	// loop through string indices, stopping before going beyond range of string
     	for (int index = 0; index < len_str; ++index) {
@@ -454,11 +478,14 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 
-		// PRECONDITION STATES THAT ARGUMENT PASSED TO VALUE PARAMETER IS NON-NEGATIVE
+		// validating argument passed to method parameter
+		if (value < 0) {
+			return String.format("Error: value (%d) is a negative number", value);
+		}
 		
 		// storing as string, since will build using one character at a time
 		String binary = "";
-		// storing original value, since value in value variable will be modified in loop
+		// storing original value, since value in value variable will be modified in loop, and we need for return
 		short stored_value = value;
 				
 		/* iterating through all powers of 2 for 16 binary positions (0 to 15)
@@ -472,7 +499,7 @@ public class Lab2Utilities {
 			if (value >= binary_position) {
 				binary += '1';
 				// deduct from value, since 2^n in value and finding sum of 2^n for values of n
-				// CONVERSION TO SHORT EXPLICIT? SHOULD IT BE ADDED EXPLICITLY?
+				// CONVERSION TO SHORT IMPLICIT? SHOULD IT BE ADDED EXPLICITLY?
 				value -= binary_position;
 			} else {
 				// no deduction, since 2^n not in value
@@ -531,7 +558,10 @@ public class Lab2Utilities {
 	 */	
 	public static String binaryXor(short value1 , short value2) {
 		
-		// ARGUMENT PASSED TO VALUE PARAMETERS ARE NON-NEGATIVE
+		// validating argument passed to method parameters
+		if (value1 < 0 || value2 < 0) {
+			return String.format("Error: value1 (%d) or value2 (%d) is a negative number", value1, value2);
+		}
 		
 		/* converting short type values into their binary representations, using existing class
 		 * but return is a string, so need to extract substring with only binary
@@ -617,12 +647,11 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-		// ARGUMENTS PASSED TO PARAMETERS ARE NON-NEGATIVE INTEGERS AND IN ASCENDING ORDER
-		
 		// validating input, since descending value arguments appear in test cases
 		if (upperLimit <= lowerLimit) {
-			return String.format("Error: lower limit (%d) is not less than or equal to upper limit (%d)",
-					lowerLimit, upperLimit);
+			return String.format("Error: lower limit (%d) is not less than or equal to upper limit (%d)", lowerLimit, upperLimit);
+		} else if (upperLimit < 0 || lowerLimit < 0) {
+			return String.format("Error: lower limit (%d) or upper limit (%d) is a negative value", lowerLimit, upperLimit);
 		}
 		
 		// to store count of numbers which are multiples of each value
@@ -632,8 +661,8 @@ public class Lab2Utilities {
 		
 		// looping through all values between given limits
 		for (int i = lowerLimit; i <= upperLimit; ++i) {
-			/* consider implementing using switch statements, each condition is checked since 
-			 * number can be have more than one of the multiples below
+			/* consider implementing using switch statements (opportunity to refactor), 
+			 * each condition is checked since number can be have more than one of the multiples below
 			 */ 
 			if (i % 3 == 0) {
 				multiples_3++;
@@ -646,8 +675,7 @@ public class Lab2Utilities {
 			}
 		}
 		
-		return String.format("Between (%d) and (%d) there are (%d) multiple of 3, (%d) multiple of 5 "
-				+ "and (%d) multiple of 7", lowerLimit, upperLimit, multiples_3, multiples_5, multiples_7);
+		return String.format("Between (%d) and (%d) there are (%d) multiple of 3, (%d) multiple of 5 and (%d) multiple of 7", lowerLimit, upperLimit, multiples_3, multiples_5, multiples_7);
 	
 	}
 	
@@ -687,7 +715,10 @@ public class Lab2Utilities {
 		 *    Instead, refer to the input parameters of this method.   
 		 */
 		
-		// ARGUMENT PASSED TO METHOD PARAMETER IS NON-NEGATIVE
+		// validating argument passed to method parameter
+		if (n < 0) {
+			return String.format("Error: n (%d) is a negative number", n);
+		}
 		
 		// storing number as string object, to iterate over it
 		String n_string = Integer.toString(n);
