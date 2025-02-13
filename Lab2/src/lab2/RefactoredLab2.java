@@ -725,6 +725,8 @@ public class RefactoredLab2 {
 
 	public static void main (String[] args) {
 		
+		System.out.println((isPalindromeInt(9090)));
+		
 	}
 	
 }
