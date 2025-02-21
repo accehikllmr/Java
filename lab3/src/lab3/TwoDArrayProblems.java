@@ -241,7 +241,40 @@ public class TwoDArrayProblems {
 	*/
 	public static double [][] findDistances(double [][] m) 
 	{
-		return new double [1][1];
+		
+		// NEED TO VALIDATE ARGUMENTS?
+		// NEED TO TEST MORE THOROUGHLY
+		
+		// initialize Array object of all distances, every set of coordinates compared to all others, including itself, so resulting matrix is square
+		double [][] all_pts_dist = new double[m.length][m.length];
+		// iterate through outer Array object (through every set of coordinates)
+		for (int i = 0; i < m.length; i++) {
+			// initialize Array object for coordinates at position i in outer Array object (will store all distances for i)
+			double [] this_pt_dist = new double[m.length];
+			// initialize double variable for distance between points (from coordinates at position i to coordinates at position j)
+			double distance;
+			// iterate through outer Array object (again, since comparing each coordinate to all other coordinates, including itself)
+			for (int j = 0; j < m.length; j++) {
+				// condition for points which have same coordinates (itself or duplicate)
+				if (m[i].equals(m[j])) {
+					distance = 0.0;
+				} else {
+					// calculate distance between x coordinates, for coordinates at position i and j
+					double diff_x = Math.abs(m[i][0] - m[j][0]);
+					// calculate distance between y coordinates, for coordinates at position i and j
+					double diff_y = Math.abs(m[i][1] - m[j][1]);
+					// calculate Euclidean 2D distance, using standard formula
+					distance = Math.sqrt(Math.pow(diff_x, 2) + Math.pow(diff_y, 2));
+				}		
+				// add distance to array at position j, since adding distance for each set of coordinates (0 <= m.length < j)
+				String distring = String.format("%.2f", distance);
+				distance = Double.parseDouble(distring);
+				this_pt_dist[j] = distance;
+			}
+			// add array of distances for i to outer array at position i, since corresponds to set of coordinates at position i
+			all_pts_dist[i] = this_pt_dist;
+		}
+		// return array of all distances
+		return all_pts_dist;
 	}
-
 }

@@ -91,7 +91,23 @@ public class JunitTestsPublic {
 		double [][] correctOut = {{0.0, 2.0}, {2.0, 0.0}};
 		
 		assertArrayEquals("Test pb_05_01 failed.", correctOut,TwoDArrayProblems.findDistances(data));
-	}	
+	}
+	@Test
+	public void test_pb_05_02() {
+		
+		double [][] data = {{1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0}};
+		double [][] correctOut = {{0.0, 2.83, 5.66}, {2.83, 0.0, 2.83}, {5.66, 2.83, 0.0}};
+		
+		assertArrayEquals("Test pb_05_02 failed.", correctOut,TwoDArrayProblems.findDistances(data));
+	}
+	@Test
+	public void test_pb_05_03() {
+		
+		double [][] data = {{1.2, -2.7}, {3.9, -5.7}, {9.3, 6.8}, {-7.1, -4.4}};
+		double [][] correctOut = {{0.0, 4.04, 12.48, 8.47}, {4.04, 0.0, 13.62, 11.08}, {12.48, 13.62, 0.0, 19.86}, {8.47, 11.08, 19.86, 0.0}};
+		
+		assertArrayEquals("Test pb_05_02 failed.", correctOut,TwoDArrayProblems.findDistances(data));
+	}
 	@Test
 	public void test_pb_06_01() {
 		
