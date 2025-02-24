@@ -256,7 +256,7 @@ public class TwoDArrayProblems {
 			// iterate through outer Array object (again, since comparing each coordinate to all other coordinates, including itself)
 			for (int j = 0; j < m.length; j++) {
 				// condition for points which have same coordinates (itself or duplicate)
-				if (m[i].equals(m[j])) {
+				if (Arrays.equals(m[i], m[j])) {
 					distance = 0.0;
 				} else {
 					// calculate distance between x coordinates, for coordinates at position i and j
@@ -266,9 +266,11 @@ public class TwoDArrayProblems {
 					// calculate Euclidean 2D distance, using standard formula
 					distance = Math.sqrt(Math.pow(diff_x, 2) + Math.pow(diff_y, 2));
 				}		
-				// add distance to array at position j, since adding distance for each set of coordinates (0 <= m.length < j)
+				// unable to round using Math.round method, so instead converting into formatted string with two decimal places
 				String distring = String.format("%.2f", distance);
+				// parsing String to extract formatted double data type
 				distance = Double.parseDouble(distring);
+				// add distance to array at position j, since adding distance for each set of coordinates (0 <= m.length < j)
 				this_pt_dist[j] = distance;
 			}
 			// add array of distances for i to outer array at position i, since corresponds to set of coordinates at position i
