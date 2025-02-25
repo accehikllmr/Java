@@ -28,4 +28,43 @@ package lab3;
 
 public class Temperature {
 	
+	// NEED TO TEST MORE THOROUGHLY
+	
+	// class attributes, private since cannot be accessed outside of the class
+	private double ftemp;
+	
+	// class constructor, not sure whether name of parameter must differ from name of attribute 
+	public Temperature(double _ftemp) {
+		this.ftemp = _ftemp;
+	}
+	
+	// setter (mutator) method to change the ftemp attribute of an existing Temperature object
+	public void setFahrenheit(double _ftemp) {
+		this.ftemp = _ftemp;
+	}
+	
+	// getter (accessor) method to retrieve the ftemp attribute from an existing Temperature object
+	public double getFahrenheit() {
+		return this.ftemp;
+	}
+	
+	// getter method which retrieves the ftemp attribute from an existing Temperature object, but only after converting to Celsius
+	public double getCelsius() {
+		// formula to convert Fahrenheit units into Celsius units
+		return (5.0 / 9.0) * (this.ftemp - 32.0);
+	}
+	
+	// getter method which retrieves the ftemp attribute from an existing Temperature object, but only after converting to Kelvin
+	public double getKelvin() {
+		// formula to convert Fahrenheit units into Kelvin units, perhaps there is a way to call the getCelsius function to avoid repeating formula
+		return this.getCelsius() + 273.15; 
+	}
+	
+	// getter method which retrieves the ftemp attribute from an existing Temperature object, as an Array containing all conversions
+	public double [] getAll() {
+		// instantiating Array object with defined size containing each temperature conversion
+		double [] alltemp = {this.getFahrenheit(), this.getCelsius(), this.getKelvin()};
+		
+		return alltemp;
+	}
 }

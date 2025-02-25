@@ -30,4 +30,65 @@ In addition, the class should have the following public methods:
 
 public class Car {
 	
+	// NEED TO TEST MORE THOROUGHLY
+	
+	// class attributes
+	private int yearModel;
+	private String make;
+	private int speed;
+	
+	// class constructor
+	public Car(int _yearModel, String _make) {
+		this.yearModel = _yearModel;
+		this.make = _make;
+		this.speed = 0;
+	}
+	
+	// getter (accessor) methods for all Car object attributes
+	public int getYearModel() {
+		return this.yearModel;
+	}
+	
+	public String getMake() {
+		return this.make;
+	}
+	
+	public int getSpeed() {
+		return this.speed;
+	}
+	
+	// setter (mutator) methods for all Car object attributes
+	public void setYearModel(int _yearModel) {
+		this.yearModel = _yearModel;
+	}
+	
+	public void setMake(String _make) {
+		this.make = _make;
+	}
+	
+	public void setSpeed(int _speed) {
+		this.speed = _speed;
+	}
+	
+	// other methods that define possible behaviours for Car object
+	public void accelerate() {
+		this.speed += 5;
+	}
+	
+	public void brake() {
+		this.speed -= 5;
+	}
+	
+	public String [] getDescription() {
+		// building String object for each separate Array element in Car object description
+		String yearString = String.format("This is a %d model vehicle.", this.yearModel);
+		String makeString = String.format("It is made by %s.", this.make);
+		String speedString = String.format("It is cruising at %d kmph.", this.speed);
+		
+		// instantiating Array object to insert separate Array elements for Car object description
+		String [] description = {yearString, makeString, speedString};
+		
+		return description;
+	}
+	
 }
