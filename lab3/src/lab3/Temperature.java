@@ -33,14 +33,14 @@ public class Temperature {
 	// class attributes, private since cannot be accessed outside of the class
 	private double ftemp;
 	
-	// class constructor, not sure whether name of parameter must differ from name of attribute 
-	public Temperature(double _ftemp) {
-		this.ftemp = _ftemp;
+	// class constructor, name of parameter need not differ from name of attribute, since using this. to make distinction
+	public Temperature(double ftemp) {
+		this.ftemp = ftemp;
 	}
 	
 	// setter (mutator) method to change the ftemp attribute of an existing Temperature object
-	public void setFahrenheit(double _ftemp) {
-		this.ftemp = _ftemp;
+	public void setFahrenheit(double ftemp) {
+		this.ftemp = ftemp;
 	}
 	
 	// getter (accessor) method to retrieve the ftemp attribute from an existing Temperature object

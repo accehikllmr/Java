@@ -126,13 +126,16 @@ public class JunitTestsPublic {
 	}	
 	@Test
 	public void test_pb_07_01() {
-		
+		// checking that that Car object is instantiated, rather than nothing (null)
 		assertNotNull("Test pb_07_01 failed.", new Car(2025, "Toyota"));
 	}	
 	@Test
 	public void test_pb_07_02() {
+		// instantiating Car object with arguments passed to object attributes
 		Car c = new Car(2025, "Toyota");
+		// calling method to accelerate car one time (increase speed by 5)
 		c.accelerate();
+		// checking whether speed has changed from 0 to 5, since accelerate method was called
 		assertEquals("Test pb_07_02 failed.", 5, c.getSpeed());
 	}	
 	@Test
@@ -140,5 +143,63 @@ public class JunitTestsPublic {
 		Car c = new Car(2025, "Toyota");
 		String [] correctOut = {"This is a 2025 model vehicle.","It is made by Toyota.", "It is cruising at 0 kmph."};
 		assertArrayEquals("Test pb_07_03 failed.", correctOut, c.getDescription());
-	}	
+	}
+	@Test
+	public void test_pb_07_04() {
+		Car c = new Car(2025, "Toyota");
+		// calling accelerate method multiple times car multiple times
+		for (int i = 0; i < 10; i++) {
+			c.accelerate();
+		}
+		assertEquals("Test pb_07_04 failed.", 50, c.getSpeed());
+	}
+	@Test
+	public void test_pb_07_05() {
+		Car c = new Car(2025, "Toyota");
+		for (int i = 0; i < 10; i++) {
+			c.brake();
+		}
+		assertEquals("Test pb_07_05 failed.", -50, c.getSpeed());
+	}
+	@Test
+	public void test_pb_07_06() {
+		Car c = new Car(2025, "Toyota");
+		for (int i = 0; i < 5; i++) {
+			c.accelerate();
+		}
+		for (int j = 0; j < 3; j++) {
+			c.brake();
+		}
+		assertEquals("Test pb_07_06 failed.", 10, c.getSpeed());
+	}
+	@Test
+	public void test_pb_07_07() {
+		Car c = new Car(2025, "Toyota");
+		c.getYearModel();
+		assertEquals("Test pb_07_07 failed.", 2025, c.getYearModel());
+	}
+	@Test
+	public void test_pb_07_08() {
+		Car c = new Car(2025, "Toyota");
+		c.getMake();
+		assertEquals("Test pb_07_08 failed.", "Toyota", c.getMake());
+	}
+	@Test
+	public void test_pb_07_09() {
+		Car c = new Car(2025, "Toyota");
+		c.setYearModel(1991);
+		assertEquals("Test pb_07_09 failed.", 1991, c.getYearModel());
+	}
+	@Test
+	public void test_pb_07_10() {
+		Car c = new Car(2025, "Toyota");
+		c.setMake("Ford");
+		assertEquals("Test pb_07_10 failed.", "Ford", c.getMake());
+	}
+	@Test
+	public void test_pb_07_11() {
+		Car c = new Car(2025, "Toyota");
+		c.setSpeed(100);
+		assertEquals("Test pb_07_11 failed.", 100, c.getSpeed());
+	}
 }

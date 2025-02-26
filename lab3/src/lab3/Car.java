@@ -38,9 +38,10 @@ public class Car {
 	private int speed;
 	
 	// class constructor
-	public Car(int _yearModel, String _make) {
-		this.yearModel = _yearModel;
-		this.make = _make;
+	// ARGUMENT VALIDATION TO PREVENT NEGATIVE YEARS?
+	public Car(int yearModel, String make) {
+		this.yearModel = yearModel;
+		this.make = make;
 		this.speed = 0;
 	}
 	
@@ -58,19 +59,21 @@ public class Car {
 	}
 	
 	// setter (mutator) methods for all Car object attributes
-	public void setYearModel(int _yearModel) {
-		this.yearModel = _yearModel;
+	// ARGUMENT VALIDATION TO PREVENT NEGATIVE YEAR AND SPEED, ALSO EMPTY STRING
+	public void setYearModel(int yearModel) {
+		this.yearModel = yearModel;
 	}
 	
-	public void setMake(String _make) {
-		this.make = _make;
+	public void setMake(String make) {
+		this.make = make;
 	}
 	
-	public void setSpeed(int _speed) {
-		this.speed = _speed;
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	
 	// other methods that define possible behaviours for Car object
+	// ARGUMENT VALIDATION TO PREVENT NEGATIVE SPEED
 	public void accelerate() {
 		this.speed += 5;
 	}
