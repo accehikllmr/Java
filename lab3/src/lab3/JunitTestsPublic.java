@@ -113,57 +113,86 @@ public class JunitTestsPublic {
 // TEST CASES FOR TEMPERATURE CLASS
 	
 	@Test
-	public void test_pb_06_01() {
-		
-		assertNotNull("Test pb_06_01 failed.", new Temperature(25.3));
-	}	
+	public void test_not_null_temp() {
+		assertNotNull("Test test_not_null_temp failed.", new Temperature(25.3));
+	}
+	
 	@Test
-	public void test_pb_06_02() {
+	public void test_get_Fahrenheit_method() {
 		Temperature t = new Temperature(32.0);
-		assertEquals("Test pb_06_02 failed.", 0.0, t.getCelsius(),0.0);
-	}	
+		assertEquals("Test test_get_Fahrenheit_method failed.", 32.0, t.getFahrenheit(), 0.0);
+	}
+	
 	@Test
-	public void test_pb_06_03() {
+	public void test_get_Celsius_method() {
 		Temperature t = new Temperature(32.0);
-		double []correctOut = {32.0,0.0,273.15};
-		assertArrayEquals("Test pb_06_03 failed.", correctOut, t.getAll(),0.0);
+		assertEquals("Test test_get_Celsius_method failed.", 0.0, t.getCelsius(), 0.0);
+	}
+	
+	@Test
+	public void test_get_Kelvin_method() {
+		Temperature t = new Temperature(32.0);
+		assertEquals("Test test_get_Kelvin_method failed.", 273.15, t.getKelvin(), 0.0);
+	}
+	
+	@Test
+	public void test_set_Fahrenheit_method() {
+		Temperature t = new Temperature(32.0);
+		t.setFahrenheit(0.0);
+		assertEquals("Test test_set_Fahrenheit_method failed.", 0.0, t.getFahrenheit(), 0.0);
+	}
+	
+	@Test
+	public void test_getAll_method() {
+		Temperature t = new Temperature(32.0);
+		double [] correctOut = {32.0, 0.0, 273.15};
+		// 0.0 represents delta, maximum allowed difference between corresponding values [i] in Array objects
+		assertArrayEquals("Test getAll_method failed.", correctOut, t.getAll(), 0.0);
 	}	
 
+	@Test
+	public void test_combination_temp() {
+		Temperature t = new Temperature(32.0);
+		t.setFahrenheit(t.getCelsius() + t.getKelvin());
+		// 0 + 273.15
+		double sumTemp = t.getCelsius() + t.getKelvin() + t.getFahrenheit();
+		// 133.97 + 407.12 + 273.15
+		// delta not equal to zero since variable has trailing 4s, but not sure how to round a double value succinctly
+		assertEquals("Test test_combination_temp failed.", 814.24, sumTemp, 0.01);
+	}
 	
 // TEST CASES FOR CAR CLASS	
 	
 	@Test
-	public void test_not_null() {
+	public void test_not_null_car() {
 		// checking that that Car object is instantiated, rather than nothing (null)
-		assertNotNull("Test test_not_null failed.", new Car(2025, "Toyota"));
+		assertNotNull("Test test_not_null_car failed.", new Car(2025, "Toyota"));
 	}
 
 	@Test
 	public void test_getYearModel_method() {
 		Car c = new Car(2025, "Toyota");
-		c.getYearModel();
-		assertEquals("Test test_getYearModel_method failed.", 2025, c.getYearModel());
+		// 0.0 represents delta, the allowed range within which the test passes; in this case the numbers must be equal
+		assertEquals("Test test_getYearModel_method failed.", 2025, c.getYearModel(), 0.0);
 	}
 	
 	@Test
 	public void test_getMake_method() {
 		Car c = new Car(2025, "Toyota");
-		c.getMake();
 		assertEquals("Test test_getMake_method failed.", "Toyota", c.getMake());
 	}
 	
 	@Test
 	public void test_getSpeed_method() {
 		Car c = new Car(2025, "Toyota");
-		c.getSpeed();
-		assertEquals("Test test_getSpeed_method failed.", 0, c.getSpeed());
+		assertEquals("Test test_getSpeed_method failed.", 0, c.getSpeed(), 0.0);
 	}
 	
 	@Test
 	public void test_setYearModel_method() {
 		Car c = new Car(2025, "Toyota");
 		c.setYearModel(1991);
-		assertEquals("Test test_setYearModel_method failed.", 1991, c.getYearModel());
+		assertEquals("Test test_setYearModel_method failed.", 1991, c.getYearModel(), 0.0);
 	}
 	
 	@Test
@@ -177,7 +206,7 @@ public class JunitTestsPublic {
 	public void test_setSpeed_method() {
 		Car c = new Car(2025, "Toyota");
 		c.setSpeed(100);
-		assertEquals("Test test_setSpeed_method failed.", 100, c.getSpeed());
+		assertEquals("Test test_setSpeed_method failed.", 100, c.getSpeed(), 0.0);
 	}	
 	
 	@Test
@@ -187,7 +216,7 @@ public class JunitTestsPublic {
 		// calling method to accelerate car one time (increase speed by 5)
 		c.accelerate();
 		// checking whether speed has changed from 0 to 5, since accelerate method was called
-		assertEquals("Test test_accelerate_method failed.", 5, c.getSpeed());
+		assertEquals("Test test_accelerate_method failed.", 5, c.getSpeed(), 0.0);
 	}
 	
 	@Test
@@ -197,7 +226,7 @@ public class JunitTestsPublic {
 		// calling method to brake car one time (decrease speed by 5)
 		c.brake();
 		// checking whether speed has changed from 0 to -5, since brake method was called
-		assertEquals("Test test_brake_method failed.", -5, c.getSpeed());
+		assertEquals("Test test_brake_method failed.", -5, c.getSpeed(), 0.0);
 	}
 	
 	@Test
@@ -214,7 +243,7 @@ public class JunitTestsPublic {
 		for (int i = 0; i < 10; i++) {
 			c.accelerate();
 		}
-		assertEquals("Test test_accelerate_method_loop failed.", 50, c.getSpeed());
+		assertEquals("Test test_accelerate_method_loop failed.", 50, c.getSpeed(), 0.0);
 	}
 	
 	@Test
@@ -223,7 +252,7 @@ public class JunitTestsPublic {
 		for (int i = 0; i < 10; i++) {
 			c.brake();
 		}
-		assertEquals("Test test_brake_method_loop failed.", -50, c.getSpeed());
+		assertEquals("Test test_brake_method_loop failed.", -50, c.getSpeed(), 0.0);
 	}
 	
 	@Test
@@ -235,11 +264,11 @@ public class JunitTestsPublic {
 		for (int j = 0; j < 3; j++) {
 			c.brake();
 		}
-		assertEquals("Test test_accelerate_brake_method_loop failed.", 10, c.getSpeed());
+		assertEquals("Test test_accelerate_brake_method_loop failed.", 10, c.getSpeed(), 0.0);
 	}
 	
 	@Test
-	public void test_combination_method() {
+	public void test_combination_method_car() {
 		Car c = new Car(2025, "Toyota");
 		c.setSpeed(c.getYearModel() / 20);
 		// speed is 101
@@ -254,6 +283,6 @@ public class JunitTestsPublic {
 		c.setSpeed(c.getSpeed() + 1);
 		// speed is 122
 		String [] correctOut = {"This is a 1980 model vehicle.","It is made by Toyotahuh.", "It is cruising at 122 kmph."};
-		assertArrayEquals("Test test_combination_method failed.", correctOut, c.getDescription());
+		assertArrayEquals("Test test_combination_method_car failed.", correctOut, c.getDescription());
 	}
 }

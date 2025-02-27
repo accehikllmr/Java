@@ -28,17 +28,21 @@ package lab3;
 
 public class Temperature {
 	
-	// NEED TO TEST MORE THOROUGHLY
+	// THOROUGHLY TESTED
+	// IF VALIDATING ARGUMENTS, ADD MORE TESTS
+	// SEE NOTES BELOW
 	
 	// class attributes, private since cannot be accessed outside of the class
 	private double ftemp;
 	
 	// class constructor, name of parameter need not differ from name of attribute, since using this. to make distinction
+	// ARGUMENT VALIDATION TO PREVENT IMPOSSIBLE VALUE FOR FAHRENHEIT?
 	public Temperature(double ftemp) {
 		this.ftemp = ftemp;
 	}
 	
 	// setter (mutator) method to change the ftemp attribute of an existing Temperature object
+	// ARGUMENT VALIDATION TO PREVENT IMPOSSIBLE VALUE FOR FAHRENHEIT?
 	public void setFahrenheit(double ftemp) {
 		this.ftemp = ftemp;
 	}
