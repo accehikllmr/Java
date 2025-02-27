@@ -30,7 +30,9 @@ In addition, the class should have the following public methods:
 
 public class Car {
 	
-	// NEED TO TEST MORE THOROUGHLY
+	// THOROUGHLY TESTED
+	// IF VALIDATING ARGUMENTS, ADD MORE TESTS
+	// SEE NOTES BELOW
 	
 	// class attributes
 	private int yearModel;
@@ -73,11 +75,11 @@ public class Car {
 	}
 	
 	// other methods that define possible behaviours for Car object
-	// ARGUMENT VALIDATION TO PREVENT NEGATIVE SPEED
 	public void accelerate() {
 		this.speed += 5;
 	}
 	
+	// ARGUMENT VALIDATION TO PREVENT NEGATIVE SPEED, FROM TOO MUCH BRAKING?
 	public void brake() {
 		this.speed -= 5;
 	}

@@ -108,6 +108,10 @@ public class JunitTestsPublic {
 		
 		assertArrayEquals("Test pb_05_02 failed.", correctOut,TwoDArrayProblems.findDistances(data));
 	}
+	
+	
+// TEST CASES FOR TEMPERATURE CLASS
+	
 	@Test
 	public void test_pb_06_01() {
 		
@@ -124,45 +128,106 @@ public class JunitTestsPublic {
 		double []correctOut = {32.0,0.0,273.15};
 		assertArrayEquals("Test pb_06_03 failed.", correctOut, t.getAll(),0.0);
 	}	
+
+	
+// TEST CASES FOR CAR CLASS	
+	
 	@Test
-	public void test_pb_07_01() {
+	public void test_not_null() {
 		// checking that that Car object is instantiated, rather than nothing (null)
-		assertNotNull("Test pb_07_01 failed.", new Car(2025, "Toyota"));
-	}	
+		assertNotNull("Test test_not_null failed.", new Car(2025, "Toyota"));
+	}
+
 	@Test
-	public void test_pb_07_02() {
+	public void test_getYearModel_method() {
+		Car c = new Car(2025, "Toyota");
+		c.getYearModel();
+		assertEquals("Test test_getYearModel_method failed.", 2025, c.getYearModel());
+	}
+	
+	@Test
+	public void test_getMake_method() {
+		Car c = new Car(2025, "Toyota");
+		c.getMake();
+		assertEquals("Test test_getMake_method failed.", "Toyota", c.getMake());
+	}
+	
+	@Test
+	public void test_getSpeed_method() {
+		Car c = new Car(2025, "Toyota");
+		c.getSpeed();
+		assertEquals("Test test_getSpeed_method failed.", 0, c.getSpeed());
+	}
+	
+	@Test
+	public void test_setYearModel_method() {
+		Car c = new Car(2025, "Toyota");
+		c.setYearModel(1991);
+		assertEquals("Test test_setYearModel_method failed.", 1991, c.getYearModel());
+	}
+	
+	@Test
+	public void test_setMake_method() {
+		Car c = new Car(2025, "Toyota");
+		c.setMake("Ford");
+		assertEquals("Test test_setMake_method failed.", "Ford", c.getMake());
+	}
+	
+	@Test
+	public void test_setSpeed_method() {
+		Car c = new Car(2025, "Toyota");
+		c.setSpeed(100);
+		assertEquals("Test test_setSpeed_method failed.", 100, c.getSpeed());
+	}	
+	
+	@Test
+	public void test_accelerate_method() {
 		// instantiating Car object with arguments passed to object attributes
 		Car c = new Car(2025, "Toyota");
 		// calling method to accelerate car one time (increase speed by 5)
 		c.accelerate();
 		// checking whether speed has changed from 0 to 5, since accelerate method was called
-		assertEquals("Test pb_07_02 failed.", 5, c.getSpeed());
-	}	
+		assertEquals("Test test_accelerate_method failed.", 5, c.getSpeed());
+	}
+	
 	@Test
-	public void test_pb_07_03() {
+	public void test_brake_method() {
+		// instantiating Car object with arguments passed to object attributes
+		Car c = new Car(2025, "Toyota");
+		// calling method to brake car one time (decrease speed by 5)
+		c.brake();
+		// checking whether speed has changed from 0 to -5, since brake method was called
+		assertEquals("Test test_brake_method failed.", -5, c.getSpeed());
+	}
+	
+	@Test
+	public void test_getDescription_method() {
 		Car c = new Car(2025, "Toyota");
 		String [] correctOut = {"This is a 2025 model vehicle.","It is made by Toyota.", "It is cruising at 0 kmph."};
-		assertArrayEquals("Test pb_07_03 failed.", correctOut, c.getDescription());
+		assertArrayEquals("Test test_getDescription_method failed.", correctOut, c.getDescription());
 	}
+	
 	@Test
-	public void test_pb_07_04() {
+	public void test_accelerate_method_loop() {
 		Car c = new Car(2025, "Toyota");
 		// calling accelerate method multiple times car multiple times
 		for (int i = 0; i < 10; i++) {
 			c.accelerate();
 		}
-		assertEquals("Test pb_07_04 failed.", 50, c.getSpeed());
+		assertEquals("Test test_accelerate_method_loop failed.", 50, c.getSpeed());
 	}
+	
 	@Test
-	public void test_pb_07_05() {
+	public void test_brake_method_loop() {
 		Car c = new Car(2025, "Toyota");
 		for (int i = 0; i < 10; i++) {
 			c.brake();
 		}
-		assertEquals("Test pb_07_05 failed.", -50, c.getSpeed());
+		assertEquals("Test test_brake_method_loop failed.", -50, c.getSpeed());
 	}
+	
 	@Test
-	public void test_pb_07_06() {
+	public void test_accelerate_brake_method_loop() {
 		Car c = new Car(2025, "Toyota");
 		for (int i = 0; i < 5; i++) {
 			c.accelerate();
@@ -170,36 +235,25 @@ public class JunitTestsPublic {
 		for (int j = 0; j < 3; j++) {
 			c.brake();
 		}
-		assertEquals("Test pb_07_06 failed.", 10, c.getSpeed());
+		assertEquals("Test test_accelerate_brake_method_loop failed.", 10, c.getSpeed());
 	}
+	
 	@Test
-	public void test_pb_07_07() {
+	public void test_combination_method() {
 		Car c = new Car(2025, "Toyota");
-		c.getYearModel();
-		assertEquals("Test pb_07_07 failed.", 2025, c.getYearModel());
-	}
-	@Test
-	public void test_pb_07_08() {
-		Car c = new Car(2025, "Toyota");
-		c.getMake();
-		assertEquals("Test pb_07_08 failed.", "Toyota", c.getMake());
-	}
-	@Test
-	public void test_pb_07_09() {
-		Car c = new Car(2025, "Toyota");
-		c.setYearModel(1991);
-		assertEquals("Test pb_07_09 failed.", 1991, c.getYearModel());
-	}
-	@Test
-	public void test_pb_07_10() {
-		Car c = new Car(2025, "Toyota");
-		c.setMake("Ford");
-		assertEquals("Test pb_07_10 failed.", "Ford", c.getMake());
-	}
-	@Test
-	public void test_pb_07_11() {
-		Car c = new Car(2025, "Toyota");
-		c.setSpeed(100);
-		assertEquals("Test pb_07_11 failed.", 100, c.getSpeed());
+		c.setSpeed(c.getYearModel() / 20);
+		// speed is 101
+		for (int i = 0; i < 5; i++) {
+			c.accelerate();
+		}
+		// speed is 126
+		c.brake();
+		// speed is 121
+		c.setYearModel(1980);
+		c.setMake(c.getMake() + "huh");
+		c.setSpeed(c.getSpeed() + 1);
+		// speed is 122
+		String [] correctOut = {"This is a 1980 model vehicle.","It is made by Toyotahuh.", "It is cruising at 122 kmph."};
+		assertArrayEquals("Test test_combination_method failed.", correctOut, c.getDescription());
 	}
 }
