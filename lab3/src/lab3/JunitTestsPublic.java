@@ -9,7 +9,7 @@ import org.junit.Rule;
 
 public class JunitTestsPublic {
 	@Rule
-	public Timeout globalTimeout = Timeout.seconds(10000);
+	public Timeout globalTimeout = Timeout.seconds(1);
 	
 // TESTS FOR FINDEXTREMA METHOD
 	
@@ -1207,7 +1207,87 @@ public class JunitTestsPublic {
 		// checking that that Car object is instantiated, rather than nothing (null)
 		assertNotNull("Test test_not_null_car failed.", new Car(2025, "Toyota"));
 	}
+	
+	@Test
+	public void test_before_Jesus() {
+		Car c = new Car(-1, "Honda");
+		assertEquals("Test test_before_Jesus failed.", 0, c.getYearModel(), 0.0);
+	}
+	
+	@Test
+	public void test_not_before_Jesus() {
+		Car c = new Car(1, "Honda");
+		assertEquals("Test test_not_before_Jesus failed.", 1, c.getYearModel(), 0.0);
+	}
+	
+	@Test
+	public void test_empty_make() {
+		Car c = new Car(1000, "");
+		assertEquals("Test test_empty_make failed.", "Unknown", c.getMake());
+	}
+	
+	@Test
+	public void test_not_empty_make() {
+		Car c = new Car(1000, "Honda");
+		assertEquals("Test test_not_empty_make failed.", "Honda", c.getMake());
+	}
+	
+	@Test
+	public void test_before_Jesus_method() {
+		Car c = new Car(1000, "Honda");
+		c.setYearModel(-1);
+		assertEquals("Test test_before_Jesus_method failed.", 0, c.getYearModel(), 0.0);
+	}
+	
+	@Test
+	public void test_not_before_Jesus_method() {
+		Car c = new Car(1000, "Honda");
+		c.setYearModel(1);
+		assertEquals("Test test_not_before_Jesus_method failed.", 1, c.getYearModel(), 0.0);
+	}
 
+	@Test
+	public void test_empty_make_method() {
+		Car c = new Car(1000, "Honda");
+		c.setMake("");
+		assertEquals("Test test_empty_make_method failed.", "Unknown", c.getMake());
+	}
+	
+	@Test
+	public void test_not_empty_make_method() {
+		Car c = new Car(1000, "Honda");
+		c.setMake("Toyota");
+		assertEquals("Test test_not_empty_make_method failed.", "Toyota", c.getMake());
+	}
+	
+	@Test
+	public void test_backwards_method() {
+		Car c = new Car(1000, "Ford");
+		c.setSpeed(-1);
+		assertEquals("Test test_backwards_method failed.", 0, c.getSpeed());
+	}
+	
+	@Test
+	public void test_valid_speed_method() {
+		Car c = new Car(1000, "Ford");
+		c.setSpeed(0);
+		assertEquals("Test test_backwards_method failed.", 0, c.getSpeed());
+	}
+	
+	@Test
+	public void test_light_speed_method() {
+		Car c = new Car(1000, "Ford");
+		c.setSpeed(1079252848);
+		assertEquals("Test test_backwards_method failed.", 1079252848, c.getSpeed());
+	}
+	
+	@Test
+	public void test_superluminal_method() {
+		Car c = new Car(1000, "Ford");
+		c.setSpeed(1079252849);
+		assertEquals("Test test_backwards_method failed.", 1079252848, c.getSpeed());
+	}
+	
 	@Test
 	public void test_getYearModel_method() {
 		Car c = new Car(2025, "Toyota");
@@ -1262,10 +1342,11 @@ public class JunitTestsPublic {
 	public void test_brake_method() {
 		// instantiating Car object with arguments passed to object attributes
 		Car c = new Car(2025, "Toyota");
+		c.setSpeed(10);
 		// calling method to brake car one time (decrease speed by 5)
 		c.brake();
 		// checking whether speed has changed from 0 to -5, since brake method was called
-		assertEquals("Test test_brake_method failed.", -5, c.getSpeed(), 0.0);
+		assertEquals("Test test_brake_method failed.", 5, c.getSpeed(), 0.0);
 	}
 	
 	@Test
@@ -1288,10 +1369,11 @@ public class JunitTestsPublic {
 	@Test
 	public void test_brake_method_loop() {
 		Car c = new Car(2025, "Toyota");
+		c.setSpeed(125);
 		for (int i = 0; i < 10; i++) {
 			c.brake();
 		}
-		assertEquals("Test test_brake_method_loop failed.", -50, c.getSpeed(), 0.0);
+		assertEquals("Test test_brake_method_loop failed.", 75, c.getSpeed(), 0.0);
 	}
 	
 	@Test
@@ -1324,4 +1406,54 @@ public class JunitTestsPublic {
 		String [] correctOut = {"This is a 1980 model vehicle.","It is made by Toyotahuh.", "It is cruising at 122 kmph."};
 		assertArrayEquals("Test test_combination_method_car failed.", correctOut, c.getDescription());
 	}
+	
+	@Test
+	public void test_accelerate_almost_superluminal() {
+		Car c = new Car(2025, "Chevy");
+		c.setSpeed(1079252842);
+		c.accelerate();
+		assertEquals("Test test_accelerate_almost_superluminal failed.", 1079252847, c.getSpeed());
+	}
+
+	@Test
+	public void test_accelerate_at_superluminal() {
+		Car c = new Car(2025, "Chevy");
+		c.setSpeed(1079252843);
+		c.accelerate();
+		assertEquals("Test test_accelerate_at_superluminal failed.", 1079252848, c.getSpeed());
+	}
+	
+	@Test
+	public void test_accelerate_past_superluminal() {
+		Car c = new Car(2025, "Chevy");
+		c.setSpeed(1079252844);
+		c.accelerate();
+		assertEquals("Test test_accelerate_past_superluminal failed.", 1079252848, c.getSpeed());
+	}
+	
+	@Test
+	public void test_above_backwards() {
+		Car c = new Car(2025, "Chevy");
+		c.setSpeed(6);
+		c.brake();
+		assertEquals("Test test_above_backwards failed.", 1, c.getSpeed());
+	}
+	
+	@Test
+	public void test_at_backwards() {
+		Car c = new Car(2025, "Chevy");
+		c.setSpeed(5);
+		c.brake();
+		assertEquals("Test test_at_backwards failed.", 0, c.getSpeed());
+	}
+	
+	@Test
+	public void test_below_backwards() {
+		Car c = new Car(2025, "Chevy");
+		c.setSpeed(4);
+		c.brake();
+		assertEquals("Test test_below_backwards failed.", 0, c.getSpeed());
+	}
+	
+	
 }

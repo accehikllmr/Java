@@ -30,9 +30,10 @@ In addition, the class should have the following public methods:
 
 public class Car {
 	
-	// THOROUGHLY TESTED
-	// IF VALIDATING ARGUMENTS, ADD MORE TESTS
-	// SEE NOTES BELOW
+	// description of class, methods and attributes does not specify the following...
+	// whether the speed has upper and lower bounds (0 and speed of light) (implemented)
+	// whether the year has a lower bound (0) (implemented)
+	// whether the make can be an empty string (implemented)
 	
 	// class attributes
 	private int yearModel;
@@ -40,10 +41,10 @@ public class Car {
 	private int speed;
 	
 	// class constructor
-	// ARGUMENT VALIDATION TO PREVENT NEGATIVE YEARS?
+	// preventing object attributes from being assigned invalid values (see bounds described above), except speed which is default
 	public Car(int yearModel, String make) {
-		this.yearModel = yearModel;
-		this.make = make;
+		this.yearModel = (yearModel >= 0) ? yearModel : 0;
+		this.make = (make != "") ? make : "Unknown";
 		this.speed = 0;
 	}
 	
@@ -61,27 +62,32 @@ public class Car {
 	}
 	
 	// setter (mutator) methods for all Car object attributes
-	// ARGUMENT VALIDATION TO PREVENT NEGATIVE YEAR AND SPEED, ALSO EMPTY STRING
 	public void setYearModel(int yearModel) {
-		this.yearModel = yearModel;
+		// preventing year from being negative
+		this.yearModel = (yearModel >= 0) ? yearModel : 0;
 	}
 	
 	public void setMake(String make) {
-		this.make = make;
+		// preventing make from being an empty string
+		this.make = (make != "") ? make : "Unknown";
 	}
 	
 	public void setSpeed(int speed) {
-		this.speed = speed;
+		// preventing speed from being set to invalid values, setting upper and lower bounds
+		this.speed = (speed >= 0) ? speed : 0;
+		// since speed attribute set in line above without upper bound, now checking upper bound
+		this.speed = (this.speed <= 1079252848) ? this.speed : 1079252848;
 	}
 	
 	// other methods that define possible behaviours for Car object
+	// setting upper limit on speed, preventing car from reaching speed of light
 	public void accelerate() {
-		this.speed += 5;
+		this.speed = (this.speed <= 1079252843) ? this.speed + 5 : 1079252848;
 	}
 	
-	// ARGUMENT VALIDATION TO PREVENT NEGATIVE SPEED, FROM TOO MUCH BRAKING?
+	// setting lower limit on speed, preventing negative speed from braking, since braking does not send car in opposite direction
 	public void brake() {
-		this.speed -= 5;
+		this.speed = (this.speed >= 5) ? this.speed - 5 : 0;
 	}
 	
 	public String [] getDescription() {
