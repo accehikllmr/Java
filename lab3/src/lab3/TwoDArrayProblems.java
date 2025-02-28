@@ -22,10 +22,10 @@ public class TwoDArrayProblems {
 	public static String findExtrema(int[][] array) {
 		
 		// description of method does not specify the following...
-		// whether integers in arrays can be negative values
-		// whether numbers in output String object need to be listed in increasing order
-		// whether the inner arrays are of the same length (i.e. square or rectangle array)
-		// whether the inner arrays can be empty or null
+		// whether integers in arrays can be negative values (implemented)
+		// whether the inner arrays are of the same length (i.e. square, rectangle, triangle or irregular array) (implemented)
+		// whether the inner arrays can be empty or null (implemented)
+		// whether numbers in output String object need to be listed in increasing order (not implemented)
 		
 		// validating argument passed to array parameter of method (not a null array)
 		if (array == null) {
@@ -34,8 +34,7 @@ public class TwoDArrayProblems {
 		
 		// no null inner arrays
 		for (int q = 0; q < array.length; q++) {
-			// using lazy evaluation to avoid trying to read length of null array
-			if (array[q] == null || array[q].length == 0) {
+			if (array[q] == null) {
 				return "[null array].";
 			}
 		}
@@ -79,22 +78,24 @@ public class TwoDArrayProblems {
 				
 		// iterating through outer Array object (rows), stopping before length of outer Array object (otherwise IndexError)
 		for (int i = 0; i < array.length; i++) {
-			// max/min values are by default the first elements in each inner Array object
-			rowMaximum = array[i][0];
-			rowMinimum = array[i][0];
-			// iterating through inner Array object (columns), skipping first element, stopping before length of inner Array object (otherwise IndexError)
-			for (int j = 1; j < array[i].length; j++) {
-				// for given row i and column j, update if value is larger than current maximum
-				if (array[i][j] > rowMaximum) {
-					rowMaximum = array[i][j];
-				// same as above, but for current minimum value
-				} else if (array[i][j] < rowMinimum) {
-					rowMinimum = array[i][j];
+			// max/min values are by default the first elements in each inner Array object, unless empty array
+			if (array[i].length > 0) {
+				rowMaximum = array[i][0];
+				rowMinimum = array[i][0];
+				// iterating through inner Array object (columns), skipping first element, stopping before length of inner Array object (otherwise IndexError)
+				for (int j = 1; j < array[i].length; j++) {
+					// for given row i and column j, update if value is larger than current maximum
+					if (array[i][j] > rowMaximum) {
+						rowMaximum = array[i][j];
+					// same as above, but for current minimum value
+					} else if (array[i][j] < rowMinimum) {
+						rowMinimum = array[i][j];
+					}
 				}
+				// having searched through inner Array object (row), concatenate Integer to String object and symbol (conditioned on whether last row)
+				rowMaximums += Integer.toString(rowMaximum) + ((i != array.length - 1) ? "," : "]");
+				rowMinimums += Integer.toString(rowMinimum) + ((i != array.length - 1) ? "," : "]");
 			}
-			// having searched through inner Array object (row), concatenate Integer to String object and symbol (conditioned on whether last row)
-			rowMaximums += Integer.toString(rowMaximum) + ((i != array.length - 1) ? "," : "]");
-			rowMinimums += Integer.toString(rowMinimum) + ((i != array.length - 1) ? "," : "]");
 		}
 		
 		// iterating through outer Array objects (rows), not excluding first column since not by default longest array
@@ -142,8 +143,8 @@ public class TwoDArrayProblems {
 	{
 		
 		// description of method does not specify the following...
-		// whether integers in arrays can be negative values
-		// whether inner arrays can be empty or null
+		// whether integers in arrays can be negative values (implemented)
+		// whether inner arrays can be empty or null (implemented)
 		
 		// validating argument passed to originalArray method parameter
 		if (originalArray == null) {
@@ -200,7 +201,7 @@ public class TwoDArrayProblems {
 	{
 	
 		// description of method does not specify the following...
-		// whether inner arrays can be empty or null
+		// whether inner arrays can be empty or null (implemented)
 		
 		/* validating argument passed to method parameter, false for null or non-square matrices,
 		 * separate from other conditions since copying doubles to new Array object
@@ -241,7 +242,7 @@ public class TwoDArrayProblems {
 				// adding positive double from row into sum
 				colSum += rotatedMatrix[i][j];
 				}
-			// converting to String and back to Double in order to round
+			// converting to String and back to Double in order to round, 10 decimal places for increased precision
 			String roundColSum = String.format("%.10f", colSum);
 			colSum = Double.parseDouble(roundColSum);
 			// condition that column sum is equal to 1, calculated after iterating through column doubles
@@ -266,11 +267,25 @@ public class TwoDArrayProblems {
 	 * 
 	 * Assume there will always be at least one set of coordinates given. 
 	*/
+	
 	public static double [][] findDistances(double [][] m) 
 	{
 		
-		// NEED TO VALIDATE ARGUMENTS?
-		// NEED TO TEST MORE THOROUGHLY
+		// description of method does not specify the following...
+		// whether integers in arrays can be negative values (implemented)
+		// whether the inner arrays can be empty or null (implemented)
+		
+		// validating argument passed to method parameter, returning null not n x 2 arrays
+		if (m == null) {
+			return null;
+		} else {
+			for (int a = 0; a < m.length; a++) {
+				if (m[a] == null || m[a].length != 2) {
+					return null;
+				}
+			}
+		}
+		
 		
 		// initialize Array object of all distances, every set of coordinates compared to all others, including itself, so resulting matrix is square
 		double [][] all_pts_dist = new double[m.length][m.length];

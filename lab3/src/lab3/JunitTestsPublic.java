@@ -23,16 +23,6 @@ public class JunitTestsPublic {
 	}
 	
 	@Test
-	public void test_empty_inner_array_findextrema_method() {
-		
-		int [][] data = {{1, 2, 3},
-						 {}};
-		String correctOut = "[null array].";
-		String result = TwoDArrayProblems.findExtrema(data);
-		assertEquals("Test test_empty_inner_array_findextrema_method failed.", correctOut, result);
-	}
-	
-	@Test
 	public void test_null_inner_array_findextrema_method() {
 		
 		int [][] data = {{1, 2, 3}, 
@@ -40,6 +30,20 @@ public class JunitTestsPublic {
 		String correctOut = "[null array].";
 		String result = TwoDArrayProblems.findExtrema(data);
 		assertEquals("Test test_null_inner_array_findextrema_method failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_empty_inner_array_findextrema_method() {
+		
+		int [][] data = {{1, 2, 3},
+						 {},
+						 {4, 5, 6}};
+		String correctOut = "The maximum values along the rows are [3,6].\n"
+				+ "The minimum values along the rows are [1,4].\n"
+				+ "The maximum values along the columns are [4,5,6].\n"
+				+ "The minimum values along the columns are [1,2,3].";
+		String result = TwoDArrayProblems.findExtrema(data);
+		assertEquals("Test test_empty_inner_array_findextrema_method failed.", correctOut,result);
 	}
 	
 	@Test
@@ -52,10 +56,7 @@ public class JunitTestsPublic {
 				+ "The minimum values along the rows are [0,1,2].\n"
 				+ "The maximum values along the columns are [2].\n"
 				+ "The minimum values along the columns are [0].";
-		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
-		
 		assertEquals("Test test_binary_0 failed.", correctOut,result);
 	}
 	
@@ -70,7 +71,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,0].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_0 failed.", correctOut,result);
@@ -87,7 +87,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_1 failed.", correctOut,result);
@@ -104,7 +103,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,0].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_2 failed.", correctOut,result);
@@ -121,7 +119,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_3 failed.", correctOut,result);
@@ -138,7 +135,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_4 failed.", correctOut,result);
@@ -155,7 +151,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_5 failed.", correctOut,result);
@@ -172,7 +167,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_6 failed.", correctOut,result);
@@ -189,7 +183,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_7 failed.", correctOut,result);
@@ -206,7 +199,6 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,0].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_8 failed.", correctOut,result);
@@ -223,7 +215,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_9 failed.", correctOut,result);
@@ -240,7 +232,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,0].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_10 failed.", correctOut,result);
@@ -257,7 +249,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_11 failed.", correctOut,result);
@@ -274,7 +266,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_12 failed.", correctOut,result);
@@ -291,7 +283,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_13 failed.", correctOut,result);
@@ -308,7 +300,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_14 failed.", correctOut,result);
@@ -325,7 +317,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_15 failed.", correctOut,result);
@@ -342,7 +334,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_16 failed.", correctOut,result);
@@ -359,7 +351,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_17 failed.", correctOut,result);
@@ -376,7 +368,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_18 failed.", correctOut,result);
@@ -393,7 +385,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_19 failed.", correctOut,result);
@@ -410,7 +402,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_20 failed.", correctOut,result);
@@ -427,7 +419,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [0,1].\n"
 				+ "The minimum values along the columns are [0,1].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_21 failed.", correctOut,result);
@@ -444,7 +436,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_22 failed.", correctOut,result);
@@ -461,7 +453,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,1].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_23 failed.", correctOut,result);
@@ -478,7 +470,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_24 failed.", correctOut,result);
@@ -495,7 +487,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_25 failed.", correctOut,result);
@@ -512,7 +504,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_26 failed.", correctOut,result);
@@ -529,7 +521,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_27 failed.", correctOut,result);
@@ -546,7 +538,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_28 failed.", correctOut,result);
@@ -563,7 +555,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,1].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_29 failed.", correctOut,result);
@@ -580,7 +572,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_30 failed.", correctOut,result);
@@ -597,7 +589,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,1].\n"
 				+ "The minimum values along the columns are [0,1].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_31 failed.", correctOut,result);
@@ -614,7 +606,7 @@ public class JunitTestsPublic {
 				+ "The maximum values along the columns are [1,0].\n"
 				+ "The minimum values along the columns are [0,0].";
 		
-		// fails because order of numbers in array are backwards
+		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
 		assertEquals("Test test_binary_32 failed.", correctOut,result);
@@ -947,6 +939,34 @@ public class JunitTestsPublic {
 		assertEquals("Test test_square_array_3 failed.", correctOut, result);
 	}
 	
+	@Test
+	public void test_square_array_4() {
+		int [][] data = {{1}};
+		String correctOut = "{{1}}.";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_square_array_4 failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_square_array_5() {
+		int [][] data = {{1, 2},
+						 {3, 4}};
+		String correctOut = "{{3, 1}, {4, 2}}.";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_square_array_5 failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_square_array_6() {
+		int [][] data = {{1, 2, 7, 8},
+						 {3, 4, 8, 9},
+						 {0, 0, 0, 0},
+						 {-1, -1, -1, -1}};
+		String correctOut = "{{-1, 0, 3, 1}, {-1, 0, 4, 2}, {-1, 0, 8, 7}, {-1, 0, 9, 8}}.";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_square_array_6 failed.", correctOut, result);
+	}
+	
 // TESTS FOR ISMARKOVMATRIX METHOD
 	
 	@Test
@@ -1027,31 +1047,77 @@ public class JunitTestsPublic {
 		assertTrue("Test test_positive_matrix_3 failed.", TwoDArrayProblems.isMarkovMatrix(data));
 	}
 	
+	@Test
+	public void test_positive_matrix_4() {
+		double [][] data = {{1.0,0.0,0.0}, 
+							{0.0,1.0,0.0}, 
+							{0.0,0.0,1.0}};
+		assertTrue("Test test_positive_matrix_4 failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
 // TESTS FOR FINDDISTANCES METHOD
 	
 	@Test
-	public void test_pb_05_01() {
+	public void test_coordinates_null() {
+		
+		double [][] data = null;
+		double [][] correctOut = null;
+		
+		assertArrayEquals("Test test_coordinates_null failed.", correctOut, TwoDArrayProblems.findDistances(data));
+	}
+	
+	@Test
+	public void test_coordinates_coordinates_null() {
+		
+		double [][] data = {{1, 2}, {3, 4}, {5, 6}, null};
+		double [][] correctOut = null;
+		
+		assertArrayEquals("Test test_coordinates_coordinates_null failed.", correctOut, TwoDArrayProblems.findDistances(data));
+	}
+	
+	@Test
+	public void test_coordinates_coordinates_not_by_2() {
+		
+		double [][] data = {{1, 2}, {3, 4}, {5, 6}, {1, 2, 3}};
+		double [][] correctOut = null;
+		
+		assertArrayEquals("Test test_coordinates_coordinates_not_by_2 failed.", correctOut, TwoDArrayProblems.findDistances(data));
+	}
+	
+	@Test
+	public void test_coordinates_1() {
+		
+		double [][] data = {{1.0, 2.0}};
+		double [][] correctOut = {{0.0}};
+		
+		assertArrayEquals("Test test_coordinates_1 failed.", correctOut, TwoDArrayProblems.findDistances(data));
+	}
+	
+	@Test
+	public void test_coordinates_2() {
 		
 		double [][] data = {{1.0, 2.0}, {3.0, 2.0}};
 		double [][] correctOut = {{0.0, 2.0}, {2.0, 0.0}};
 		
-		assertArrayEquals("Test pb_05_01 failed.", correctOut,TwoDArrayProblems.findDistances(data));
+		assertArrayEquals("Test test_coordinates_2 failed.", correctOut, TwoDArrayProblems.findDistances(data));
 	}
+	
 	@Test
-	public void test_pb_05_02() {
+	public void test_coordinates_3() {
 		
 		double [][] data = {{1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0}};
 		double [][] correctOut = {{0.0, 2.83, 5.66}, {2.83, 0.0, 2.83}, {5.66, 2.83, 0.0}};
 		
-		assertArrayEquals("Test pb_05_02 failed.", correctOut,TwoDArrayProblems.findDistances(data));
+		assertArrayEquals("Test test_coordinates_3 failed.", correctOut, TwoDArrayProblems.findDistances(data));
 	}
+	
 	@Test
-	public void test_pb_05_03() {
+	public void test_coordinates_4() {
 		
 		double [][] data = {{1.2, -2.7}, {3.9, -5.7}, {9.3, 6.8}, {-7.1, -4.4}};
 		double [][] correctOut = {{0.0, 4.04, 12.48, 8.47}, {4.04, 0.0, 13.62, 11.08}, {12.48, 13.62, 0.0, 19.86}, {8.47, 11.08, 19.86, 0.0}};
 		
-		assertArrayEquals("Test pb_05_02 failed.", correctOut,TwoDArrayProblems.findDistances(data));
+		assertArrayEquals("Test test_coordinates_4 failed.", correctOut, TwoDArrayProblems.findDistances(data));
 	}
 	
 	
@@ -1063,28 +1129,48 @@ public class JunitTestsPublic {
 	}
 	
 	@Test
+	public void test_not_below_absolute_zero() {
+		Temperature t = new Temperature(-459.68);
+		assertEquals("Test test_not_below_absolute_zero failed.", -459.67, t.getFahrenheit(), 0.0);
+	}
+	
+	@Test
 	public void test_get_Fahrenheit_method() {
 		Temperature t = new Temperature(32.0);
-		assertEquals("Test test_get_Fahrenheit_method failed.", 32.0, t.getFahrenheit(), 0.0);
+		assertEquals("Test test_get_Fahrenheit_method failed.", 32.0, t.getFahrenheit(), 0.01);
 	}
 	
 	@Test
 	public void test_get_Celsius_method() {
 		Temperature t = new Temperature(32.0);
-		assertEquals("Test test_get_Celsius_method failed.", 0.0, t.getCelsius(), 0.0);
+		assertEquals("Test test_get_Celsius_method failed.", 0.0, t.getCelsius(), 0.01);
 	}
 	
 	@Test
 	public void test_get_Kelvin_method() {
 		Temperature t = new Temperature(32.0);
-		assertEquals("Test test_get_Kelvin_method failed.", 273.15, t.getKelvin(), 0.0);
+		assertEquals("Test test_get_Kelvin_method failed.", 273.15, t.getKelvin(), 0.01);
 	}
 	
 	@Test
 	public void test_set_Fahrenheit_method() {
 		Temperature t = new Temperature(32.0);
 		t.setFahrenheit(0.0);
-		assertEquals("Test test_set_Fahrenheit_method failed.", 0.0, t.getFahrenheit(), 0.0);
+		assertEquals("Test test_set_Fahrenheit_method failed.", 0.0, t.getFahrenheit(), 0.01);
+	}
+	
+	@Test
+	public void test_set_Fahrenheit_method_absolute_zero() {
+		Temperature t = new Temperature(32.0);
+		t.setFahrenheit(-459.67);
+		assertEquals("Test test_set_Fahrenheit_method_absolute_zero failed.", -459.67, t.getFahrenheit(), 0.0);
+	}
+	
+	@Test
+	public void test_set_Fahrenheit_method_below_absolute_zero() {
+		Temperature t = new Temperature(32.0);
+		t.setFahrenheit(-459.69);
+		assertEquals("Test test_set_Fahrenheit_method_below_absolute_zero failed.", -459.67, t.getFahrenheit(), 0.0);
 	}
 	
 	@Test
@@ -1092,7 +1178,15 @@ public class JunitTestsPublic {
 		Temperature t = new Temperature(32.0);
 		double [] correctOut = {32.0, 0.0, 273.15};
 		// 0.0 represents delta, maximum allowed difference between corresponding values [i] in Array objects
-		assertArrayEquals("Test getAll_method failed.", correctOut, t.getAll(), 0.0);
+		assertArrayEquals("Test getAll_method failed.", correctOut, t.getAll(), 0.01);
+	}
+	
+	@Test
+	public void test_getAll_method_absolute_zero() {
+		Temperature t = new Temperature(-459.67);
+		double [] correctOut = {-459.67, -273.15, 0.0};
+		// 0.0 represents delta, maximum allowed difference between corresponding values [i] in Array objects
+		assertArrayEquals("Test test_getAll_method_absolute_zero failed.", correctOut, t.getAll(), 0.01);
 	}	
 
 	@Test

@@ -28,23 +28,29 @@ package lab3;
 
 public class Temperature {
 	
-	// THOROUGHLY TESTED
-	// IF VALIDATING ARGUMENTS, ADD MORE TESTS
-	// SEE NOTES BELOW
-	
+	// description of method does not specify the following...
+	// whether the temperature must have a lower bound (i.e. absolute zero) (implemented)
+
 	// class attributes, private since cannot be accessed outside of the class
 	private double ftemp;
 	
 	// class constructor, name of parameter need not differ from name of attribute, since using this. to make distinction
-	// ARGUMENT VALIDATION TO PREVENT IMPOSSIBLE VALUE FOR FAHRENHEIT?
 	public Temperature(double ftemp) {
-		this.ftemp = ftemp;
+		// prevent argument passed that are lower than absolute zero temperature
+		if (ftemp >= -459.67) {
+			this.ftemp = ftemp;
+		} else {
+			this.ftemp = -459.67;
+		}
 	}
 	
 	// setter (mutator) method to change the ftemp attribute of an existing Temperature object
-	// ARGUMENT VALIDATION TO PREVENT IMPOSSIBLE VALUE FOR FAHRENHEIT?
 	public void setFahrenheit(double ftemp) {
-		this.ftemp = ftemp;
+		if (ftemp >= -459.67) {
+			this.ftemp = ftemp;
+		} else {
+			this.ftemp = -459.67;
+		}
 	}
 	
 	// getter (accessor) method to retrieve the ftemp attribute from an existing Temperature object
