@@ -21,27 +21,54 @@ public class TwoDArrayProblems {
 	
 	public static String findExtrema(int[][] array) {
 		
-		// NEED TO TEST MORE THOROUGHLY
+		// description of method does not specify the following...
+		// whether integers in arrays can be negative values
+		// whether numbers in output String object need to be listed in increasing order
+		// whether the inner arrays are of the same length (i.e. square or rectangle array)
+		// whether the inner arrays can be empty or null
 		
-		// validating argument passed to array parameter of method
+		// validating argument passed to array parameter of method (not a null array)
 		if (array == null) {
 			return "[null array].";
 		}
+		
+		// no null inner arrays
+		for (int q = 0; q < array.length; q++) {
+			// using lazy evaluation to avoid trying to read length of null array
+			if (array[q] == null || array[q].length == 0) {
+				return "[null array].";
+			}
+		}
+			
+		// no need to validate data type of argument inner array elements, since method only accepts arrays containing integers
 		
 		// variable to store max/min integer values for each row (nested Array object), value to be concatenated to return String object
 		int rowMaximum;
 		int rowMinimum;
 
-		/* variables to store max/min integer values for each column, storing first inner Array object since by default has max/min values for columns
+		/* variables to store max/min integer values for each column, storing longest inner Array object as default has max/min values for columns
 		 * notice syntax for initializing new array object (cannot simply assign argument Array object to new Array object, this is simply aliasing)
-		 * length of new arrays is equal to number of columns in original array
+		 * finding maximum length inner array in outer array, otherwise if first inner array is shorter than following, IndexError occurs
 		 */
-		int [] colMaximum = new int[array[0].length];
-		int [] colMinimum = new int[array[0].length];
+		int maxLength = 0;
+		int maxLengthPosition = 0;
+		for (int a = 0; a < array.length; a++) {
+			if (array[a].length > maxLength) {
+				// need length for size of new arrays
+				maxLength = array[a].length;
+				// need index to find values that will be stored as default
+				maxLengthPosition = a;
+			}
+		}
 		
-		for (int h = 0; h < array[0].length; h++) {
-			colMaximum[h] = array[0][h];
-			colMinimum[h] = array[0][h];
+		// using maximum length array as size for these arrays, otherwise will not be able to store values from indices in larger arrays
+		int [] colMaximum = new int[maxLength];
+		int [] colMinimum = new int[maxLength];
+		
+		// storing values of longest inner array into values for column max/min
+		for (int h = 0; h < colMaximum.length; h++) {
+			colMaximum[h] = array[maxLengthPosition][h];
+			colMinimum[h] = array[maxLengthPosition][h];
 		}
 		
 		// variable to store String object containing all max/min values for rows, and columns
@@ -52,14 +79,11 @@ public class TwoDArrayProblems {
 				
 		// iterating through outer Array object (rows), stopping before length of outer Array object (otherwise IndexError)
 		for (int i = 0; i < array.length; i++) {
-		
 			// max/min values are by default the first elements in each inner Array object
 			rowMaximum = array[i][0];
 			rowMinimum = array[i][0];
-			
 			// iterating through inner Array object (columns), skipping first element, stopping before length of inner Array object (otherwise IndexError)
 			for (int j = 1; j < array[i].length; j++) {
-				
 				// for given row i and column j, update if value is larger than current maximum
 				if (array[i][j] > rowMaximum) {
 					rowMaximum = array[i][j];
@@ -67,25 +91,21 @@ public class TwoDArrayProblems {
 				} else if (array[i][j] < rowMinimum) {
 					rowMinimum = array[i][j];
 				}
-				
 			}
-			
 			// having searched through inner Array object (row), concatenate Integer to String object and symbol (conditioned on whether last row)
 			rowMaximums += Integer.toString(rowMaximum) + ((i != array.length - 1) ? "," : "]");
 			rowMinimums += Integer.toString(rowMinimum) + ((i != array.length - 1) ? "," : "]");
 		}
 		
-		// iterating through outer Array objects (rows), excluding first row which is by default the minimum and maximum for columns
-		for (int k = 1; k < array.length; k++) {
-			
+		// iterating through outer Array objects (rows), not excluding first column since not by default longest array
+		for (int k = 0; k < array.length; k++) {
 			// iterating through inner Array objects (columns)
 			for (int m = 0; m < array[k].length; m++) {
-				
 				// integer larger or equal to current column maximum replaces it
-				if (array[k][m] >= colMaximum[m]) {
+				if (array[k][m] > colMaximum[m]) {
 					colMaximum[m] = array[k][m];
 				// otherwise, it replaces the column minimum
-				} else {
+				} else if (array[k][m] < colMinimum[m]){
 					colMinimum[m] = array[k][m];
 				}
 			}
@@ -121,7 +141,9 @@ public class TwoDArrayProblems {
 	public static String rotateArray(int[][] originalArray) 
 	{
 		
-		// NEED TO TEST MORE THOROUGHLY
+		// description of method does not specify the following...
+		// whether integers in arrays can be negative values
+		// whether inner arrays can be empty or null
 		
 		// validating argument passed to originalArray method parameter
 		if (originalArray == null) {
@@ -129,7 +151,7 @@ public class TwoDArrayProblems {
 		} else {
 			// iterating through Array object since any inner array length different from outer array length makes it not square
 			for (int i = 0; i < originalArray.length; i++) {
-				if (originalArray.length != originalArray[i].length) {
+				if (originalArray[i] == null || originalArray.length != originalArray[i].length || originalArray[i].length == 0) {
 					return "[not a square array].";
 				}
 			}
@@ -173,10 +195,12 @@ public class TwoDArrayProblems {
 	 * 
 	 * Assume that array will always be square. 
 	*/
+	
 	public static boolean isMarkovMatrix(double [][] m) 
 	{
 	
-		// NEED TO TEST MORE THOROUGHLY
+		// description of method does not specify the following...
+		// whether inner arrays can be empty or null
 		
 		/* validating argument passed to method parameter, false for null or non-square matrices,
 		 * separate from other conditions since copying doubles to new Array object
@@ -185,9 +209,9 @@ public class TwoDArrayProblems {
 			return false;
 		} else {
 			// iterating over all rows of matrix, to check their lengths
-			for (int i = 0; i < m.length; i++) {
-				// condition that matrix is not square
-				if (m[i].length != m.length) {
+			for (int p = 0; p < m.length; p++) {
+				// condition that matrix is not square or has null inner array
+				if (m[p] == null || m[p].length != m.length) {
 					return false;
 				}
 			}
@@ -211,12 +235,15 @@ public class TwoDArrayProblems {
 			// iterating through doubles in matrix rows
 			for (int j = 0; j < rotatedMatrix[i].length; j++) {
 				// condition that double is positive and not greater than 1.0, since otherwise sum is also
-				if (rotatedMatrix[i][j] <= 0.0 || rotatedMatrix[i][j] > 1.0) {
+				if (rotatedMatrix[i][j] < 0.0 || rotatedMatrix[i][j] > 1.0) {
 					return false;
 				}
 				// adding positive double from row into sum
 				colSum += rotatedMatrix[i][j];
 				}
+			// converting to String and back to Double in order to round
+			String roundColSum = String.format("%.10f", colSum);
+			colSum = Double.parseDouble(roundColSum);
 			// condition that column sum is equal to 1, calculated after iterating through column doubles
 			if (colSum != 1.0) {
 				return false;

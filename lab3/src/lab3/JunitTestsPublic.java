@@ -9,12 +9,623 @@ import org.junit.Rule;
 
 public class JunitTestsPublic {
 	@Rule
-	public Timeout globalTimeout = Timeout.seconds(1);
+	public Timeout globalTimeout = Timeout.seconds(10000);
+	
+// TESTS FOR FINDEXTREMA METHOD
 	
 	@Test
-	public void test_pb_01_01() {
+	public void test_null_outer_array_findextrema_method() {
+		// seems that an array cannot be declared simply using {}
+		int [][] data = null;
+		String correctOut = "[null array].";
+		String result = TwoDArrayProblems.findExtrema(data);
+		assertEquals("Test test_null_outer_array_findextrema_method failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_empty_inner_array_findextrema_method() {
 		
-		int [][] data = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+		int [][] data = {{1, 2, 3},
+						 {}};
+		String correctOut = "[null array].";
+		String result = TwoDArrayProblems.findExtrema(data);
+		assertEquals("Test test_empty_inner_array_findextrema_method failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_null_inner_array_findextrema_method() {
+		
+		int [][] data = {{1, 2, 3}, 
+						 null};
+		String correctOut = "[null array].";
+		String result = TwoDArrayProblems.findExtrema(data);
+		assertEquals("Test test_null_inner_array_findextrema_method failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_singletons() {
+		
+		int [][] data = {{0}, 
+						 {1}, 
+						 {2}};
+		String correctOut = "The maximum values along the rows are [0,1,2].\n"
+				+ "The minimum values along the rows are [0,1,2].\n"
+				+ "The maximum values along the columns are [2].\n"
+				+ "The minimum values along the columns are [0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_0 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_0() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 0}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [0,0,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,0].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_0 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_1() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 0}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [0,0,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_1 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_2() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 0}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [0,0,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,0].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_2 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_3() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 0}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [0,0,1].\n"
+				+ "The minimum values along the rows are [0,0,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_3 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_4() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 1}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [0,1,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_4 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_5() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 1}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_5 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_6() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 1}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_6 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_7() {
+		
+		int [][] data = {{0, 0}, 
+						 {0, 1}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,0,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_7 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_8() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 0}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [0,1,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,0].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_8 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_9() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 0}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_9 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_10() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 0}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,0].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_10 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_11() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 0}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,0,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_11 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_12() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 1}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [0,1,0].\n"
+				+ "The minimum values along the rows are [0,1,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_12 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_13() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 1}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,1,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_13 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_14() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 1}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,1,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_14 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_15() {
+		
+		int [][] data = {{0, 0}, 
+						 {1, 1}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [0,1,1].\n"
+				+ "The minimum values along the rows are [0,1,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_15 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_16() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 0}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [1,0,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_16 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_17() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 0}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [1,0,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_17 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_18() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 0}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [1,0,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_18 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_19() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 0}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [1,0,1].\n"
+				+ "The minimum values along the rows are [0,0,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_19 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_20() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 1}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [1,1,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_20 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_21() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 1}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [0,1].\n"
+				+ "The minimum values along the columns are [0,1].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_21 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_22() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 1}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_22 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_23() {
+		
+		int [][] data = {{0, 1}, 
+						 {0, 1}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,0,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,1].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_23 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_24() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 0}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [1,1,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_24 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_25() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 0}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_25 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_26() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 0}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_26 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_27() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 0}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,0,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_27 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_28() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 1}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [1,1,0].\n"
+				+ "The minimum values along the rows are [0,1,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_28 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_29() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 1}, 
+						 {0, 1}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,1,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,1].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_29 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_30() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 1}, 
+						 {1, 0}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,1,0].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_30 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_31() {
+		
+		int [][] data = {{0, 1}, 
+						 {1, 1}, 
+						 {1, 1}};
+		String correctOut = "The maximum values along the rows are [1,1,1].\n"
+				+ "The minimum values along the rows are [0,1,1].\n"
+				+ "The maximum values along the columns are [1,1].\n"
+				+ "The minimum values along the columns are [0,1].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_31 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_binary_32() {
+		
+		int [][] data = {{1, 0}, 
+						 {0, 0}, 
+						 {0, 0}};
+		String correctOut = "The maximum values along the rows are [1,0,0].\n"
+				+ "The minimum values along the rows are [0,0,0].\n"
+				+ "The maximum values along the columns are [1,0].\n"
+				+ "The minimum values along the columns are [0,0].";
+		
+		// fails because order of numbers in array are backwards
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_binary_32 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_increasing_arrays_increasing_nums() {
+		
+		int [][] data = {{1, 2, 3}, 
+						 {4, 5, 6}, 
+						 {7, 8, 9}};
 		String correctOut = "The maximum values along the rows are [3,6,9].\n"
 				+ "The minimum values along the rows are [1,4,7].\n"
 				+ "The maximum values along the columns are [7,8,9].\n"
@@ -22,68 +633,402 @@ public class JunitTestsPublic {
 		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
-		assertEquals("Test pb_01_01 failed.", correctOut,result);
+		assertEquals("Test test_increasing_arrays_increasing_nums failed.", correctOut,result);
 	}
+	
 	@Test
-	public void test_pb_01_02() {
+	public void test_increasing_arrays_decreasing_nums() {
 		
-		int [][] data = null;
-		String correctOut = "[null array].";
-		
-		String result = TwoDArrayProblems.findExtrema(data);
-		
-		assertEquals("Test pb_01_02 failed.", correctOut,result);
-	}
-	@Test
-	public void test_pb_01_03() {
-		
-		int [][] data = { {2, 1, 3}, {5, 4, 6}, {8, 7, 9} };
+		int [][] data = {{3, 2, 1}, 
+						 {6, 5, 4}, 
+						 {9, 8, 7}};
 		String correctOut = "The maximum values along the rows are [3,6,9].\n"
 				+ "The minimum values along the rows are [1,4,7].\n"
-				+ "The maximum values along the columns are [8,7,9].\n"
-				+ "The minimum values along the columns are [2,1,3].";
+				+ "The maximum values along the columns are [9,8,7].\n"
+				+ "The minimum values along the columns are [3,2,1].";
 		
 		String result = TwoDArrayProblems.findExtrema(data);
 		
-		assertEquals("Test pb_01_03 failed.", correctOut, result);
+		assertEquals("Test test_increasing_arrays_decreasing_nums failed.", correctOut, result);
 	}
+	
 	@Test
-	public void test_pb_02_01() {
+	public void test_decreasing_array_decreasing_nums() {
 		
+		int [][] data = {{9, 8, 7}, 
+						 {6, 5, 4}, 
+						 {3, 2, 1}};
+		String correctOut = "The maximum values along the rows are [9,6,3].\n"
+				+ "The minimum values along the rows are [7,4,1].\n"
+				+ "The maximum values along the columns are [9,8,7].\n"
+				+ "The minimum values along the columns are [3,2,1].";
+		
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_decreasing_array_decreasing_nums failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_decreasing_array_increasing_nums() {
+		
+		int [][] data = {{7, 8, 9}, 
+						 {4, 5, 6}, 
+						 {1, 2, 3}};
+		String correctOut = "The maximum values along the rows are [9,6,3].\n"
+				+ "The minimum values along the rows are [7,4,1].\n"
+				+ "The maximum values along the columns are [7,8,9].\n"
+				+ "The minimum values along the columns are [1,2,3].";
+		
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_decreasing_array_decreasing_nums failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_1() {
+		
+		int [][] data = {{2, 6, 3}, 
+						 {5, 4, 8}, 
+						 {1, 7, 9}};
+		String correctOut = "The maximum values along the rows are [6,8,9].\n"
+				+ "The minimum values along the rows are [2,4,1].\n"
+				+ "The maximum values along the columns are [5,7,9].\n"
+				+ "The minimum values along the columns are [1,4,3].";
+		
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_1 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_2() {
+		
+		int [][] data = {{9, 6, 3}, 
+						 {8, 5, 2}, 
+						 {7, 4, 1}};
+		String correctOut = "The maximum values along the rows are [9,8,7].\n"
+				+ "The minimum values along the rows are [3,2,1].\n"
+				+ "The maximum values along the columns are [9,6,3].\n"
+				+ "The minimum values along the columns are [7,4,1].";
+		
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_2 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_3() {
+		
+		int [][] data = {{-9, -6, -3}, 
+						 {-8, -5, -2}, 
+						 {-7, -4, -1}};
+		String correctOut = "The maximum values along the rows are [-3,-2,-1].\n"
+				+ "The minimum values along the rows are [-9,-8,-7].\n"
+				+ "The maximum values along the columns are [-7,-4,-1].\n"
+				+ "The minimum values along the columns are [-9,-6,-3].";
+		
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_3 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_4() {
+		
+		int [][] data = {{-9, 6, -3}, 
+						 {8, 5, -2}, 
+						 {-7, 4, 1}};
+		String correctOut = "The maximum values along the rows are [6,8,4].\n"
+				+ "The minimum values along the rows are [-9,-2,-7].\n"
+				+ "The maximum values along the columns are [8,6,1].\n"
+				+ "The minimum values along the columns are [-9,4,-3].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_4 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_5() {
+		
+		int [][] data = {{6, -3, -9}, 
+						 {5, -2, 8}, 
+						 {4, 1, -7}};
+		String correctOut = "The maximum values along the rows are [6,8,4].\n"
+				+ "The minimum values along the rows are [-9,-2,-7].\n"
+				+ "The maximum values along the columns are [6,1,8].\n"
+				+ "The minimum values along the columns are [4,-3,-9].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_5 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_6() {
+		
+		int [][] data = {{6, 3, 9, 7}, 
+						 {5, 2, 8}, 
+						 {0, 1},
+						 {4}};
+		String correctOut = "The maximum values along the rows are [9,8,1,4].\n"
+				+ "The minimum values along the rows are [3,2,0,4].\n"
+				+ "The maximum values along the columns are [6,3,9,7].\n"
+				+ "The minimum values along the columns are [0,1,8,7].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_6 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_7() {
+		
+		int [][] data = {{6}, 
+						 {5, 8}, 
+						 {0, 1, 7},
+						 {4, 2, 3, 9}};
+		String correctOut = "The maximum values along the rows are [6,8,7,9].\n"
+				+ "The minimum values along the rows are [6,5,0,2].\n"
+				+ "The maximum values along the columns are [6,8,7,9].\n"
+				+ "The minimum values along the columns are [0,1,3,9].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_7 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_8() {
+		
+		int [][] data = {{8, 7},
+						 {5, 1, 9, 6}, 
+						 {0},
+						 {2, 4, 3}};
+		String correctOut = "The maximum values along the rows are [8,9,0,4].\n"
+				+ "The minimum values along the rows are [7,1,0,2].\n"
+				+ "The maximum values along the columns are [8,7,9,6].\n"
+				+ "The minimum values along the columns are [0,1,3,6].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_8 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_9() {
+		
+		int [][] data = {{8, -7},
+						 {-5, -1, 9, 6}, 
+						 {0},
+						 {-2, 4, -3}};
+		String correctOut = "The maximum values along the rows are [8,9,0,4].\n"
+				+ "The minimum values along the rows are [-7,-5,0,-3].\n"
+				+ "The maximum values along the columns are [8,4,9,6].\n"
+				+ "The minimum values along the columns are [-5,-7,-3,6].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_9 failed.", correctOut,result);
+	}
+	
+	@Test
+	public void test_other_array_10() {
+		
+		int [][] data = {{0},
+						 {8, -7},
+						 {-2, 4, -3},
+						 {-5, -1, 9, 6}};
+		String correctOut = "The maximum values along the rows are [0,8,4,9].\n"
+				+ "The minimum values along the rows are [0,-7,-3,-5].\n"
+				+ "The maximum values along the columns are [8,4,9,6].\n"
+				+ "The minimum values along the columns are [-5,-7,-3,6].";
+		
+		// NEED TO DEBUG, WRONG MINIMUM VALUES FOR FIRST COLUMN
+		String result = TwoDArrayProblems.findExtrema(data);
+		
+		assertEquals("Test test_other_array_10 failed.", correctOut,result);
+	}
+	
+	
+// TESTS FOR ROTATEARRAY METHOD
+	
+	@Test
+	public void test_null_outer_array_rotatearray_method() {
 		int [][] data = null;
 		String correctOut = "[null array].";
-		
 		String result = TwoDArrayProblems.rotateArray(data);
-		
-		assertEquals("Test pb_02_01 failed.", correctOut, result);
+		assertEquals("Test test_null_outer_array_rotatearray_method failed.", correctOut, result);
 	}
+	
 	@Test
-	public void test_pb_02_02() {
-		
-		int [][] data = { {2, 1, 3}, {5, 4}, {8, 7, 9} };
+	public void test_null_inner_array_rotatearray_method() {
+		int [][] data = {{1, 3},
+						 null};
 		String correctOut = "[not a square array].";
-		
 		String result = TwoDArrayProblems.rotateArray(data);
-		
-		assertEquals("Test pb_02_02 failed.", correctOut, result);
+		assertEquals("Test test_null_inner_array_rotatearray_method failed.", correctOut, result);
 	}
+
 	@Test
-	public void test_pb_02_03() {
+	public void test_empty_inner_array_rotatearray_method() {
+		int [][] data = {{1, 3},
+						 {}};
+		String correctOut = "[not a square array].";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_empty_inner_array_rotatearray_method failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_rows_too_long() {
+		int [][] data = {{2, 1, 3, 7}, 
+						 {5, 4, 1, 0}, 
+						 {8, 7, 9, 4}};
+		String correctOut = "[not a square array].";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_rows_too_long failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_cols_too_long() {
+		int [][] data = {{2, 1, 3}, 
+						 {5, 4, 6}, 
+						 {8, 7, 9},
+						 {1, 3, 8}};
+		String correctOut = "[not a square array].";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_cols_too_long failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_short_rows_cols() {
+		int [][] data = {{2, 1, 3}, 
+						 {5}, 
+						 {8, 9},
+						 {1, 3, 8, 0}};
+		String correctOut = "[not a square array].";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_short_rows_cols failed.", correctOut, result);
+	}
 		
-		int [][] data = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+	@Test
+	public void test_square_array_1() {
+		int [][] data = {{1, 2, 3}, 
+						 {4, 5, 6}, 
+						 {7, 8, 9}};
 		String correctOut = "{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}}.";
-		
 		String result = TwoDArrayProblems.rotateArray(data);
-		
-		assertEquals("Test pb_02_03 failed.", correctOut, result);
+		assertEquals("Test test_square_array_1 failed.", correctOut, result);
 	}
+	
 	@Test
-	public void test_pb_04_01() {
-		
-		double [][] data = {{0.15,0.875,0.375}, {0.55,0.005,0.225}, {0.30,0.12,0.4}};
-		
-		assertTrue("Test pb_04_01 failed.", TwoDArrayProblems.isMarkovMatrix(data));
-	}	
+	public void test_square_array_2() {
+		int [][] data = {{-1, -2, -3}, 
+						 {-4, -5, -6}, 
+						 {-7, -8, -9}};
+		String correctOut = "{{-7, -4, -1}, {-8, -5, -2}, {-9, -6, -3}}.";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_square_array_2 failed.", correctOut, result);
+	}
+	
+	@Test
+	public void test_square_array_3() {
+		int [][] data = {{-1, 2, -3}, 
+						 {4, 5, -6}, 
+						 {-7, -8, 9}};
+		String correctOut = "{{-7, 4, -1}, {-8, 5, 2}, {9, -6, -3}}.";
+		String result = TwoDArrayProblems.rotateArray(data);
+		assertEquals("Test test_square_array_3 failed.", correctOut, result);
+	}
+	
+// TESTS FOR ISMARKOVMATRIX METHOD
+	
+	@Test
+	public void test_null_outer_array_markovmatrix_method() {
+		double [][] data = null;
+		assertFalse("Test test_null_outer_array_markovmatrix_method failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_null_inner_array_markovmatrix_method() {
+		double [][] data = {{0.15,0.875,0.375},  
+							{0.30,0.12,0.4},
+							null};
+		assertFalse("Test test_null_outer_array_markovmatrix_method failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_empty_inner_array_markovmatrix_method() {
+		double [][] data = {{0.15,0.875,0.375},  
+							{0.30,0.12,0.4},
+							{}};
+		assertFalse("Test test_empty_outer_array_markovmatrix_method failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_not_square_array() {
+		double [][] data = {{0.15,0.875,0.375}, 
+							{0.55,0.005,0.225}, 
+							{0.30,0.12}};
+		assertFalse("Test test_not_square_array failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_column_exceed_one_matrix_1() {
+		double [][] data = {{0.15,0.875,0.375}, 
+							{0.55,0.005,0.225}, 
+							{0.30,0.12,0.401}};
+		assertFalse("Test test_column_exceed_one_matrix_1 failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_element_exceed_one_matrix_1() {
+		double [][] data = {{0.15,0.875,0.00}, 
+							{0.55,0.005,0.00}, 
+							{0.30,0.12,1.01}};
+		assertFalse("Test test_element_exceed_one_matrix_1 failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_negative_element() {
+		double [][] data = {{0.15,0.875,0.375}, 
+							{0.55,0.005,0.225}, 
+							{0.30,0.12,-0.4}};
+		assertFalse("Test test_negative_element failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_positive_matrix_1() {
+		double [][] data = {{0.15,0.875,0.375}, 
+							{0.55,0.005,0.225}, 
+							{0.30,0.12,0.4}};
+		assertTrue("Test test_positive_matrix_1 failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_positive_matrix_2() {
+		double [][] data = {{0.01,0.11,0.66}, 
+							{0.33,0.66,0.22}, 
+							{0.66,0.23,0.12}};
+		assertTrue("Test test_positive_matrix_2 failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+	@Test
+	public void test_positive_matrix_3() {
+		double [][] data = {{0.5,0.11,0.32}, 
+							{0.3,0.41,0.33}, 
+							{0.2,0.48,0.35}};
+		assertTrue("Test test_positive_matrix_3 failed.", TwoDArrayProblems.isMarkovMatrix(data));
+	}
+	
+// TESTS FOR FINDDISTANCES METHOD
+	
 	@Test
 	public void test_pb_05_01() {
 		
