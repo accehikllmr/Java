@@ -26,12 +26,11 @@ public class Fan {
 		
 		// NEED TO CHECK IF ADDING OBJECT NAME TO PREFIX IS BEST PRACTICE OR NOT WHEN RETRIEVING PUBLIC STATIC CONSTANTS FROM INSIDE CLASS
 		
-		this.speed = Fan.SLOW;
-		this.status = Fan.OFF;
-		this.radius = 5.0;
-		this.color = "blue";
+		// calling more general constructor to initialize object, passing default values to argument parameters of general constructor
+		this(Fan.SLOW, Fan.OFF, 5.0, "blue");
 	}
 	
+	// since constructors have same name, but different signatures, no issue (constructor overloading, same can be done with methods)
 	public Fan(int speed, boolean status, double radius, String color) {
 		
 		// used argument validation for all object attributes, as in setter functions, but added default values from default constructor
@@ -101,7 +100,7 @@ public class Fan {
 		// no argument validation, since no list of valid colors was given
 	}
 	
-	// ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (March 11 lecture)
+	// ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (March 11 lecture) (e.g. ACCESSORS FOR STATIC OBJECT ATTRIBUTES)
 	
 	// class method which indicates the area covered by the Fan object's blowing
 	public double getCoverage() {
