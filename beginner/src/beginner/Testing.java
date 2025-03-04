@@ -1,25 +1,24 @@
 package beginner;
 
-public class Testing {
+import java.util.Arrays;
+import java.util.Scanner;
 
-	public static String Test(int [][] nums) {
-		
-		System.out.println(nums[0].length);
-		
-		int max_row, min_row;
-		
-		for (int i = 0; i < nums.length; i++) {
-			for (int j = 0; j < nums[i].length; j++) {
-				System.out.println(nums[i][j]);				
-			}
-		}
-		
-		return "";
-	}
+public class Testing {
 	
 	public static void main(String[] args) {
-		int [][] nums = {{1, 2, 3}, {2, 3, 4}};
-		Test(nums);
+
+		int[] numbers = {11, 42, -5, 27, 0, 89};
+		
+		System.out.println(Arrays.toString(numbers));
+		
+		for (int i = 0; i < numbers.length; i++) {
+			int temp = numbers[i];
+			numbers[i] = numbers[numbers.length - 1 - i];
+			numbers[numbers.length - 1 - i] = temp;
+		}
+		
+		System.out.println(Arrays.toString(numbers));
+		
 	}
 	
 }
