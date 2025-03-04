@@ -2,6 +2,8 @@ package Lab4;
 
 public class Fan {
 	
+	// ADD TEST CASES
+	
 	// SECOND TEST FAILED WITHOUT STATIC KEYWORD IN CONSTANTS, NEED TO UNDERSTAND WHY
 	
 	// constants values used for speed variable, double-check if these should be listed among object attributes
@@ -99,7 +101,7 @@ public class Fan {
 		// no argument validation, since no list of valid colors was given
 	}
 	
-	// ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (March 11 lesson)
+	// ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (March 11 lecture)
 	
 	// class method which indicates the area covered by the Fan object's blowing
 	public double getCoverage() {
