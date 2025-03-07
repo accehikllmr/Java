@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-public class JunitTestsLab4 {
+public class JunitTestsLab4_allPassed {
 
 	@Rule
 	public Timeout globalTimeout = Timeout.seconds(1);

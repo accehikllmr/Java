@@ -9,9 +9,14 @@ public class RoomDimension {
 	
 	// general class constructor
 	public RoomDimension(double length, double width) {
-		// validating arguments passed to constructor parameters, assigning 1 for default length and width
-		this.length = (length > 0) ? length : 1;
-		this.width = (width > 0) ? width : 1;
+		// validating arguments passed to constructor parameters, assigning 0 for default length and width
+		this.length = (length >= 0) ? length : 0.0;
+		this.width = (width >= 0) ? width : 0.0;
+	}
+	
+	// default constructor
+	public RoomDimension() {
+		this(0.0, 0.0);
 	}
 	
 	// accessor methods
