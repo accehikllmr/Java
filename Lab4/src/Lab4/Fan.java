@@ -2,11 +2,10 @@ package Lab4;
 
 public class Fan {
 	
-	// ADD MORE TEST CASES
-	
-	// SECOND TEST FAILED WITHOUT STATIC KEYWORD IN CONSTANTS, NEED TO UNDERSTAND WHY
-	
-	// constants values used for speed variable, double-check if these should be listed among object attributes
+	/* constants values used for speed variable, double-check if these should be listed among object attributes
+	 * variables made static, so that they can be accesses using class name
+	 * in other words, they are tied to the class, not an instantiation of that class
+	 */
 	public static int SLOW = 1;
 	public static int MEDIUM = 2;
 	public static int FAST = 3;
@@ -24,7 +23,7 @@ public class Fan {
 	// default constructor (i.e. no arguments passed during Fan object instantiation)
 	public Fan() {
 		
-		// NEED TO CHECK IF ADDING OBJECT NAME TO PREFIX IS BEST PRACTICE OR NOT WHEN RETRIEVING PUBLIC STATIC CONSTANTS FROM INSIDE CLASS
+		// (March 13 Lab) CONVENTION WHEN RETRIEVING PUBLIC STATIC CONSTANTS FROM INSIDE CLASS
 		
 		// calling more general constructor to initialize object, passing default values to argument parameters of general constructor
 		this(Fan.SLOW, Fan.OFF, 5.0, "blue");
@@ -37,24 +36,25 @@ public class Fan {
 		if (speed == Fan.SLOW || speed == Fan.MEDIUM || speed == Fan.FAST) {
 			this.speed = speed;
 		} else {
+			// value assigned to speed attribute if invalid argument is passed to class constructor
 			this.speed = Fan.SLOW;
 		}
 		
-		if (status == Fan.ON || status == Fan.OFF) {
-			this.status = status;
-		} else {
-			this.status = Fan.OFF;
-		}
+		// no argument validation needed, since only two possible values for a boolean data type
+		this.status = status;
 		
 		if (radius > 0) {
 			this.radius = radius;
 		} else {
+			// value assigned to radius attribute if invalid argument is passed to class constructor
 			this.radius = 5.0;
 		}
 		
-		// no argument validation for color, since no valid color for fan given
+		// no argument validation for color, since no valid list of colors for fan given
 		this.color = color;
 	}
+	
+	// all helper functions below are non-static, since what they return depends on the specific Fan object
 	
 	// getter methods, retrieves values assigned to Fan object attributes
 	public int getSpeed() {
@@ -82,10 +82,8 @@ public class Fan {
 	}
 	
 	public void setStatus(boolean status) {
-		if (status == Fan.ON || status == Fan.OFF) {
-			this.status = status;
-		}
-		// if argument passed to status parameter is not one of two possible options, then the setter function does nothing
+		this.status = status;
+		// see comment in method constructor
 	}
 	
 	public void setRadius(double radius) {
@@ -100,7 +98,7 @@ public class Fan {
 		// no argument validation, since no list of valid colors was given
 	}
 	
-	// ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (March 11 lecture) (e.g. ACCESSORS FOR STATIC OBJECT ATTRIBUTES)
+	// (March 11 lecture) ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (e.g. ACCESSORS FOR STATIC OBJECT ATTRIBUTES)
 	
 	// class method which indicates the area covered by the Fan object's blowing
 	public double getCoverage() {
@@ -110,7 +108,7 @@ public class Fan {
 	// class method which indicates whether the coverage area of a Fan object's blowing is suitable (according to given definition)
 	public boolean isSuitable(double area) {
 		// conjunction of conditions required for Fan object to have suitable blowing coverage
-		return (2 * area <= Fan.SLOW * this.radius * 5) && (10 * area >= Fan.FAST * this.radius * 5);
+		return (2 * area <= Fan.SLOW * this.radius * 5) && (Fan.FAST * this.radius * 5 <= 10 * area);
 	}
 	
 	public String toString() {
