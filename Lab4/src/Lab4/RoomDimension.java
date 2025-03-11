@@ -2,21 +2,21 @@ package Lab4;
 
 public class RoomDimension {
 	
-	// ADD MORE TEST CASES
-	
 	private double length;
 	private double width;
 	
 	// general class constructor
 	public RoomDimension(double length, double width) {
-		// validating arguments passed to constructor parameters, assigning 0 for default length and width
-		this.length = (length >= 0) ? length : 0.0;
-		this.width = (width >= 0) ? width : 0.0;
+		/* validating arguments passed to constructor parameters, assigning 1.0 for 
+		 * default length and width, a room has to be 2-Dimensional
+		 */
+		this.length = (length > 0) ? length : 1.0;
+		this.width = (width > 0) ? width : 1.0;
 	}
 	
 	// default constructor
 	public RoomDimension() {
-		this(0.0, 0.0);
+		this(1.0, 1.0);
 	}
 	
 	// accessor methods
@@ -30,11 +30,11 @@ public class RoomDimension {
 	
 	// mutator methods
 	public void setLength(double length) {
-		this.length = (length > 0) ? length : 1;
+		this.length = (length > 0) ? length : 1.0;
 	}
 	
 	public void setWidth(double width) {
-		this.width = (width > 0) ? width : 1;
+		this.width = (width > 0) ? width : 1.0;
 	}
 	
 	// class method which calculates the area of the RoomDimension object
@@ -59,5 +59,5 @@ public class RoomDimension {
 		return fan.isSuitable(this.getArea());
 	}
 	
-	// ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (March 11 lecture)
+	// (March 11 lecture) ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (e.g. ACCESSORS FOR STATIC OBJECT ATTRIBUTES)
 }
