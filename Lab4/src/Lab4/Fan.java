@@ -35,22 +35,13 @@ public class Fan {
 	public Fan(int speed, boolean status, double radius, String color) {
 		
 		// used argument validation for all object attributes, as in setter functions, but added default values from default constructor
-		if (this.validSpeed(speed)) {
-			this.speed = speed;
-		} else {
-			// value assigned to speed attribute if invalid argument is passed to class constructor
-			this.speed = Fan.SLOW;
-		}
+		this.speed = getValidSpeed(speed);
 		
 		// no argument validation needed, since only two possible values for a boolean data type
 		this.status = status;
 		
-		if (this.nonNegative(radius)) {
-			this.radius = radius;
-		} else {
-			// value assigned to radius attribute if invalid argument is passed to class constructor
-			this.radius = 5.0;
-		}
+		// see helper method for logic behind value assignment
+		this.radius = getValidRadius(radius);
 		
 		// no argument validation for color, since no valid list of colors for fan given
 		this.color = color;
@@ -77,9 +68,7 @@ public class Fan {
 	
 	// setter method, if valid argument is passed to method parameter, assigns new values to Fan object attribute
 	public void setSpeed(int speed) {
-		if (this.validSpeed(speed)) {
-			this.speed = speed;
-		}
+		this.speed = getValidSpeed(speed);
 		// if argument passed to speed parameter is not one of three possible options, then the setter function does nothing
 	}
 	
@@ -89,9 +78,7 @@ public class Fan {
 	}
 	
 	public void setRadius(double radius) {
-		if (this.nonNegative(radius)) {
-			this.radius = radius;
-		}
+		this.radius = getValidRadius(radius);
 		// if argument passed to radius parameter is a negative value, then the setter function does nothing
 	}
 	
@@ -105,19 +92,16 @@ public class Fan {
 	 * SHOULD HELPER METHODS BE STATIC?
 	 */ 
 	
-	// helper methods, private since they should not be accessed outside of the class (should they be static?)
-	private boolean nonNegative(double value) {
-		if (value > 0) {
-			return true;
-		}
-		return false;
+	// helper methods, private since they should not be accessed outside of the class
+	private double getValidRadius(double value) {
+		// nested conditional assignment, second value is a new conditional assignment
+		return (value > 0) ? value : ((this.radius > 0) ? this.radius : 5.0);
 	}
 	
-	private boolean validSpeed(int value) {
-		if (value == Fan.SLOW || value == Fan.MEDIUM || value == Fan.FAST) {
-			return true;
-		}
-		return false;
+	private int getValidSpeed(int value) {
+		return 	(value == Fan.SLOW || value == Fan.MEDIUM || value == Fan.FAST) 
+				? value : ((this.speed == Fan.SLOW || this.speed == Fan.MEDIUM || this.speed == Fan.FAST) 
+				? this.speed : 1);
 	}
 	
 	// class method which indicates the area covered by the Fan object's blowing

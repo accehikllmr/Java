@@ -9,9 +9,10 @@ public class RoomDimension {
 	public RoomDimension(double length, double width) {
 		/* validating arguments passed to constructor parameters, assigning 1.0 for 
 		 * default length and width, a room has to be 2-Dimensional
+		 * see helper method for implementation logic
 		 */
-		this.length = validDimension(length);
-		this.width = validDimension(width);
+		this.length = getValidDimension(length);
+		this.width = getValidDimension(width);
 	}
 	
 	// default constructor
@@ -30,11 +31,11 @@ public class RoomDimension {
 	
 	// mutator methods
 	public void setLength(double length) {
-		this.length = validDimension(length);
+		this.length = getValidDimension(length);
 	}
 	
 	public void setWidth(double width) {
-		this.width = validDimension(width);
+		this.width = getValidDimension(width);
 	}
 	
 	// class method which calculates the area of the RoomDimension object
@@ -59,8 +60,9 @@ public class RoomDimension {
 		return fan.isSuitable(this.getArea());
 	}
 	
-	// helper method
-	public double validDimension(double value) {
+	// helper method, private since need not be accessible outside of class
+	private double getValidDimension(double value) {
+		// no helper method since boolean computation is only done once
 		return (value > 0) ? value : 1.0;
 	}
 	

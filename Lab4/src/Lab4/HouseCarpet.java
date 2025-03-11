@@ -4,7 +4,7 @@ public class HouseCarpet {
 	
 	// ADD MORE TEST CASES
 	
-	// double check how an Array object can be initialized
+	// array can be initialized without specifying its size
 	private RoomDimension [] rooms;
 	private double cost;
 	
@@ -18,7 +18,7 @@ public class HouseCarpet {
 			this.rooms[r] = new RoomDimension();
 		}
 		// validating argument passed to cost parameter, should not be a negative value, default to cost of 0
-		this.cost = (cost >= 0) ? cost : 0;
+		this.cost = getValidCost(cost);
 	}
 	
 	// accessor methods
@@ -32,7 +32,7 @@ public class HouseCarpet {
 	
 	// mutator methods
 	public void setCost(double cost) {
-		this.cost = (cost >= 0) ? cost : 0;
+		this.cost = getValidCost(cost);
 	}
 	
 	// initially forgot [], so argument passed was a single RoomDimension object instead of an Array object containing RoomDimension objects
@@ -103,5 +103,10 @@ public class HouseCarpet {
 	// class method which returns string representation of HouseCarpet class, including number of rooms, total area of rooms and carpeting cost
 	public String toString() {
 		return String.format("Total Rooms: %d, Total Area: %.1f, Total Carpet Cost: %.1f", this.rooms.length, this.getTotalArea(), this.getCarpetCost());
+	}
+	
+	// helper method
+	private double getValidCost(double value) {
+		return (value >= 0) ? value : ((this.cost >= 0) ? this.cost : 0.0);
 	}
 }
