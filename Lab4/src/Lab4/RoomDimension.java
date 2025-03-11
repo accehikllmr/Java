@@ -10,8 +10,8 @@ public class RoomDimension {
 		/* validating arguments passed to constructor parameters, assigning 1.0 for 
 		 * default length and width, a room has to be 2-Dimensional
 		 */
-		this.length = (length > 0) ? length : 1.0;
-		this.width = (width > 0) ? width : 1.0;
+		this.length = validDimension(length);
+		this.width = validDimension(width);
 	}
 	
 	// default constructor
@@ -30,11 +30,11 @@ public class RoomDimension {
 	
 	// mutator methods
 	public void setLength(double length) {
-		this.length = (length > 0) ? length : 1.0;
+		this.length = validDimension(length);
 	}
 	
 	public void setWidth(double width) {
-		this.width = (width > 0) ? width : 1.0;
+		this.width = validDimension(width);
 	}
 	
 	// class method which calculates the area of the RoomDimension object
@@ -59,5 +59,12 @@ public class RoomDimension {
 		return fan.isSuitable(this.getArea());
 	}
 	
-	// (March 11 lecture) ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (e.g. ACCESSORS FOR STATIC OBJECT ATTRIBUTES)
+	// helper method
+	public double validDimension(double value) {
+		return (value > 0) ? value : 1.0;
+	}
+	
+	/* (March 13 lab) 
+	 * SHOULD THERE BE ACCESSORS FOR STATIC OBJECT ATTRIBUTES?
+	 */
 }

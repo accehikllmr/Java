@@ -23,7 +23,9 @@ public class Fan {
 	// default constructor (i.e. no arguments passed during Fan object instantiation)
 	public Fan() {
 		
-		// (March 13 Lab) CONVENTION WHEN RETRIEVING PUBLIC STATIC CONSTANTS FROM INSIDE CLASS
+		/* (March 13 Lab) 
+		 * WHAT IS CONVENTION WHEN RETRIEVING PUBLIC STATIC CONSTANTS FROM INSIDE CLASS?
+		 */
 		
 		// calling more general constructor to initialize object, passing default values to argument parameters of general constructor
 		this(Fan.SLOW, Fan.OFF, 5.0, "blue");
@@ -33,7 +35,7 @@ public class Fan {
 	public Fan(int speed, boolean status, double radius, String color) {
 		
 		// used argument validation for all object attributes, as in setter functions, but added default values from default constructor
-		if (speed == Fan.SLOW || speed == Fan.MEDIUM || speed == Fan.FAST) {
+		if (this.validSpeed(speed)) {
 			this.speed = speed;
 		} else {
 			// value assigned to speed attribute if invalid argument is passed to class constructor
@@ -43,7 +45,7 @@ public class Fan {
 		// no argument validation needed, since only two possible values for a boolean data type
 		this.status = status;
 		
-		if (radius > 0) {
+		if (this.nonNegative(radius)) {
 			this.radius = radius;
 		} else {
 			// value assigned to radius attribute if invalid argument is passed to class constructor
@@ -75,7 +77,7 @@ public class Fan {
 	
 	// setter method, if valid argument is passed to method parameter, assigns new values to Fan object attribute
 	public void setSpeed(int speed) {
-		if (speed == Fan.SLOW || speed == Fan.MEDIUM || speed == Fan.FAST) {
+		if (this.validSpeed(speed)) {
 			this.speed = speed;
 		}
 		// if argument passed to speed parameter is not one of three possible options, then the setter function does nothing
@@ -87,7 +89,7 @@ public class Fan {
 	}
 	
 	public void setRadius(double radius) {
-		if (radius > 0) {
+		if (this.nonNegative(radius)) {
 			this.radius = radius;
 		}
 		// if argument passed to radius parameter is a negative value, then the setter function does nothing
@@ -98,7 +100,25 @@ public class Fan {
 		// no argument validation, since no list of valid colors was given
 	}
 	
-	// (March 11 lecture) ANY OTHER TYPES OF HELPER FUNCTIONS TO ADD? (e.g. ACCESSORS FOR STATIC OBJECT ATTRIBUTES)
+	/* (March 13 lab) 
+	 * SHOULD THERE BE ACCESSORS FOR STATIC OBJECT ATTRIBUTES?
+	 * SHOULD HELPER METHODS BE STATIC?
+	 */ 
+	
+	// helper methods, private since they should not be accessed outside of the class (should they be static?)
+	private boolean nonNegative(double value) {
+		if (value > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean validSpeed(int value) {
+		if (value == Fan.SLOW || value == Fan.MEDIUM || value == Fan.FAST) {
+			return true;
+		}
+		return false;
+	}
 	
 	// class method which indicates the area covered by the Fan object's blowing
 	public double getCoverage() {
