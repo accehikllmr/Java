@@ -8,6 +8,11 @@ public class HouseCarpet {
 	private RoomDimension [] rooms;
 	private double cost;
 	
+	// default constructor, 0 rooms and 0.0 for carpet cost
+	public HouseCarpet() {
+		this(0, 0.0);
+	}
+	
 	// general class constructor
 	public HouseCarpet(int c, double cost) {
 		// validating argument passed to c parameter, should not be a negative value, default to 0 rooms
@@ -37,6 +42,15 @@ public class HouseCarpet {
 	
 	// initially forgot [], so argument passed was a single RoomDimension object instead of an Array object containing RoomDimension objects
 	public void setRooms(RoomDimension [] rooms) {
+		
+		/* (March 13 lab)
+		 * ALIASING TO ARGUMENT PASSED TO METHOD (IS IT BEST PRACTICE)?
+		 * WHAT HAPPENS TO ORIGINAL ARRAY OBJECT?
+		 */
+		
+		this.rooms = rooms;
+		
+		/*
 		// for Array objects of equal length (no possible IndexErrors), simply overwrite current RoomDimension objects with new ones
 		if (this.rooms.length == rooms.length) {
 			for (int x = 0; x < rooms.length; x++) {
@@ -49,6 +63,8 @@ public class HouseCarpet {
 			// might suffice for this method, need more test cases
 			this.rooms = rooms;
 		}
+		*/
+		
 	}
 	
 	// class method which computes the cost of carpeting for each individual room, and stores these costs in an array

@@ -2,6 +2,8 @@ package Lab4;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
@@ -358,5 +360,105 @@ public class JunitTestsLab4_moreTestCases {
 		h.setRooms(rs);
 		assertEquals("Test 03_04 failed", 1, h.isFanSuitable(new Fan(Fan.FAST, Fan.ON, 15.0, "red")));
 	}
+	
+	@Test
+	public void testPb_03_05() {
+		HouseCarpet h = new HouseCarpet();
+		assertEquals("Test 03_05 failed", 0.0, h.getCarpetCost(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_06() {
+		HouseCarpet h = new HouseCarpet();
+		assertEquals("Test 03_06 failed", 0, h.getRooms().length, 0.0);
+	}
+	
+	@Test
+	public void testPb_03_07() {
+		HouseCarpet h = new HouseCarpet();
+		h.setCost(10.0);
+		assertEquals("Test 03_07 failed", 10.0, h.getCost(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_08() {
+		HouseCarpet h = new HouseCarpet();
+		h.setCost(-0.1);
+		assertEquals("Test 03_00 failed", 0.0, h.getCost(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_09() {
+		// instantiating HouseCarpet object with 3 rooms
+		HouseCarpet h = new HouseCarpet(3, 10.0);
+		// instantiating 3 RoomDimension objects
+		RoomDimension r1 = new RoomDimension(11.0, 13.0);
+		RoomDimension r2 = new RoomDimension(4.5, 6.2);
+		RoomDimension r3 = new RoomDimension(7.5, 7.5);
+		// adding RoomDimension objects into RoomDimension Array object
+		RoomDimension [] rooms = {r1, r2, r3};
+		// passing above Array object to method as argument
+		h.setRooms(rooms);
+		/* looping for assertions, since unsure how to retrieve RoomDimension objects 
+		 * to compare for assertion check, so instead will check room dimensions
+		 */
+		for (int i = 0; i < h.getRooms().length; i++) {
+			// checking Array object RoomDimension objects vs. RoomDimension objects in HouseCarpet object rooms attribute
+			assertEquals("Test 03_09 failed", rooms[i].getLength(), h.getRooms()[i].getLength(), 0.0);
+			assertEquals("Test 03_09 failed", rooms[i].getWidth(), h.getRooms()[i].getWidth(), 0.0);
+		}
+	}
+	
+	@Test
+	public void testPb_03_10() {
+		HouseCarpet h = new HouseCarpet(3, 10.0);
+		/* rather than instantiating RoomDimension objects on separate lines, doing it within
+		 * assignment for Array object
+		 */
+		RoomDimension [] rooms = {new RoomDimension(12.1, 19.2), new RoomDimension(7.6, 1.1), 
+				new RoomDimension(5.4, 11.1), new RoomDimension(9.0, 14.1)};
+		h.setRooms(rooms);
+		for (int i = 0; i < h.getRooms().length; i++) {
+			assertEquals("Test 03_10 failed", rooms[i].getLength(), h.getRooms()[i].getLength(), 0.0);
+			assertEquals("Test 03_10 failed", rooms[i].getWidth(), h.getRooms()[i].getWidth(), 0.0);
+		}
+	}
+	
+	@Test
+	public void testPb_03_11() {
+		HouseCarpet h = new HouseCarpet(5, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(12.1, 19.2), new RoomDimension(7.6, 1.1), 
+				new RoomDimension(5.4, 11.1), new RoomDimension(9.0, 14.1)};
+		h.setRooms(rooms);
+		for (int i = 0; i < h.getRooms().length; i++) {
+			assertEquals("Test 03_11 failed", rooms[i].getLength(), h.getRooms()[i].getLength(), 0.0);
+			assertEquals("Test 03_11 failed", rooms[i].getWidth(), h.getRooms()[i].getWidth(), 0.0);
+		}
+	}
+	
+	@Test
+	public void testPb_03_12() {
+		HouseCarpet h = new HouseCarpet(5, 10.0);
+		RoomDimension [] rooms = {};
+		h.setRooms(rooms);
+		for (int i = 0; i < h.getRooms().length; i++) {
+			assertEquals("Test 03_12 failed", rooms[i].getLength(), h.getRooms()[i].getLength(), 0.0);
+			assertEquals("Test 03_12 failed", rooms[i].getWidth(), h.getRooms()[i].getWidth(), 0.0);
+		}
+	}
+	
+	@Test
+	public void testPb_03_13() {
+		HouseCarpet h = new HouseCarpet(0, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(12.1, 19.2), new RoomDimension(7.6, 1.1), 
+				new RoomDimension(5.4, 11.1), new RoomDimension(9.0, 14.1)};
+		h.setRooms(rooms);
+		for (int i = 0; i < h.getRooms().length; i++) {
+			assertEquals("Test 03_13 failed", rooms[i].getLength(), h.getRooms()[i].getLength(), 0.0);
+			assertEquals("Test 03_13 failed", rooms[i].getWidth(), h.getRooms()[i].getWidth(), 0.0);
+		}
+	}
+	
+	// CONTINUE TESTING METHODS FROM GETROOMSCOSTS ONWARDS
 	
 }
