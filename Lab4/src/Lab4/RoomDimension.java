@@ -17,7 +17,8 @@ public class RoomDimension {
 	
 	// default constructor
 	public RoomDimension() {
-		this(1.0, 1.0);
+		// default values don't make sense, since not positive values
+		this(0.0, 0.0);
 	}
 	
 	// accessor methods
@@ -63,10 +64,6 @@ public class RoomDimension {
 	// helper method, private since need not be accessible outside of class
 	private double getValidDimension(double value) {
 		// no helper method since boolean computation is only done once
-		return (value > 0) ? value : 1.0;
+		return (value >= 0) ? value : 0.0;
 	}
-	
-	/* (March 13 lab) 
-	 * SHOULD THERE BE ACCESSORS FOR STATIC OBJECT ATTRIBUTES?
-	 */
 }

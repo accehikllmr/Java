@@ -42,29 +42,21 @@ public class HouseCarpet {
 	
 	// initially forgot [], so argument passed was a single RoomDimension object instead of an Array object containing RoomDimension objects
 	public void setRooms(RoomDimension [] rooms) {
-		
-		/* (March 13 lab)
-		 * ALIASING TO ARGUMENT PASSED TO METHOD (IS IT BEST PRACTICE)?
-		 * WHAT HAPPENS TO ORIGINAL ARRAY OBJECT?
+		/* aliasing to Array object passed in argument works with a single HouseCarpet object
+		 * if two such objects, and one has a room changed, the other will see the same change
+		 * instead, create a new array from the argument array, and alias it to rooms
 		 */
-		
-		this.rooms = rooms;
-		
-		/*
-		// for Array objects of equal length (no possible IndexErrors), simply overwrite current RoomDimension objects with new ones
-		if (this.rooms.length == rooms.length) {
-			for (int x = 0; x < rooms.length; x++) {
-				this.rooms[x] = rooms[x];
-			}
-		} else {
-			
-			// IF ALIASING THIS ARRAY OBJECT TO ARGUMENT ARRAY OBJECT, IS THERE ISSUE IF LENGTHS DIFFER
-			
-			// might suffice for this method, need more test cases
-			this.rooms = rooms;
+
+		// instantiating new RoomDimension Array object, intermediary between argument Array object and HouseCarpet Array object
+		RoomDimension [] roomsCopy = new RoomDimension[rooms.length];		
+		for (int k = 0; k < roomsCopy.length; k++) {
+			// for each RoomDimension object in argument Array object, creating new RoomDimension object and copying its dimensions (not aliasing)
+			RoomDimension roomCopy = new RoomDimension(rooms[k].getLength(), rooms[k].getWidth());
+			roomsCopy[k] = roomCopy;
 		}
-		*/
 		
+		// aliasing here, since gets around issues concerning sizes of Array objects
+		this.rooms = roomsCopy;		
 	}
 	
 	// class method which computes the cost of carpeting for each individual room, and stores these costs in an array

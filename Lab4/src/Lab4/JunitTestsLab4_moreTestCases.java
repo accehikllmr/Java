@@ -26,6 +26,12 @@ public class JunitTestsLab4_moreTestCases {
 		assertEquals("Test 01_02 failed", "Speed: FAST, Color: red, Radius: 3.0", f.toString());
 	}
 	
+	@Test
+	public void testPb_01_202() {
+		Fan f = new Fan(Fan.FAST, Fan.OFF, 3.0, "red");
+		assertEquals("Test 01_202 failed", "fan is off, Color: red, Radius: 3.0", f.toString());
+	}
+	
 	/* testing accessor and mutator methods, repeating accessors for customer constructors since it should 
 	 * prevent specific values from being passed to method parameters (e.g. invalid attribute values)
 	 */
@@ -118,31 +124,31 @@ public class JunitTestsLab4_moreTestCases {
 	@Test
 	public void testPb_01_16() {
 		Fan f = new Fan(3, true, 10.0, "red");
-		assertEquals("Test 01_16 failed", 150.0, f.getCoverage(), 0.0);
+		assertEquals("Test 01_16 failed", 150.0, f.getCoverage(f.getSpeed()), 0.0);
 	}
 	
 	@Test
 	public void testPb_01_17() {
 		Fan f = new Fan(2, true, 11.4, "red");
-		assertEquals("Test 01_17 failed", 114.0, f.getCoverage(), 0.0);
+		assertEquals("Test 01_17 failed", 114.0, f.getCoverage(f.getSpeed()), 0.0);
 	}
 	
 	@Test
 	public void testPb_01_18() {
 		Fan f = new Fan(0, true, 10.0, "red");
-		assertEquals("Test 01_18 failed", 50.0, f.getCoverage(), 0.0);
+		assertEquals("Test 01_18 failed", 50.0, f.getCoverage(f.getSpeed()), 0.0);
 	}
 	
 	@Test
 	public void testPb_01_19() {
 		Fan f = new Fan(3, true, 0.0, "red");
-		assertEquals("Test 01_19 failed", 75.0, f.getCoverage(), 0.0);
+		assertEquals("Test 01_19 failed", 75.0, f.getCoverage(f.getSpeed()), 0.0);
 	}
 	
 	@Test
 	public void testPb_01_20() {
 		Fan f = new Fan(4, true, 0.0, "red");
-		assertEquals("Test 01_20 failed", 25.0, f.getCoverage(), 0.0);
+		assertEquals("Test 01_20 failed", 25.0, f.getCoverage(f.getSpeed()), 0.0);
 	}
 	
 	@Test
@@ -459,6 +465,126 @@ public class JunitTestsLab4_moreTestCases {
 		}
 	}
 	
-	// CONTINUE TESTING METHODS FROM GETROOMSCOSTS ONWARDS
+	@Test
+	public void testPb_03_14() {
+		HouseCarpet h = new HouseCarpet(4, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(12.0, 19.0), new RoomDimension(7.0, 1.0), 
+				new RoomDimension(5.0, 11.0), new RoomDimension(9.0, 14.0)};
+		h.setRooms(rooms);
+		String result = Arrays.toString(h.getRoomCosts());
+		double [] roomCosts = {2280.0, 70.0, 550.0, 1260.0};
+		String expected = Arrays.toString(roomCosts);
+		assertEquals("Test 03_14 failed", result, expected);
+	}
 	
+	@Test
+	public void testPb_03_15() {
+		HouseCarpet h = new HouseCarpet(0, 10.0);
+		String result = Arrays.toString(h.getRoomCosts());
+		double [] roomCosts = {};
+		String expected = Arrays.toString(roomCosts);
+		assertEquals("Test 03_15 failed", result, expected);
+	}
+	
+	@Test
+	public void testPb_03_16() {
+		HouseCarpet h = new HouseCarpet(4, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(12.1, 19.2), new RoomDimension(7.6, 1.1), 
+				new RoomDimension(5.4, 11.1), new RoomDimension(9.0, 14.1)};
+		h.setRooms(rooms);
+		assertEquals("Test 03_16 failed", 4275.2, h.getCarpetCost(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_17() {
+		HouseCarpet h = new HouseCarpet(0, 10.0);
+		assertEquals("Test 03_17 failed", 0.0, h.getCarpetCost(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_18() {
+		HouseCarpet h = new HouseCarpet(4, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(12.1, 19.2), new RoomDimension(7.6, 1.1), 
+				new RoomDimension(5.4, 11.1), new RoomDimension(9.0, 14.1)};
+		h.setRooms(rooms);
+		assertEquals("Test 03_18 failed", 427.52, h.getTotalArea(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_19() {
+		HouseCarpet h = new HouseCarpet(0, 10.0);
+		assertEquals("Test 03_19 failed", 0.0, h.getTotalArea(), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_20() {
+		HouseCarpet h = new HouseCarpet(4, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(2.0, 3.0), new RoomDimension(2.0, 4.0), 
+				new RoomDimension(3.0, 5.0), new RoomDimension(4.0, 5.0)};
+		h.setRooms(rooms);
+		Fan f0 = new Fan(Fan.FAST, Fan.ON, 2.5, "black"); // 1
+		Fan f1 = new Fan(Fan.SLOW, Fan.ON, 3.2, "grey"); // 2
+		Fan f2 = new Fan(Fan.MEDIUM, Fan.ON, 6.0, "beige"); // 1
+		Fan f3 = new Fan(Fan.SLOW, Fan.ON, 10.0, "white"); // 2
+		Fan f4 = new Fan(Fan.MEDIUM, Fan.ON, 10000.0, "onyx");
+		assertEquals("Test 03_20 failed", 1, h.isFanSuitable(f0), 0.0);
+		assertEquals("Test 03_20 failed", 2, h.isFanSuitable(f1), 0.0);
+		assertEquals("Test 03_20 failed", 1, h.isFanSuitable(f2), 0.0);
+		assertEquals("Test 03_20 failed", 2, h.isFanSuitable(f3), 0.0);
+		assertEquals("Test 03_20 failed", 0, h.isFanSuitable(f4), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_21() {
+		HouseCarpet h = new HouseCarpet(0, 10.0);
+		Fan f0 = new Fan(Fan.FAST, Fan.ON, 2.5, "black"); // 0
+		Fan f1 = new Fan(Fan.SLOW, Fan.ON, 3.2, "grey"); // 0
+		Fan f2 = new Fan(Fan.MEDIUM, Fan.ON, 6.0, "beige"); // 0
+		Fan f3 = new Fan(Fan.SLOW, Fan.ON, 10.0, "white"); // 0
+		Fan f4 = new Fan(Fan.MEDIUM, Fan.ON, 10000.0, "onyx");
+		assertEquals("Test 03_21 failed", 0, h.isFanSuitable(f0), 0.0);
+		assertEquals("Test 03_21 failed", 0, h.isFanSuitable(f1), 0.0);
+		assertEquals("Test 03_21 failed", 0, h.isFanSuitable(f2), 0.0);
+		assertEquals("Test 03_21 failed", 0, h.isFanSuitable(f3), 0.0);
+		assertEquals("Test 03_21 failed", 0, h.isFanSuitable(f4), 0.0);
+	}
+	
+	@Test
+	public void testPb_03_22() {
+		HouseCarpet h = new HouseCarpet(4, 10.0);
+		RoomDimension [] rooms = {new RoomDimension(2.0, 3.0), new RoomDimension(2.0, 4.0), 
+				new RoomDimension(3.0, 5.0), new RoomDimension(4.0, 5.0)};
+		h.setRooms(rooms);
+		String expect = "Total Rooms: 4, Total Area: 49.0, Total Carpet Cost: 490.0";
+		String result = h.toString();
+		assertEquals("Test 03_22 failed", expect, result);
+	}
+	
+	@Test
+	public void testPb_03_23() {
+		HouseCarpet h = new HouseCarpet(4, 10.0);
+		String expect = "Total Rooms: 4, Total Area: 4.0, Total Carpet Cost: 40.0";
+		String result = h.toString();
+		assertEquals("Test 03_23 failed", expect, result);
+	}
+	
+	@Test
+	public void testPb_03_24() {
+		HouseCarpet h = new HouseCarpet(0, 10.0);
+		String expect = "Total Rooms: 0, Total Area: 0.0, Total Carpet Cost: 0.0";
+		String result = h.toString();
+		assertEquals("Test 03_24 failed", expect, result);
+	}
+	
+	@Test
+	public void testPb_03_25() {
+		HouseCarpet h1 = new HouseCarpet(5, 10.0);
+		HouseCarpet h2 = new HouseCarpet(5, 15.0);
+		RoomDimension [] rooms = {new RoomDimension(12.1, 19.2), new RoomDimension(7.6, 1.1), 
+				new RoomDimension(5.4, 11.1), new RoomDimension(9.0, 14.1)};
+		h1.setRooms(rooms);
+		h2.setRooms(rooms);
+		h1.getRooms()[0] = new RoomDimension();
+		assertEquals("failed", h1.getRooms()[0].getLength(), h2.getRooms()[0].getLength(), 0.0);
+	}
 }

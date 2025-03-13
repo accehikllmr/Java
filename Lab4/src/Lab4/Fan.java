@@ -4,7 +4,7 @@ public class Fan {
 	
 	/* constants values used for speed variable, double-check if these should be listed among object attributes
 	 * variables made static, so that they can be accesses using class name
-	 * in other words, they are tied to the class, not an instantiation of that class
+	 * in other words, they are tied to the class, not an instantiation (Object) of that class
 	 */
 	public static int SLOW = 1;
 	public static int MEDIUM = 2;
@@ -23,9 +23,7 @@ public class Fan {
 	// default constructor (i.e. no arguments passed during Fan object instantiation)
 	public Fan() {
 		
-		/* (March 13 Lab) 
-		 * WHAT IS CONVENTION WHEN RETRIEVING PUBLIC STATIC CONSTANTS FROM INSIDE CLASS?
-		 */
+		// what is convention when retrieving static variables from within class?
 		
 		// calling more general constructor to initialize object, passing default values to argument parameters of general constructor
 		this(Fan.SLOW, Fan.OFF, 5.0, "blue");
@@ -66,6 +64,10 @@ public class Fan {
 		return this.color;
 	}
 	
+	/* typically, static fields in a class would be accessed using accessors
+	 * test cases access them directly, so not implementing these accessor methods here
+	 */
+	
 	// setter method, if valid argument is passed to method parameter, assigns new values to Fan object attribute
 	public void setSpeed(int speed) {
 		this.speed = getValidSpeed(speed);
@@ -87,12 +89,9 @@ public class Fan {
 		// no argument validation, since no list of valid colors was given
 	}
 	
-	/* (March 13 lab) 
-	 * SHOULD THERE BE ACCESSORS FOR STATIC OBJECT ATTRIBUTES?
-	 * SHOULD HELPER METHODS BE STATIC?
-	 */ 
-	
-	// helper methods, private since they should not be accessed outside of the class
+	/* helper methods, private since they should not be accessed outside of the class
+	 * not static since they access instance fields (i.e. attributes specific to an Object instance)
+	 */
 	private double getValidRadius(double value) {
 		// nested conditional assignment, second value is a new conditional assignment
 		return (value > 0) ? value : ((this.radius > 0) ? this.radius : 5.0);
@@ -101,18 +100,18 @@ public class Fan {
 	private int getValidSpeed(int value) {
 		return 	(value == Fan.SLOW || value == Fan.MEDIUM || value == Fan.FAST) 
 				? value : ((this.speed == Fan.SLOW || this.speed == Fan.MEDIUM || this.speed == Fan.FAST) 
-				? this.speed : 1);
+				? this.speed : Fan.SLOW);
 	}
 	
 	// class method which indicates the area covered by the Fan object's blowing
-	public double getCoverage() {
-		return this.speed * this.radius * 5;
+	public double getCoverage(int speed) {
+		return speed * this.radius * 5;
 	}
 	
 	// class method which indicates whether the coverage area of a Fan object's blowing is suitable (according to given definition)
 	public boolean isSuitable(double area) {
 		// conjunction of conditions required for Fan object to have suitable blowing coverage
-		return (2 * area <= Fan.SLOW * this.radius * 5) && (Fan.FAST * this.radius * 5 <= 10 * area);
+		return (2 * area <= this.getCoverage(Fan.SLOW)) && (this.getCoverage(Fan.FAST) <= 10 * area);
 	}
 	
 	public String toString() {
@@ -130,6 +129,7 @@ public class Fan {
 		}
 		
 		// using single conditional to return different String objects based on whether Fan object is ON or OFF
-		return (this.status == true) ? String.format("Speed: %s, Color: %s, Radius: %.1f", speed_str, this.color, this.radius) : String.format("fan is off, Color: %s, Radius: %.1f", this.color, this.radius);
+		return (this.status == true) ? String.format("Speed: %s, Color: %s, Radius: %.1f", speed_str, this.color, this.radius) : 
+			String.format("fan is off, Color: %s, Radius: %.1f", this.color, this.radius);
 	}
 }
