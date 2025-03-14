@@ -244,7 +244,7 @@ public class Junittest_lab5 {
 	//-----------------------------------------------------------------------------
 	@Test
 	public void test1_00_initialAndGeneric() {
-		MyArrayList  arrL = new MyArrayList();
+		MyArrayList arrL = new MyArrayList();
 		 
 		int leng = arrL.elementData.length;
 		assertEquals(5, leng);

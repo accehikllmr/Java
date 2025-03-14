@@ -10,20 +10,21 @@
 
 package lab5;
 
-public class MyArrayList  {
+// ABSTRACT CLASS WHICH IMPLMENENTS THE ARRAYLIST LIST INTERFACE?
+
+public class MyArrayList {
 
 	private static final int DEFAULT_CAPACITY = 5;
 	
 	int size;  // non-private for testing purpose, should be private in real application
 	Course[] elementData; // non-private for testing purpose
 	
-	
 	/**
 	 * Create an empty list of default capacity
 	 * 
 	 */
     public MyArrayList() {
-    	this.elementData = new Course [DEFAULT_CAPACITY];
+    	this.elementData = new Course[DEFAULT_CAPACITY];
 	}
 
 	/**
@@ -31,33 +32,45 @@ public class MyArrayList  {
 	 * 
 	 * @param capa the initial capacity. Assume greater than 0.
 	 */
-	 
     public MyArrayList(int capa) {
-		 this.elementData = new Course[capa];
+    	this.elementData = new Course[capa];
 	}
 
-	
-	 
     /**
      * Returns the number of elements in this collection.  
      *
      * @return the number of elements in this list
      */
 	public int size() {
-		 
+		// counting size of Array object, but excluding all null elements from count
+		int size = 0;
+		for (int i = 0; i < elementData.length; i++) {
+			if (elementData[i] != null) {
+				size++;
+			}
+		}
+		return size;
 	}
 	
-
 	 /**
      * Returns <tt>true</tt> if this list contains no elements.
      *
      * @return <tt>true</tt> if this list contains no elements
      */
 	public boolean isEmpty() {
-		 
+		// initializing indicator which switches to false upon finding a single non-null element in Array object
+		boolean allNull = true;
+		// checking if all elements are null (i.e. no elements)
+		for (int i = 0; i < elementData.length; i++) {
+			if (elementData[i] != null) {
+				allNull = false;
+				break;
+			}
+		}
+		// if either is true, then Array object is considered empty
+		return this.elementData.length == 0 || allNull;
 	}
 
-	 
 	 /**
      * Returns <tt>true</tt> if this list contains the specified element.
      * More formally, returns <tt>true</tt> if and only if this list
@@ -71,10 +84,19 @@ public class MyArrayList  {
      * 
      */
 	public boolean contains (Course o) {
-		 
+		 // iterating through Array object Course objects to find identical object which matches argument object
+		for (int i = 0; i < this.elementData.length; i++) {
+			Course course = this.elementData[i];
+			// checking for same Course code and name, and also same instructor (by comparing Professor object fields)
+			if (o.getCode() == course.getCode() && o.getName().equals(course.getName()) 
+					&& o.getInstructor().getName().equals(course.getInstructor().getName())
+						&& o.getInstructor().getYear() == course.getInstructor().getYear()) {
+				return true;
+			}
+		}
+		return false;
 	}
-
-	 
+	
 	/**
      * Returns the element at the specified position in this list.
      * assume the specified position is valid, in the range of 0-size()
