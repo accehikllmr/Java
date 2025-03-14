@@ -13,36 +13,89 @@ import java.util.ArrayList;
 
 public class Student {
 	
+	// static attribute for student ID digit
+	public static int yorkIDNumber = 1;
+	// static attribute for unnamed student count
+	public static int unnamedCount = 0;
+	
     private String yorkID;
 	private String name;
 	private int year;
 	private ArrayList<Course> courses; // list of courses completed or completing
 
-	// other field as needed
-	
-	
+	// ADD OTHER FIELDS, IF NEEDED
 	
 	/** customer constructor that takes name and year
 	 *  sets name and year
 	 *  
 	 *  also creates a unique yorkID of form "York-xx" where xx is a serial number 
 	 * 
-	 * @param name  name of the course
+	 * @param name  name of the student
 	 * @param year  year of study
 	 */
 	  
 	 // ... (String name, int year) {
-	     
-	 
+	 public Student(String name, int year) {
+		 // incrementing count of unnamed students for each one without a name
+		 if (name.equals("")) {
+			 Student.unnamedCount++;
+		 }
+		 // calling helper methods to validate String object and int (object?) arguments passed to name parameter
+		 this.name = validName(name);
+		 this.year = validYear(year);
 	     this.courses = new ArrayList<>(); // create the empty arraylist
-	     // create unique york ID
-		 
-		
-	//}
+	     // creating unique york ID, and increment digit value since new Student object created
+		 yorkID = String.format("York-%d", Student.yorkIDNumber);
+		 Student.yorkIDNumber++;
+	}
 	
-	// getters, setters for the 4 fields.
-	//.....
+	// accessor method
+	public String getYorkID() {
+		return this.yorkID;
+	}
+	 
+	public String getName() {
+		return this.name;
+	}
 	
+	public int getYear() {
+		return this.year;
+	}
+	
+	// ADD ACCESSOR METHOD FOR COURSES ARRAYLIST
+	
+	public static int getUnnamedCount() {
+		return Student.unnamedCount;
+	}
+	 
+	// mutator methods
+	public void setYorkID(String yorkID) {
+		// NEED TO VALIDATE ARGUMENT PASSED TO METHOD
+		// IF INVALID, NO CHANGE MADE
+		// NEED TO CHECK FOR CONFLICT WITH EXISTING STUDENT IDS
+	}
+	
+	public void setName(String name) {
+		this.name = validName(name);
+	}
+	
+	public void setYear(int year) {
+		this.year = validYear(year);
+	}
+	
+	public void setCourses() {
+		// NEED TO COMPLETE SIGNATURE, UNSURE HOW TO DO IT FOR ARRAYLIST
+	}
+	
+	// helper methods
+	public int validYear(int year) {
+		return (year > 0) ? year : 1;
+	}
+	
+	public String validName(String name) {
+		return (!name.equals("")) ? name : String.format("Unnamed Student %d", Student.getUnnamedCount());
+	}
+
 	/**
 	    * enroll course c 
 	    * @param c  the course to enroll
@@ -148,9 +201,7 @@ public class Student {
 	 * @return a string representation of above format
 	 **/
 	public String toString() {
-		
-			
-		return "";
+		return String.format("%s %s %d", this.getYorkID(), this.getName(), 1);
 	}
 	
 	

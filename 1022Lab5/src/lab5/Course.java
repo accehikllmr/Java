@@ -10,6 +10,9 @@
 
 package lab5;
 
+// ENSURE THAT OBLIGATORY EQUALS METHOD ALLOWS SEARCH IN STUDENT'S ARRAYLIST OF COURSES
+// ADD MORE TEST CASES
+
 public class Course {
 	
 	// counting number of unnamed courses, in order to distinguish them by number
@@ -94,10 +97,24 @@ public class Course {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		 
+		// checking if a single object is being compared to itself
+		if (this == obj) {
+			return true;
+		}
+		// checking if the object passed as an argument is null
+		if (obj == null) {
+			return false;
+		}
+		// checking that both objects are of the same class (i.e. Course)
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		// having satisfied all of the above conditions, can now assign argument to new Course object variable
+		Course other = (Course)obj;
+		
+		if ((this.getCode() == other.getCode()) && (this.getName().equals(other.getName()))) {
+			return true;
+		}
+		return false;
 	}
-	
-	
-	
-
 }

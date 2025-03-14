@@ -33,7 +33,7 @@ public class MyArrayList  {
 	 */
 	 
     public MyArrayList(int capa) {
-		 
+		 this.elementData = new Course[capa];
 	}
 
 	
