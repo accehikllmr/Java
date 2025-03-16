@@ -284,7 +284,7 @@ public class Junittest_lab5 {
 			assertTrue( arrL.get(0)==course1 );
 			assertTrue( arrL.get(1)==course2 );
 			assertTrue( arrL.get(2)==course3);
-			//assertTrue( arrL.get(4) == null);
+			assertTrue( arrL.get(4) == null);
 			
 			Course course1b = new Course(2030,"Advanced OOP",  new Professor("Sue", 5) ); // equals to course1
 			Course course4 = new Course(2050, "Advanced OOP",  new Professor("Sue", 5)); // not equals to course4
