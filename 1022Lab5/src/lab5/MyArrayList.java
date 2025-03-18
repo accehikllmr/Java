@@ -12,6 +12,7 @@ package lab5;
 
 // ABSTRACT CLASS WHICH IMPLMENENTS THE ARRAYLIST LIST INTERFACE?
 // NEED ACCESSOR AND MUTATOR METHODS FOR THIS CLASS?
+// ADD MORE TEST CASES
 
 public class MyArrayList {
 
@@ -122,26 +123,23 @@ public class MyArrayList {
 	 * @param e element whose presence in this collection is to be ensured. Assume e is not null. 
 	 */
     public void add(Course e) {
-		// copying contents of course to add, in either case
-    	Course add = new Course(e.getCode(), e.getName(), e.getInstructor());
-    	// to avoid IndexError, first check if Array object has space for a new Course object (i.e. size is less than length)    	
+    	// to avoid IndexError, first check if Array object has space for a new Course object (i.e. no null elements or empty of size 0)  	
     	if (this.size == this.elementData.length) {
-    		// creating new Array object with size increased by 5
-    		Course[] newElementData = new Course[this.elementData.length + DEFAULT_CAPACITY];
-			for (int i = 0; i < this.elementData.length; i++) {
-				// 
-				Course copy = this.elementData[i];
-				// retrieving data from Course object, rather than simply pointing to existing Course object (not aliasing)
-				Course newCopy = new Course(copy.getCode(), copy.getName(), copy.getInstructor());
-				newElementData[i] = newCopy;
+    		// creating new Array object with size increased by 5, relative to current number of non-null elements
+    		Course[] newElementData = new Course[this.size + DEFAULT_CAPACITY];
+    		// using size, since all elements beyond size of Array object, if they exist, are null
+			for (int i = 0; i < this.size; i++) {
+				// aliasing to Course object at position i, same course so any change to object should carry across all instances
+				newElementData[i] = this.elementData[i];
 			}
 			// having cycled through original Array object, now point original Array object to new Array object
 			this.elementData = newElementData;
-			// adding Course object passed to method as argument
-			newElementData[this.elementData.length + 1] = add;
+			// adding Course object at position following last non-null Array object element, not aliasing since need same address
+			newElementData[this.size] = e;
+		// case where there is space remaining in the Array object
     	} else {
-    		// adding new element at position following last non-null Array object element
-			this.elementData[this.size] = add;
+    		// again, not aliasing since want single Course object to exist, so any change should carry across instances
+			this.elementData[this.size] = e;
 		}
     	// size of list increases for each additional element added
 		this.size++;	 
@@ -160,9 +158,22 @@ public class MyArrayList {
 	 * @param o element to be removed from this list, if present. Assume o is not null.
 	 * @return if this list contained the specified element. false otherwise.
 	 */ 
-	public boolean remove(Course c) {
-		 
-		 
+	public boolean remove(Course c) {		
+		// iterating through Array object, not alias, since need to modify original
+		for (int i = 0; i < this.size; i++) {
+			if (this.elementData[i].equals(c)) {
+				// iterating through Array object from index of object to remove, until end
+				for (int j = i; j < this.size; j++) {
+					// shifting every element one index to the left, overwriting element to remove, only at this index, and leaving null at the end
+					this.elementData[j] = this.elementData[j + 1];
+				}
+				// one element was remove, so size of the Array object is reduced by one
+				this.size--;
+				// since element was found in the Array object
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -176,9 +187,16 @@ public class MyArrayList {
 	 * @return the element previously at the specified position
 	 */		
 	public Course remove(int index) {
-		 
+		// assign Course object to variable, otherwise will not be accessible once it is removed from Array object
+		Course removed = this.elementData[index];
+		// iterating through Array object, but staring at index for Course object to be removed
+		for (int i = index; i < this.size; i++) {
+			this.elementData[i] = this.elementData[i + 1];
+		}
+		// Course object removed, so Array object size is reduced by one
+		this.size--;
+		return removed;
 	}
-	
 
 	// Search Operations
 
@@ -202,6 +220,4 @@ public class MyArrayList {
 		// if Course object is not found in list
 		return -1;
 	}
- 
-
 }

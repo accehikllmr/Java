@@ -329,7 +329,7 @@ public class Junittest_lab5 {
 			assertEquals(2, arrL.indexOf(course3));
 			assertEquals(0, arrL.indexOf(course1));
 			
-			
+			// these tests fail, which means that they have different addresses
 			assertTrue( arrL.get(0)==course1 );
 			assertTrue( arrL.get(1)==course2 );
 			assertTrue( arrL.get(2)==course3);
