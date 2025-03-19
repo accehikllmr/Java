@@ -11,6 +11,8 @@
 package lab5;
 import java.util.ArrayList;
 
+// ADD MORE TEST CASES
+
 public class Student {
 	
 	// static attribute for student ID digit
@@ -62,7 +64,9 @@ public class Student {
 		return this.year;
 	}
 	
-	// ADD ACCESSOR METHOD FOR COURSES ARRAYLIST
+	public ArrayList<Course> getCourses() {
+		return this.courses;
+	}
 	
 	public static int getUnnamedCount() {
 		return Student.unnamedCount;
@@ -70,9 +74,14 @@ public class Student {
 	 
 	// mutator methods
 	public void setYorkID(String yorkID) {
-		// NEED TO VALIDATE ARGUMENT PASSED TO METHOD
-		// IF INVALID, NO CHANGE MADE
-		// NEED TO CHECK FOR CONFLICT WITH EXISTING STUDENT IDS
+		// retrieving prefix from argument passed to method parameter
+		String yorkSubstring = yorkID.substring(0, 5);
+		// retrieving digits from argument passed to method parameter
+		int yorkDigits = Integer.parseInt(yorkID.substring(5));
+		// checking for correct substring and ID number larger than largest existing number
+		if (yorkSubstring.equals("York-") && yorkDigits > Student.yorkIDNumber) {
+			this.yorkID = yorkID;
+		}
 	}
 	
 	public void setName(String name) {
@@ -83,8 +92,8 @@ public class Student {
 		this.year = validYear(year);
 	}
 	
-	public void setCourses() {
-		// NEED TO COMPLETE SIGNATURE, UNSURE HOW TO DO IT FOR ARRAYLIST
+	public void setCourses(ArrayList<Course> courses) {
+		this.courses = courses;
 	}
 	
 	// helper methods
@@ -97,13 +106,12 @@ public class Student {
 	}
 
 	/**
-	    * enroll course c 
-	    * @param c  the course to enroll
-	    * 
-	    */
-	public void enrollCourse(Course c)
-	{
-		 
+	 * enroll course c 
+	 * @param c  the course to enroll
+	 * 
+	 */
+	public void enrollCourse(Course c) {
+		courses.add(c);
 	}
 	
 	/**
@@ -114,7 +122,11 @@ public class Student {
 	 * @return true if the course is removed, false if has not taken the course
 	 */
 	public boolean dropCourse (Course c) {
-		
+		if (courses.contains(c)) {
+			courses.remove(c);
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -125,7 +137,10 @@ public class Student {
 	 * @return the course that is being dropped
 	 */	
 	public Course dropCourse (int i) {
-		 
+		// aliasing since removing it will prevent direct access
+		Course course = courses.get(i);
+		courses.remove(i);
+		return course;
 	}
 	
 	/**
@@ -136,10 +151,9 @@ public class Student {
 	 * @return the course at the position
 	 */
 	public Course getCourse(int i) {
-		 
+		return courses.get(i);
 	}
 	
-	 
 	/**
 	 * get the title of the i'th course in the list. 
 	 * assume i is valid, i.e., 0 <= i < number of courses
@@ -149,10 +163,8 @@ public class Student {
 	 */
 	
 	public String getCourseTitle(int i) {
-		 
+		return courses.get(i).getName();
 	}
-	
-	
 	
 	/**
 	 * get the instructor's name of the i'th course in the list. 
@@ -161,33 +173,27 @@ public class Student {
 	 * @param i  the index of course to get
 	 * @return the name of instructor of course at the position
 	 */
-	
 	public String getInstrucorName(int i) {
-		 
+		return courses.get(i).getInstructor().getName();
 	}
 	
-	 
 	/**
 	 * get total number of courses has taken or is taking
 	 *
 	 * @return the number of courses taken or taking
 	 */
 	public int totalCourses() {
-		 
+		return this.courses.size();
 	}
-	
-	 
 	
 	/**
 	 * return true if course c has been completed or is taking, return false otherwise
 	 *
 	 * @return if the course has been taken or is taking
 	 */
-	public boolean hasTaken (Course c)
-	{
-		 
+	public boolean hasTaken (Course c) {
+		return courses.contains(c);
 	}
-
 
 	@Override
 	/**
@@ -201,20 +207,15 @@ public class Student {
 	 * @return a string representation of above format
 	 **/
 	public String toString() {
-		return String.format("%s %s %d", this.getYorkID(), this.getName(), 1);
+		// string to build sequence of course codes, conditioned on whether empty or not
+		String codes = (courses.size() != 0) ? "[" : "[]";
+		// iterating through courses to retrieve codes and build string
+		for (int i = 0; i < courses.size(); i++) {
+			// retrieving course object from index i, then retrieving its code, converting to String
+			String codeAdd = Integer.toString(courses.get(i).getCode());
+			// conditional addition to string, based on whether it is final course code to add
+			codes += (i != courses.size() - 1) ? String.format("%s-", codeAdd) : String.format("%s]", codeAdd);
+		}
+		return String.format("%s %s %d %s", this.getYorkID(), this.getName(), this.getYear(), codes);
 	}
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
