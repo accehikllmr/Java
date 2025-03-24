@@ -212,12 +212,6 @@ public class Junittest_lab5_extra {
 		Student s = new Student("Lee", 2);
 		s.enrollCourse(course1);s.enrollCourse(course2);s.enrollCourse(course3);
 		
-		ArrayList<Course> courses = s.getCourses();
-		System.out.println(courses);
-		courses = new ArrayList<>();
-		s.setCourses(courses);
-		System.out.println(s.getCourses());
-		
 		boolean taken = s.hasTaken (course1);
 		assertTrue(taken);
 		Course course4 = new Course(4413,"Ecommere",  new Professor("Joe", 12) );

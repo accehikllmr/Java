@@ -10,8 +10,6 @@
 
 package lab5;
 
-// ADD MORE TEST CASES
-
 public class MyArrayList {
 
 	private static final int DEFAULT_CAPACITY = 5;
