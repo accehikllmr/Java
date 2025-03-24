@@ -260,6 +260,8 @@ public class Junittest_lab5_extra {
 		assertEquals("Data Stucture", course2.getName());
 		assertEquals(prof, course2.getInstructor());
 		
+		assertTrue(prof.equals(prof));
+		
 		Course unCourse = new Course(1001, "", prof);
 		assertEquals("Unnamed Course 1", unCourse.getName());
 		
@@ -275,6 +277,18 @@ public class Junittest_lab5_extra {
 		Professor prof2 = new Professor("dan", 20);
 		unCourse.setInstructor(prof2);
 		assertEquals(prof2, unCourse.getInstructor());
+		
+		assertFalse(prof.equals(prof2));
+		
+		Professor prof3 = new Professor("", -30);
+		assertFalse(prof.equals(prof3));
+		String exp2 = "Professor: Unnamed Professor 1, Year: 1";
+		assertEquals(exp2, prof3.toString());
+		prof3.setName("Joe");
+		assertEquals("Joe", prof3.getName());
+		prof3.setYear(4);
+		assertTrue(prof3.getYear() == 4);
+		assertTrue(Professor.getUnnamedCount() == 1);
 		
 	}
 	@Test
