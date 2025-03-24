@@ -76,6 +76,10 @@ public class Student {
 	public static int getUnnamedCount() {
 		return Student.unnamedCount;
 	}
+	
+	public static ArrayList<Integer> getIdDigits() {
+		return Student.idDigits;
+	}
 	 
 	// mutator methods
 	public void setYorkID(String yorkID) {

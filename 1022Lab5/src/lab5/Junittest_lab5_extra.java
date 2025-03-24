@@ -93,6 +93,9 @@ public class Junittest_lab5_extra {
 		s3.setYorkID("York-121");
 		assertEquals("York-3", s3.getYorkID());
 		
+		assertTrue(s2.equals(s2));
+		assertFalse(s2.equals(s3));
+		
 		// successful tests for unnamed students, but cause other tests to fail
 		/*
 		Student s12 = new Student("", 1);
@@ -172,16 +175,19 @@ public class Junittest_lab5_extra {
 		assertNotNull(course1); assertNotNull(course2);assertNotNull(course3);
 		 
 		
+		assertTrue(course3.equals(course3));
+		
 		Student s = new Student("Lee", 2);
 		s.enrollCourse(course1);s.enrollCourse(course2);s.enrollCourse(course3);
 		
 		assertEquals(3, s.totalCourses());
 		Course cGet = s.getCourse(2);
 		assertTrue(cGet==course3);  // same object
+		assertTrue(cGet.equals(course3));  // same object
 		
 		Course cGet0 = s.getCourse(0);
 		assertTrue(cGet0==course1);  // same object
-		
+		assertFalse(cGet0.equals(course3));
 		
 		String title = s.getCourseTitle(1);
 		assertEquals(title, "Data Stucture");
@@ -246,11 +252,30 @@ public class Junittest_lab5_extra {
 		String exp = "Course [code=2030, name=Advanced OOP, instructor=Sam]";
 		assertEquals(exp, course1.toString());
 				
-				
-		Course course2 = new Course(2011,"Data Stucture", new Professor("Jeff", 30));
+		Professor prof = new Professor("Jeff", 30);
+		Course course2 = new Course(2011,"Data Stucture", prof);
 		exp = "Course [code=2011, name=Data Stucture, instructor=Jeff]";
 		assertEquals(exp, course2.toString());
-	
+		assertEquals(2011, course2.getCode());
+		assertEquals("Data Stucture", course2.getName());
+		assertEquals(prof, course2.getInstructor());
+		
+		Course unCourse = new Course(1001, "", prof);
+		assertEquals("Unnamed Course 1", unCourse.getName());
+		
+		Course unCourse2 = new Course(1001, "", prof);
+		assertEquals("Unnamed Course 2", unCourse2.getName());
+		
+		assertEquals(Course.getUnnamedCount(), 2);
+		
+		unCourse.setCode(0);
+		assertEquals(0, unCourse.getCode());
+		unCourse.setName("");
+		assertEquals("Unnamed Course 2", unCourse.getName());
+		Professor prof2 = new Professor("dan", 20);
+		unCourse.setInstructor(prof2);
+		assertEquals(prof2, unCourse.getInstructor());
+		
 	}
 	@Test
 	public void test0_course_equals() {

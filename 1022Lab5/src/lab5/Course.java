@@ -10,9 +10,6 @@
 
 package lab5;
 
-// ENSURE THAT OBLIGATORY EQUALS METHOD ALLOWS SEARCH IN STUDENT'S ARRAYLIST OF COURSES
-// ADD MORE TEST CASES
-
 public class Course {
 	
 	// counting number of unnamed courses, in order to distinguish them by number
