@@ -10,8 +10,6 @@
 
 package lab5;
 
-// ABSTRACT CLASS WHICH IMPLMENENTS THE ARRAYLIST LIST INTERFACE?
-// NEED ACCESSOR AND MUTATOR METHODS FOR THIS CLASS?
 // ADD MORE TEST CASES
 
 public class MyArrayList {
@@ -38,6 +36,8 @@ public class MyArrayList {
     	this.elementData = new Course[capa];
 	}
 
+    // not implementing accessors and mutators, since official implementation does not contain them for class fields
+    
     /**
      * Returns the number of elements in this collection.  
      *
@@ -46,16 +46,6 @@ public class MyArrayList {
 	public int size() {
 		// instead of method calculating size upon every call, value is calculated upon each course addition
 		return this.size;
-		/* counting size of Array object, but excluding all null elements from count,
-		 * storing value as size field of Array object
-		 
-		this.size = 0;
-		for (int i = 0; i < elementData.length; i++) {
-			if (elementData[i] != null) {
-				this.size++;
-			}
-		}
-		*/
 	}
 	
 	/**

@@ -11,21 +11,20 @@
 package lab5;
 import java.util.ArrayList;
 
-// ADD MORE TEST CASES
-
 public class Student {
 	
 	// static attribute for student ID digit
 	public static int yorkIDNumber = 1;
 	// static attribute for unnamed student count
 	public static int unnamedCount = 0;
+	// initializing new ArrayList here, should not be reinitialized for every class instance
+	public static ArrayList<Integer> idDigits = new ArrayList<>(); // to prevent duplicate ID values among students
 	
     private String yorkID;
 	private String name;
 	private int year;
+	// not using the custom MyArrayList class and its methods, instead using official implementation
 	private ArrayList<Course> courses; // list of courses completed or completing
-
-	// ADD OTHER FIELDS, IF NEEDED
 	
 	/** customer constructor that takes name and year
 	 *  sets name and year
@@ -35,8 +34,6 @@ public class Student {
 	 * @param name  name of the student
 	 * @param year  year of study
 	 */
-	  
-	 // ... (String name, int year) {
 	 public Student(String name, int year) {
 		 // incrementing count of unnamed students for each one without a name
 		 if (name.equals("")) {
@@ -45,10 +42,18 @@ public class Student {
 		 // calling helper methods to validate String object and int (object?) arguments passed to name parameter
 		 this.name = validName(name);
 		 this.year = validYear(year);
-	     this.courses = new ArrayList<>(); // create the empty arraylist
-	     // creating unique york ID, and increment digit value since new Student object created
-		 yorkID = String.format("York-%d", Student.yorkIDNumber);
-		 Student.yorkIDNumber++;
+	     this.courses = new ArrayList<>(); // create the empty MyArrayList, not done above
+	     /* creating unique york ID, and increment digit value since new Student object created
+	      * but, checking that no conflicting id already exists (possibility due to mutator)
+	      */
+		 while (Student.idDigits.contains(Student.yorkIDNumber)) {
+			 // increments new ID number until finding one that is not already in ArrayList
+			 Student.yorkIDNumber++;
+		 }
+		 Student.idDigits.add(Student.yorkIDNumber);
+	     yorkID = String.format("York-%d", Student.yorkIDNumber);
+	     // increments after assigning ID number to student
+	     Student.yorkIDNumber++;
 	}
 	
 	// accessor method
@@ -78,9 +83,10 @@ public class Student {
 		String yorkSubstring = yorkID.substring(0, 5);
 		// retrieving digits from argument passed to method parameter
 		int yorkDigits = Integer.parseInt(yorkID.substring(5));
-		// checking for correct substring and ID number larger than largest existing number
-		if (yorkSubstring.equals("York-") && yorkDigits > Student.yorkIDNumber) {
+		// checking for correct substring and ID number larger than largest existing number, and not a duplicate
+		if (yorkSubstring.equals("York-") && yorkDigits >= Student.yorkIDNumber && !Student.idDigits.contains(yorkDigits)) {
 			this.yorkID = yorkID;
+			Student.idDigits.add(yorkDigits);
 		}
 	}
 	
@@ -173,7 +179,7 @@ public class Student {
 	 * @param i  the index of course to get
 	 * @return the name of instructor of course at the position
 	 */
-	public String getInstrucorName(int i) {
+	public String getInstructorName(int i) {
 		return courses.get(i).getInstructor().getName();
 	}
 	
@@ -217,5 +223,26 @@ public class Student {
 			codes += (i != courses.size() - 1) ? String.format("%s-", codeAdd) : String.format("%s]", codeAdd);
 		}
 		return String.format("%s %s %d %s", this.getYorkID(), this.getName(), this.getYear(), codes);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Student other = (Student)obj;
+		
+		// students are uniquely identified using their IDs, so no need to compare other fields (assuming code for assigning IDs is foolproof)
+		if (this.getYorkID().equals(other.getYorkID())) {
+			return true;
+		}
+		return false;
 	}
 }

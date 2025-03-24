@@ -33,7 +33,7 @@ import org.junit.runners.MethodSorters;
 */
 
 
-public class Junittest_lab5 {
+public class Junittest_lab5_extra {
 
 	 
 	
@@ -43,17 +43,18 @@ public class Junittest_lab5 {
 		Student s = new Student("John", 2);
 		assertNotNull(s);
 		assertEquals("York-1", s.getYorkID());
-		assertEquals("John", s.getName());
-		assertEquals(2, s.getYear());
+		s.setName("Ryan");
+		assertEquals("Ryan", s.getName());
+		s.setYear(1);
+		assertEquals(1, s.getYear());
 		
-		
-		assertNotNull(s);
 		Student s2 = new Student("Lisa", 1);
 		assertEquals("York-2", s2.getYorkID());
+		assertNotNull(s2);
 		
-		assertNotNull(s);
 		Student s3 = new Student("Lean", 2);
 		assertEquals("York-3", s3.getYorkID());
+		assertNotNull(s3);
 		
 		Student s4 = new Student("Jeff", 3);
 		assertEquals("York-4", s4.getYorkID());
@@ -78,6 +79,32 @@ public class Junittest_lab5 {
 		
 		Student s11 = new Student("Lee", 4);		
 		assertEquals("York-11", s11.getYorkID());
+		
+		// trying to change ID number to existing values does not work
+		for (int i = 1; i < 12; i++) {
+			s2.setYorkID(String.format("York-%d", i));
+		}
+		
+		assertEquals("York-2", s2.getYorkID());
+		
+		// but changing it to a larger value does
+		s2.setYorkID("York-121");
+		assertEquals("York-121", s2.getYorkID());
+		s3.setYorkID("York-121");
+		assertEquals("York-3", s3.getYorkID());
+		
+		// successful tests for unnamed students, but cause other tests to fail
+		/*
+		Student s12 = new Student("", 1);
+		assertEquals("York-12", s12.getYorkID());
+		assertEquals("Unnamed Student 1", s12.getName());
+		
+		Student s13 = new Student("", 1);
+		assertEquals("York-13", s13.getYorkID());
+		assertEquals("Unnamed Student 2", s13.getName());
+		*/
+		
+		
 				 
 	}
 	
@@ -86,7 +113,7 @@ public class Junittest_lab5 {
 	public void test0_01_toString() { // name 01 to make sure run second in Junit4, (so id=12)
 		Student s = new Student("John", 2);
 		assertNotNull(s);
-		
+				
 		String exp = "York-12 John 2 []";
 		assertEquals(exp, s.toString());
 	
@@ -158,15 +185,20 @@ public class Junittest_lab5 {
 		
 		String title = s.getCourseTitle(1);
 		assertEquals(title, "Data Stucture");
-		String name = s.getInstrucorName(1);
+		String name = s.getInstructorName(1);
 		assertEquals(name, "Jeff");
 		
 		
 		String title0 = s.getCourseTitle(0);
 		assertEquals(title0, "Advanced OOP");
-		String name0 = s.getInstrucorName(0);
+		String name0 = s.getInstructorName(0);
 		assertEquals(name0, "Sam");
-					
+		
+		String title01 = s.getCourseTitle(2);
+		assertEquals(title01, "Theory of Computation");
+		String name01 = s.getInstructorName(2);
+		assertEquals(name01, "Jack");
+		
 	}
 	
 	@Test
@@ -179,6 +211,12 @@ public class Junittest_lab5 {
 		
 		Student s = new Student("Lee", 2);
 		s.enrollCourse(course1);s.enrollCourse(course2);s.enrollCourse(course3);
+		
+		ArrayList<Course> courses = s.getCourses();
+		System.out.println(courses);
+		courses = new ArrayList<>();
+		s.setCourses(courses);
+		System.out.println(s.getCourses());
 		
 		boolean taken = s.hasTaken (course1);
 		assertTrue(taken);
@@ -230,8 +268,13 @@ public class Junittest_lab5 {
 		assertEquals(course1, course2);
 				
 		Course course3 = new Course(3020,"Advanced OOP", new Professor("Jeff", 30));
+		
+		Course course4 = new Course(3020,"Advanced OOP", new Professor("Jeff", 30));
+		
 		assertNotEquals(course1, course3);
 		assertNotEquals(course2, course3);
+		assertEquals(course3, course4);
+		assertEquals(course3, course3);
 
 	}
 	
@@ -364,7 +407,7 @@ public class Junittest_lab5 {
 			assertArrayEquals(tmp2, arrL.elementData);
 			assertEquals(6, arrL.size());
 			 
-			Course course7 = new Course(4413, "E-commerce",  new Professor("S Lee", 15));
+			Course course7 = new Course(4413, "E-c)ommerce",  new Professor("S Lee", 15));
 			arrL.add(course7);
 			Course tmp3 [] = {course1, course2, course3, course4, course5, course6, course7, null, null, null};
 			assertArrayEquals(tmp3, arrL.elementData);

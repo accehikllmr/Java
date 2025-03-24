@@ -10,7 +10,6 @@
 
 package lab5;
 
-// NEED WE ADD EQUALS AND TOSTRING METHODS FOR THIS CLASS?
 // ADD MORE TEST CASES
 
 public class Professor {
@@ -62,5 +61,31 @@ public class Professor {
 	// helper method to assign name to Professor object if empty string argument is passed
 	private String validName(String name) {
 		return (!name.equals("")) ? name : String.format("Unnamed Professor %d", Professor.getUnnamedCount());
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Professor: %s, Year: %d", this.getName(), this.getYear());
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Professor other = (Professor)obj;
+		
+		// technically, it would be best to compare identical Professors using an ID, but no such field exists
+		if (this.getName().equals(other.getName()) && this.getYear() == other.getYear()) {
+			return true;
+		}
+		return false;
 	}
 }
