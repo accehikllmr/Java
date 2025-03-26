@@ -14,7 +14,7 @@ package lab5;
 
 public class Professor {
 	
-	// counting number of unnamed professors, in order to distinguish them by number
+	// counting number of unnamed  (initialized with empty string), in order to distinguish them by number
 	public static int unnamedCount = 0;
 	
 	private String name;
@@ -82,7 +82,10 @@ public class Professor {
 		
 		Professor other = (Professor)obj;
 		
-		// technically, it would be best to compare identical Professors using an ID, but no such field exists
+		/* technically, it would be best to compare identical Professors using an ID, but no such field exists
+		 * should be checking for null values returned by class accessor methods, but this is prevented by argument
+		 * validation helper methods implemented in class constructor and mutators
+		 */
 		if (this.getName().equals(other.getName()) && this.getYear() == other.getYear()) {
 			return true;
 		}

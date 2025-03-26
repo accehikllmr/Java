@@ -31,7 +31,6 @@ public class Course {
 		if (name.equals("")) {
 			Course.unnamedCount++;
 		}
-		
 		this.code = code;
 		this.name = validName(name);
 		this.instructor = prof;
@@ -109,6 +108,7 @@ public class Course {
 		// having satisfied all of the above conditions, can now assign argument to new Course object variable
 		Course other = (Course)obj;
 		
+		// no need to check for accessors returning null types, since arguments already validated in constructors and mutators
 		if ((this.getCode() == other.getCode()) && (this.getName().equals(other.getName()))) {
 			return true;
 		}

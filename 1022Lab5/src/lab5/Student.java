@@ -121,6 +121,7 @@ public class Student {
 	 * 
 	 */
 	public void enrollCourse(Course c) {
+		// probably should add restriction to not add when course already exists in list
 		courses.add(c);
 	}
 	
