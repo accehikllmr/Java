@@ -185,14 +185,14 @@ public void test0_00_sortQueue() {
 	q.add(5); 	q.add(3);	q.add(6);	q.add(8);	q.add(9); 	q.add(3);	q.add(2);	q.add(4);	q.add(7);
 
 	 
-	System.out.println(q);
+	//System.out.println(q);
 	StackQueueUtility.sortQueue(q);System.out.println(q);
 	
 	 
 	Queue<Integer> exp = new LinkedList<>();
 	exp.add(2); 	exp.add(3);	exp.add(3);	exp.add(4);	exp.add(5); exp.add(6);	exp.add(7);	exp.add(8);	exp.add(9);
-    System.out.println(exp.size() + "--"+exp);
-    System.out.println(q.equals(exp));
+    //System.out.println(exp.size() + "--"+exp);
+    //System.out.println(q.equals(exp));
 	assertEquals(q, exp);
   }
 
