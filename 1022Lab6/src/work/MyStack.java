@@ -48,12 +48,13 @@ public class MyStack {
 	 * 
 	 */
 	public boolean contains(Integer o) {
-		// TODO Auto-generated method stub
-		 
+		for (Integer element : this.elementData) {
+			if (element != null && element.equals(o)) {
+				return true;
+			}
+		}
 		return false;
 	}
-
-	
 
 	/**
 	 * Add element e into (top of) the stack (the end of the array). If the array is full, expand it.
@@ -81,7 +82,7 @@ public class MyStack {
 	 * #return the top element in the stack. null if the stack is empty
 	 */
 	public Integer pop() {
-		Integer popElement = this.elementData[this.size];
+		Integer popElement = this.elementData[this.size - 1];
 		this.elementData[this.size - 1] = null;
 		this.size--;
 		return popElement;
@@ -90,6 +91,4 @@ public class MyStack {
 	public Integer peek() {
 		return this.elementData[this.size - 1];
 	}
-
-	
 }
