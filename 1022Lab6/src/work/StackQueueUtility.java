@@ -54,11 +54,25 @@ public class StackQueueUtility
 	 *  @return if s is balanced 
 	 */
 	public static boolean isBracketsBalanced(String s) {  
-		
-		
-		return false;
+		Stack<Character> charStack = new Stack<Character>();	
+		// iterating through String object, but converting to Array of character in order to make this possible
+		for (char character : s.toCharArray()) {
+			if (character == '(' || character == '{' || character == '[' || character == '<') {
+				// any type of left bracket can be added since there still exists an opportunity to pair it
+				charStack.push(character);
+			} else if (character == ')' || character == '}' || character == ']' || character == '>') {
+				// calculating distance in ASCII table from current character in String to character at top of Stack object
+				int charCheck = (int)((character)) - (int)(charStack.peek());
+				// all types of brackets are separated by 1 or 2 on table (better approach would be to use HashMap)
+				if (!charStack.isEmpty() && (charCheck == 1 || charCheck == 2)) {
+					// remove bracket type from Stack object since it has been validated as belonging to a pair
+					charStack.pop();
+				}
+			}
+		}
+		// a non-empty Stack implies that some brackets types remain unpaired (thus no balance)
+		return charStack.isEmpty();
 	}
-
 } 
 
  
